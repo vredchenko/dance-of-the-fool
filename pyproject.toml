@@ -1,0 +1,56 @@
+[project]
+name = "spastics-dance"
+version = "0.1.0"
+description = "PDF and EPUB processing tools for chunking, splitting, and extracting content from books"
+readme = "README.md"
+authors = [
+    { name = "Valerii Redchenko", email = "noreply@example.com" }
+]
+requires-python = ">=3.11"
+dependencies = [
+    # Core dependencies used by multiple tools
+]
+
+[project.optional-dependencies]
+# PDF processing tools
+pdf-tools = [
+    "PyMuPDF>=1.23.0",      # Fast PDF processing, splitting, text extraction
+    "pypdf>=4.0.0",          # Pure Python PDF manipulation
+    "pdfplumber>=0.11.0",    # Advanced text/table extraction
+    "pikepdf>=8.0.0",        # PDF repair and manipulation
+]
+
+# EPUB processing tools
+epub-tools = [
+    "ebooklib>=0.18",        # EPUB reading and writing
+    "lxml>=5.0.0",           # XML/HTML parsing for EPUB internals
+]
+
+# Development tools
+dev = [
+    "pytest>=7.4.0",
+    "pytest-cov>=4.1.0",
+    "black>=23.0.0",
+    "ruff>=0.1.0",
+    "mypy>=1.7.0",
+]
+
+# All tools combined
+all = [
+    "spastics-dance[pdf-tools,epub-tools]",
+]
+
+[project.scripts]
+# CLI commands for PDF tools
+pdf-info = "spastics_dance.pdf_info:main"
+pdf-split = "spastics_dance.pdf_split:main"
+pdf-chunk = "spastics_dance.pdf_chunk:main"
+
+# CLI commands for EPUB tools
+epub-info = "spastics_dance.epub_info:main"
+epub-split = "spastics_dance.epub_split:main"
+epub-chunk = "spastics_dance.epub_chunk:main"
+
+[build-system]
+requires = ["uv_build>=0.8.17,<0.9.0"]
+build-backend = "uv_build"
