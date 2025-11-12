@@ -46,6 +46,11 @@ pdf-info = "spastics_dance.pdf_info:main"
 pdf-split = "spastics_dance.pdf_split:main"
 pdf-chunk = "spastics_dance.pdf_chunk:main"
 
+# CLI commands for EPUB tools
+epub-info = "spastics_dance.epub_info:main"
+epub-split = "spastics_dance.epub_split:main"
+epub-chunk = "spastics_dance.epub_chunk:main"
+
 [build-system]
 requires = ["uv_build>=0.8.17,<0.9.0"]
 build-backend = "uv_build"
