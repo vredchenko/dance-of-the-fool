@@ -246,6 +246,122 @@ A: pdfplumber provides better API on top of pdfminer.six. If we need low-level c
 ### Q: Should we support other ebook formats (MOBI, AZW)?
 A: Future consideration. MOBI/AZW are proprietary Amazon formats, harder to parse. Start with open formats (PDF, EPUB).
 
+## Book Translation Workflow
+
+### Overview
+
+This section documents the process for translating "Танець недоумка" (The Dance of the Fool) from Ukrainian to English using the pdf-chunk tool.
+
+### Translation Parameters
+
+**Source:** `pavlyuk_tanets_nedoumka_e27087_470337.pdf` (468 pages)
+**Chunk Size:** 12 pages per chunk
+**Total Chunks:** 39 chunks (468 ÷ 12 = 39)
+
+**Chunk size rationale:**
+- Initial estimate from pages 1-4: ~700 chars/page (front matter, not representative)
+- Revised from middle pages (200-210): **~1,950 chars/page, ~320 words/page**
+- 12 pages = ~23,400 chars (~3,840 words) = ~20,400 tokens (source + translation)
+- Safe token budget with context buffer
+- Good narrative context without overwhelming translation quality
+
+### Workflow Steps
+
+For each chunk (1-39):
+
+1. **Extract chunk** using pdf-chunk CLI:
+   ```bash
+   source .venv/bin/activate
+   pdf-chunk pavlyuk_tanets_nedoumka_e27087_470337.pdf \
+     --action extract \
+     --start {start_page} \
+     --end {end_page} \
+     --format json > chunk_{chunk_num}.json
+   ```
+
+2. **Translate to English** and create markdown file:
+   - File naming: `translation_chunk_{chunk_num:02d}.md`
+   - Include page range in header
+   - Maintain paragraph structure
+   - Preserve any formatting elements
+
+3. **Create uncertainty file** (even if blank):
+   - File naming: `translation_chunk_{chunk_num:02d}_uncertainty.md`
+   - Document translation difficulties/ambiguities
+   - Format:
+     ```markdown
+     ## Page {page_num}
+     **Original:** "{problematic_substring}"
+     **Question:** {what needs clarification}
+     **Current translation:** "{chosen_translation}"
+     ```
+
+4. **Commit and push** before moving to next chunk:
+   ```bash
+   git add chunk_{chunk_num}.json \
+           translation_chunk_{chunk_num:02d}.md \
+           translation_chunk_{chunk_num:02d}_uncertainty.md
+   git commit -m "Translate pages {start}-{end} (chunk {chunk_num}/39)"
+   git push -u origin {branch_name}
+   ```
+
+### Chunk Mapping
+
+| Chunk | Start Page | End Page | Status |
+|-------|-----------|----------|--------|
+| 01    | 1         | 12       | Pending |
+| 02    | 13        | 24       | Pending |
+| 03    | 25        | 36       | Pending |
+| ...   | ...       | ...      | ...     |
+| 39    | 457       | 468      | Pending |
+
+### Resuming Translation
+
+If translation is interrupted:
+
+1. Check git log to find last completed chunk:
+   ```bash
+   git log --oneline | grep "Translate pages"
+   ```
+
+2. Identify next chunk number from commit message
+
+3. Continue with that chunk number following the workflow above
+
+### Translation Guidelines
+
+**What to track in uncertainty files:**
+- Unknown terms or neologisms (sci-fi terminology)
+- Wordplay/puns that don't translate directly
+- Cultural references that need context
+- Ambiguous pronouns where context is unclear
+- Idiomatic expressions with multiple interpretations
+
+**What NOT to overthink:**
+- Subtle word choice nuances (use best judgment)
+- Standard idioms with clear equivalents
+- Technical terms with established translations
+
+### File Organization
+
+After completion, the repository will contain:
+```
+spastics-dance/
+├── chunk_01.json through chunk_39.json          # Raw extractions
+├── translation_chunk_01.md through _39.md       # Translated text
+└── translation_chunk_01_uncertainty.md          # Translation questions
+    through _39_uncertainty.md
+```
+
+### Current Progress
+
+- **Started:** 2025-11-13
+- **Current chunk:** Not started
+- **Completed chunks:** 0/39
+- **Branch:** `claude/load-book-chunks-01V7S6WtfrvPovfvXgc8N2wF`
+
+---
+
 ## Notes for Future Development
 
 1. **Claude Code Skills**: These tools are designed to be wrapped in Claude Code skills/commands
@@ -256,5 +372,6 @@ A: Future consideration. MOBI/AZW are proprietary Amazon formats, harder to pars
 
 ---
 
-*Last updated: 2025-11-12*
+*Last updated: 2025-11-13*
 *Project initialized with research on PDF/EPUB processing tools*
+*Translation workflow documented for "Танець недоумка"*
