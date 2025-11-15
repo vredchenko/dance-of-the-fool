@@ -57,6 +57,9 @@ epub-info = "spastics_dance.epub_info:main"
 epub-split = "spastics_dance.epub_split:main"
 epub-chunk = "spastics_dance.epub_chunk:main"
 
+# Build/regeneration scripts
+regenerate-all = "scripts.regenerate_all:main"
+
 [build-system]
 requires = ["uv_build>=0.8.17,<0.9.0"]
 build-backend = "uv_build"

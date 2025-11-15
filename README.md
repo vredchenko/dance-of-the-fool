@@ -74,6 +74,59 @@ python3 demo_pdf_tools.py
 python3 demo_epub_tools.py
 ```
 
+## Translation Output Generation
+
+This project includes scripts to generate translation outputs in multiple formats.
+
+### Regenerate All Formats
+
+To regenerate all translation outputs at once (webui data, PDF, and EPUB with/without uncertainties):
+
+**Option 1: Using uv/pip scripts (recommended)**
+```bash
+# After installing the package with pip/uv
+regenerate-all
+```
+
+**Option 2: Using the bash script**
+```bash
+# From project root
+./regenerate-all.sh
+```
+
+**Option 3: Using Python directly**
+```bash
+python3 scripts/regenerate_all.py
+```
+
+This will generate:
+- `webui/src/data/translation-data.json` - Data for the web UI
+- `translation.pdf` - PDF without translator notes
+- `translation-with-notes.pdf` - PDF with uncertainty annotations
+- `translation.epub` - EPUB without translator notes
+- `translation-with-notes.epub` - EPUB with uncertainty annotations
+
+### Individual Format Generation
+
+You can also run individual generators:
+
+```bash
+# Webui data only
+python3 scripts/build-webui-data.py
+
+# PDF without uncertainties
+python3 scripts/generate-pdf.py --output translation.pdf
+
+# PDF with uncertainties
+python3 scripts/generate-pdf.py --output translation-with-notes.pdf --include-uncertainties
+
+# EPUB without uncertainties
+python3 scripts/generate-epub.py --output translation.epub
+
+# EPUB with uncertainties
+python3 scripts/generate-epub.py --output translation-with-notes.epub --include-uncertainties
+```
+
 ## Dependency Groups
 
 This project uses optional dependency groups:
