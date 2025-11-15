@@ -1,9 +1,6 @@
-# The Dance of the Fool
-## Translation: Pages 13-24 (Chunk 02/39)
+# Translation: Pages 13-24 (Chunk 02/39)
 
----
-
-### Page 13
+## Page 13
 
 I shuddered. The voice of the "smart home" system gently inquired from the nearest speaker whether I wanted to answer a call from an unknown number. I glanced at the clock. Eight oh one. Who, I wondered, had enough nerve? If I answer, my coffee ritual will be hopelessly ruined. I was already about to command "decline call," when I thought again about who could be calling. And what the reason for such a call must be... Not to mention that in the last three months, besides Vira, absolutely no one had called me.
 
@@ -31,9 +28,7 @@ If the operator hadn't called me by name, I would have thought she had the wrong
 
 Well, yes... Only that was eight years ago... Back then I was blowing the rest of my army salary on the Japanese island of Hokkaido, and Conquistador Corps advertising invitingly loomed on every corner... Damn eight years ago! In the deepest depression, suffering from
 
----
-
-### Page 14
+## Page 14
 
 post-traumatic stress disorder, I dreamed of only one thing—to feel again the simplicity and value of a combat mission. Again to add to the smallest of daily worries that simple and weighty "survive"... So that those damn thirty-five years would stop looming like a concrete wall in my head.
 
@@ -53,9 +48,7 @@ The young lady on the other end was chirping as if it were about a haircut or wa
 
 Once I waited for their call almost every hour. Then—every day. Then—once every few days with trembling in my chest I remembered my application. I reassured myself that the contingent for the nearest missions had been recruited, and my time would come soon. And only after about three years—I understood. So clearly, as if they themselves had called and told me. They found out. They learned about the problem of "thirty-five to forty-four"... These guys really dig deep—no doubt about it. They requested all my data, including my medical history. And someone with a practiced motion moved my file from the "Candidates" folder to the "Why_the_hell_would_we_need_him" folder.
 
----
-
-### Page 15
+## Page 15
 
 That's what I thought. I was so convinced that I had almost erased from my memory the very fact of applying to the Corps. And now... They're calling precisely when the "thirty-five" mark has been passed, and until forty-four—a hellish eternity! Didn't dig deep enough? Didn't dig? Or can I really get the best contract of my life? Serious money for minimal risks... Too good to be true? They said something about extreme remoteness... Well, what's close in space! Go on, call them back and sign up for that exam so you don't lose the chance—what's the problem! The answer lies on the surface. More precisely, the answer is sweetly sleeping, scattering her slippers all over the room. A girl named Vira with the Korean surname Ra. She'll "shoot me down" long before the exam, plus she'll do it with a scandal. Our discussion will be very short and will end as soon as I utter those mysterious words "extreme remoteness." Yes, yesterday she yelled that I should get a job not just anywhere, but find "a position matching my qualifications." But today, most likely, she'll say something like: "I'm not taking the child to the edge of the unknown." She doesn't give a damn about all these promises of minimal risks. We all remember perfectly well how everything ended on Proxima...
 
@@ -67,9 +60,7 @@ They pay about three hundred thousand a year... Okay, if it's "category A risks,
 
 I must admit, my "thirty-five to forty-four" won't go anywhere on another planet either, but there won't be time to think about it, that's for sure. Somewhere in the back of my consciousness, a timid thought lurked that if someone eats me there, it would be the best outcome. But I didn't dare to say such a thing even in my thoughts. It doesn't matter if I can't fly! I'm not getting divorced... I almost threw the cup into the sink.
 
----
-
-### Page 16
+## Page 16
 
 "Wash the cup," I grumbled to the "smart home."
 
@@ -106,9 +97,7 @@ However, this repeated every morning. Virka always woke up in a bad mood and fir
 
 "Why were you yelling at Klava? You should finally take it to service..."
 
----
-
-### Page 17
+## Page 17
 
 Klava—that's what she christened our "smart home." Though in the program the female voice was called, I think, Victoria. Vira's sense of humor is a peculiar rudiment, it's the only thing that remains in her of the girl I once stupidly fell in love with. And even that—she hasn't joked for a long time, just out of habit says something that could seem funny. For example, gave a stupid name to the computer. But she herself, probably, never once smiled about it.
 
@@ -126,9 +115,7 @@ I started to explain something about the call, but realized she wasn't listening
 
 This was also a joke. Vira even smiled slightly, but not cheerfully, rather—tiredly. Such a little joke with a moral. Like, I'm joking of course, but you be aware... So how do I tell her about "extreme remoteness"? So she'd scratch my eyes out?
 
----
-
-### Page 18
+## Page 18
 
 I reached for the holographic panel that still hung over the counter. With one careless motion I pressed "DELETE" and closed it. Welcome to reality...
 
@@ -150,9 +137,7 @@ She squeamishly wrinkled her nose, not turning in my direction. I straightened u
 
 But Vira, sensing that I was boiling, simply waved me off with her hand, contemptuously muttering her drawn-out "Oh-h-h-h"... And I
 
----
-
-### Page 19
+## Page 19
 
 changed my mind about fighting.
 
@@ -172,9 +157,7 @@ It was only two o'clock in the afternoon when I dryly said goodbye to the pimply
 
 Sometimes mother said about father: "Better he had chosen alcohol!". Though, of course, not better. It's just that he chose slot machines, and this passion of his lay on all of us as an unbearable burden. How many times mom fought with the club administration across the street, demanding they not let father in! And they didn't care: he's eighteen, after all. And so, when mom once again locked father in the apartment, he jumped out from the thirtieth floor. Either he committed suicide, or—and this was more likely—he was simply trying to get down faster: the disease had completely deprived him of fear, just as it had deprived him of the ability to predict the consequences of his actions. Or maybe he was just breathing by the window when his body decided to dance one of its favorite convulsive "steps."
 
----
-
-### Page 20
+## Page 20
 
 "Dancing fool..." mom once said in anger. And in my head the word "fool" firmly attached itself to the helpless expression of dad's face when he tried to calm his arms and legs that danced beyond his will. You couldn't put it more precisely... When once father picked up a teapot, and a second later it flew in an indefinite direction (turned out, at mom's head), mom called him that to his face for the first time... The teapot was cold, fortunately...
 
@@ -192,9 +175,7 @@ I involuntarily winced at the word "celebrated."
 
 "Thank you," I replied. "Normally. Family-style."
 
----
-
-### Page 21
+## Page 21
 
 It was a lie, because yesterday I got drunk alone. Just stopped by the nearest liquor store before bed and that's all... "Ye-e-e-eha!" Not too cheerful, to be honest.
 
@@ -222,9 +203,7 @@ We sat down in a small cafe. Right above us from a holographic screen they were 
 
 "Gil, you're getting into the role of unemployed. That's 'first of all.' This is dangerous, my friend, because 'unemployed' and 'person looking for work' are different people. Do you understand what I mean?"
 
----
-
-### Page 22
+## Page 22
 
 "You're worrying for nothing. I belong to the latter."
 
@@ -250,9 +229,7 @@ I looked away, unable to withstand his gaze. Vacation, yeah. Sure. Don't have ot
 
 Djokhar, smiling, was studying me. He often smiled like that when he disagreed. Sometimes he joked, sometimes just looked like this with interest and, perhaps, slightly ironically. If we happened to argue about fundamental issues—some philosophical-global ones like whether the formulation "was following orders" is a justification for a soldier or where the line of humanity is if thousands of lives are at stake—at some point I would necessarily start to get internally feverish, involuntarily raise my voice, gesticulate, and even get irritated. And he, instead of also getting angry—would smile. At such moments Djokhar would listen attentively and somehow greedily to my every word, not interrupting and even stopping arguing. And only occasionally would add fuel to the fire, objecting to some of my most convincing arguments. I would flare up again, and he with some unconcealed satisfaction would listen to what he supposedly categorically disagreed with. From the outside, it might have seemed that he was mocking. But if you saw how unlike Djokhar each of his few friends was, you would understand that there's not a hint of mockery in such arguments. Djokhar says: "Those who agree with you can make you a bit more confident, but those who disagree—much wiser."
 
----
-
-### Page 23
+## Page 23
 
 We'd known each other for a long time, but in these two years in Kyiv we became truly close. I often couldn't accept what Djokhar said, but he invariably made me think about things that I would never have remembered in the flow of daily bustle.
 
@@ -284,9 +261,7 @@ Djokhar nodded with satisfaction:
 
 He didn't interrupt me once, listening to a long tirade about my doubts and worries.
 
----
-
-### Page 24
+## Page 24
 
 The waitress came over. She was indeed a very charming freckled girl who with her whole appearance asked to be called sunshine. But Djokhar didn't even look at her.
 
@@ -315,7 +290,5 @@ I wanted to answer quickly, but realized it wouldn't work. Djokhar noticed what 
 "What does your 'almost' mean?"
 
 "Did they already tell you where the planet is?"
-
----
 
 *End of Chunk 02*

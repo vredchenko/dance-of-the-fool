@@ -1,14 +1,9 @@
-# The Dance of the Fool
-## Translation: Pages 1-12 (Chunk 01/39)
+# Translation: Pages 1-12 (Chunk 01/39)
 
----
-
-### Page 1
+## Page 1
 *(Cover page - no text)*
 
----
-
-### Page 2
+## Page 2
 
 **Annotation**
 
@@ -25,18 +20,14 @@ Part 4
 
 **DISCLAIMER**
 
----
-
-### Page 3
+## Page 3
 
 **The Dance of the Fool**
 
 *To my father.*
 *You inspired me.*
 
----
-
-### Page 4
+## Page 4
 
 **Part 1**
 
@@ -52,9 +43,7 @@ We were sitting in conference room number nineteen (as it was written on the doo
 
 The security chief was corpulent. He silently guzzled water, standing right by the cooler and consuming cup after cup. The gray classic suit on him in such heat seemed completely inappropriate. Huge dark stains spread under his armpits, and on the fat man's back and forehead sweat protruded in large beads. As soon as he finished another cup, he immediately began to fill a new one—as if afraid that he would soon run out of something to sweat with. From time to time, he fanned himself with a tablet like a fan, which, I think, he never once looked at.
 
----
-
-### Page 5
+## Page 5
 
 The manager was another matter entirely. Scrawny, awkward, with a teenager's face, he had completely immersed himself in my resume and had been silent for about five minutes. Only slightly moving his lips. The inflamed pimples on his face indicated that he terribly loved to touch various dusty junk with his hands, and then wipe his sweaty forehead with his palms. And his neck... Judging by the pimples—his neck too.
 
@@ -84,9 +73,7 @@ He inserted the last remark hastily and with obvious subtext—"I'm not as green
 
 "But moms love statistical forecasting," I spread my hands.
 
----
-
-### Page 6
+## Page 6
 
 "They adore it..." he sighed. "Oh, and you ride a gravicycle too?"
 
@@ -118,9 +105,7 @@ At that moment, the cooler in the corner loudly burped air bubbles that burst in
 
 "Yes-yes... I heard. I mean direct participation. You know, you can fly to Proxima and sit in the warm clothing distribution warehouse..."
 
----
-
-### Page 7
+## Page 7
 
 "No-no, I assure you. I have eight combat missions. Honorary badge of the Joint Staff. It's all written at the end."
 
@@ -146,9 +131,7 @@ Truth be told, I don't have a diagnosis yet. There's only heredity. A fifty-fift
 
 And then I'll become a fool.
 
----
-
-### Page 8
+## Page 8
 
 In the literal sense of the word. I might jump out a window, like my father. Or do something even worse... Like my great-grandfather.
 
@@ -162,9 +145,7 @@ Thoughts became confused, turning into images and pulling me back into the soft 
 
 I barely open my eyes, freeing myself from the suffocating grip of the dream. I seem to still hear the crunch of crushed wings from my dream, echoing in my throat with a completely real feeling of nausea. What nastiness... The most nightmarish dream of my life. And it repeats every time I get sick. As if the body is sending me a signal in the form of delirium, where thousands of peacock butterflies have stuck to a lone construction site in the middle of a flowering meadow, and workers lay cement mortar right on them, crushing the fluttering wings with bricks...
 
----
-
-### Page 9
+## Page 9
 
 Have I really gotten sick? I touched my forehead. No, you can't understand anything that way. And I feel fine! Or... A guess suddenly covered me with an icy wave. Has it started?!
 
@@ -182,9 +163,7 @@ It came out louder than necessary, and the bright flash of lamps unpleasantly cu
 
 "Light!" I repeat in a whistling whisper.
 
----
-
-### Page 10
+## Page 10
 
 And the lamps dim to a barely noticeable candle glow. That's better. It was unwise to spend on all this smart nonsense. If you think about it, it's even more convenient without it. But back then there was money, and it seemed like a great idea... I got in the shower, but the hot water didn't help. Rather the opposite. The image before my eyes was swimming. The shower cabin, the shelf with shampoos, the seams between the tiles—all this seemed to be carried aside by an invisible current. But as soon as I blinked, everything returned to its place, only to smoothly float somewhere to the right and up again. Helicopters... Nausea approached again. Now it's absolutely obvious that I have a hangover.
 
@@ -198,9 +177,7 @@ I plopped down on the levitation puff, which softly sagged under me and immediat
 
 "...No precipitation is expected," purred from the screen a young person with impeccable appearance and an empty gaze. "The accident forecast in Kyiv for today is three hundred-thousandths of a percent per capita..."
 
----
-
-### Page 11
+## Page 11
 
 Mentally I multiplied the meager percentage by twenty million residents—it turned out that six people today would one way or another meet sudden death. I grunted gloomily. I never cease to be amazed by this since school—since the first lesson in statistical forecasting. For each Kyiv resident separately, the chance of an accident today is microscopically small. Somewhere between "never" and "get it out of your head." But six "lucky ones" will still find themselves in the metal embrace of a mangled car or fall into eternal sleep, inhaling carbon monoxide—in accordance with probability theory, statistical accumulation of risks, and other nonsense. And these six are also listening to the news now, fooling themselves with the thought that three hundred-thousandths is too little for something to happen to them specifically...
 
@@ -216,9 +193,7 @@ And considering how many companies I've already been to, next I'll have to eithe
 
 "Any day, starting from thirty-five, but definitely no later than forty-four!"
 
----
-
-### Page 12
+## Page 12
 
 And since I celebrated my thirty-fifth yesterday, as they say, "welcome to the club!"... In the army it was simpler. There's no time to think there, and just try to live to thirty-five... Damn fear of tomorrow... More precisely, fear before tomorrow. Of course, I don't tell anyone about this. Even Virunka doesn't know. The only problem is that I know.
 
@@ -231,7 +206,5 @@ Be that as it may, I'm made of different stuff and prefer to entrust such a task
 The coffee maker beeped briefly, and I commanded to turn off the news. I put the milk jug in front of me and in eager anticipation took the cup. This was a kind of ritual—taking the first sips of espresso without adding cream yet, enjoying the acidity of the coffee foam and letting my thoughts wander where they please. Where associations can carry them, invariably starting with the chocolate-nutty aftertaste of coffee and ending anywhere...
 
 Now it seems to me that I had a premonition that morning. Though reason says: hardly. It's just that an unexpected sharp turn happened in my life... And over the years it began to seem that some premonition should have existed. But there wasn't one. The tone of the doorbell sounded sharp and unexpected.
-
----
 
 *End of Chunk 01*

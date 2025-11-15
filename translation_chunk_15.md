@@ -18,7 +18,7 @@ I looked at Irma, trying to figure out what she was getting at.
 
 "I have no idea. But having been there, the corporal decided to erase the tracking data," Irma turned to me, drilling into me with her penetrating gaze. "And what happened next, you know. Whatever happened to the corporal, it happened somewhere to the northeast. Close enough to return the same day. We'll go there right after the funeral. And then I'll tell you the rest."
 
-## Page 170 (Chapter 17)
+## Page 170
 
 She came around five. It seems to me, as soon as the entrance doors clicked, I already knew who it was. And at minimum, I was afraid it would be exactly her. And when the person who entered stopped behind my back, I immediately recognized this rare mixture of smells in the colony: tobacco and a delicate, barely perceptible aroma of perfume.
 
@@ -174,7 +174,7 @@ Squinting, Vandlik looked into emptiness and was silent.
 
 And Vandlik briskly walked away.
 
-## Page 176 (Chapter 18)
+## Page 176
 
 Something woke me in the middle of the night.
 

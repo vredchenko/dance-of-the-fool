@@ -1,5 +1,7 @@
 # Translation: Pages 61-72 (Chunk 06/39)
 
+## Page 61
+
 ## Part 2
 
 ## The Girl with the Rabbit on Her Lap
@@ -22,7 +24,7 @@ A sharp siren blared. Following protocol, we cheerfully jumped out of the hatch 
 
 Well, greetings, Ix-Chel.
 
----
+## Page 62
 
 "March! March! March!"
 
@@ -76,7 +78,7 @@ There were no questions.
 
 "Welcome to Ix-Chel! Now — dismissed!" and without waiting for the command to be executed, Vandlik walked off somewhere into the depths of the camp, marking her step in a masculine way.
 
----
+## Page 63
 
 The residential blocks were located further away. The barracks too. But my position allowed me to live outside the barracks. So I hurried to help my people settle in. I couldn't wait to change into field uniform. The combat suit made me look like a cross between a robot and a medieval knight.
 
@@ -244,6 +246,6 @@ There's no point in describing the first month in the Ix-Chel colony in detail. 
 
 For example, amino acids: on Ix-Chel in all living organisms they were right-handed — and this was so exciting! I'm serious now: nowhere else had biologists encountered this. And they even thought that if life from right-handed amino acids was possible, then it would be completely different. Opposite. At one time this idea was very popular among science fiction writers — "life opposite to life"! In reality, life on Ix-Chel was rather ordinary. The right-handedness of amino acids...
 
----
+## Page 64
 
 *End of Chunk 06 (Pages 61-72)*

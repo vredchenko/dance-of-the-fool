@@ -20,8 +20,6 @@ For some reason I expected we'd somehow seal our agreement. Slap palm against pa
 
 "Exactly. We'll force them to shut down the mission as such—before everything here gets covered by one big cock and we become a continuation of all this..." she outlined a circle with her finger, pointing at the city around us, "...cemetery."
 
-
-
 Irma walked first, like a person who'd spent more than one day here. The complex had about thirty identical buildings, several defensive towers along the perimeter, a landing pad. A bit farther, powerful transmission antennas were visible.
 
 "What was here?" I asked.
@@ -245,7 +243,6 @@ OBJECT № 00
 SHIP'S LOG.
 ROSALYN DILAN
 MESSAGE FOR FRIGATE "ARTILLERIST HANS"
-
 
 Following the five-line title on the monitor appeared a beautiful woman about thirty-five. If I hadn't read the name, I'd never have recognized in her the one depicted by the mold colony. High cheekbones, beautiful almond-shaped eyes, rounded forehead, neat little mouth... She could have worked as a flight attendant on interstellar flights, and everyone would turn to look at her thinking: "Why are stewardesses so beautiful!" But Rosalyn was not a stewardess at all, but a specialist in alien life. Instead of fashionable liners she flew on tin cans like "Artillerist Hans." And instead of a bright blazer and pill-box hat, Rosalyn wore a "coyote"-colored nylon t-shirt with dark stains under the arms and a pair of army dog tags around her neck.
 

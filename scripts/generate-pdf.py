@@ -48,13 +48,10 @@ def load_translation_chunks() -> List[Dict[str, Any]]:
 
         # For reader-friendly output, get clean content without chunk/page headers
         # Remove the main header (# Translation: Pages X-Y (Chunk N/39))
-        content = re.sub(r'^# .*?\n', '', content, flags=re.MULTILINE, count=1)
-        content = re.sub(r'^# The Dance of the Fool\n', '', content, flags=re.MULTILINE)
-        content = re.sub(r'^## Translation:.*?\n', '', content, flags=re.MULTILINE)
+        content = re.sub(r'^#\s+Translation:.*?\n', '', content, flags=re.MULTILINE, count=1)
 
-        # Remove page markers (### Page N) and separators (---)
-        content = re.sub(r'### Page \d+\n', '', content)
-        content = re.sub(r'\n---+\n', '\n\n', content)
+        # Remove page markers (## Page N)
+        content = re.sub(r'^##\s+Page\s+\d+\n', '', content, flags=re.MULTILINE)
 
         # Clean up excess whitespace
         content = re.sub(r'\n{3,}', '\n\n', content)

@@ -44,8 +44,6 @@ Irma was right. Even yesterday I wouldn't have wanted to listen to her. I'd be t
 
 She winked conspiratorially and went inside.
 
-
-
 Around the turn of the long corridor Irma pointed her finger at the ceiling and, without turning, threw out:
 
 "Don't be scared."
@@ -178,8 +176,6 @@ She suddenly took me by the back of the head and tilted my face slightly toward 
 
 "Well, not all of it, Lieutenant!" she looked at her watch. "Since there's a ton of time till midnight, I propose we eat. There are dry rations here."
 
-
-
 Half an hour remained. With sunset the automation turned on duty lamps, but there was no full lighting—the station operated in economical mode. From the main computer, which was simply here in the hall, Irma removed the lab lockdown. In the garage were charging the batteries of an outdated but quite serviceable all-terrain vehicle. Our Aba believed the story about the torn track, and no problems were anticipated. Now it remained to wait till midnight and take the mutagen. Irma found a liter metal thermos for it. We sat on the couch, and she kept opening and closing it, as if beating the rhythm of some melody. In the half-darkness I could barely keep from falling asleep. And once more yawned widely.
 
 "Drink more coffee," Irma said sternly. "You can't sleep."
@@ -287,8 +283,6 @@ Alex talked about the secret emergency arsenal: "...considering all this secrecy
 Irma again rhythmically clicked the thermos lid, immersed in her thoughts. Sleep began pulling me even harder. I started and looked at my watch. Ten to twelve. Just a little more...
 
 I don't know at what moment I closed my eyes. Till the last it seemed everything was under control.
-
-
 
 I was in the meadow again.
 

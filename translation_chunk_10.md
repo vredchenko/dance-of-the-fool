@@ -1,5 +1,7 @@
 # Translation: Pages 109-120 (Chunk 10/39)
 
+## Page 109
+
 The smile vanished from her face. She frowned, looking from under her brows.
 
 "And stay away from me," I again mechanically rubbed my hand.
@@ -16,7 +18,7 @@ I simply turned and left. Shame she turned out like this. But whatever. My hand 
 
 ...Irma takes off her dirty T-shirt in a crowded warehouse corridor, and I can't tear my eyes from her large brown nipples — for some reason I thought about exactly that.
 
----
+## Page 110
 
 Everyone at home was already asleep. I took off my shoes without turning on the light so as not to wake anyone. Now I'll grab a quick bite and sleep... I rubbed my hand again. The "glove" had indeed transformed from surgical to rough household... Anyway, it's not yet a fact that this is — it. More likely even — it's not it.
 
@@ -112,7 +114,7 @@ I tried to stick my hand in her pocket, and she pushed me — this time really h
 
 And she slammed the door behind her.
 
----
+## Page 111
 
 In the morning it seemed to me the "glove" on my hand had gotten thinner. At least it definitely hadn't gotten thicker. This gave me a bit of strength. Vira was sulking and didn't want to talk. I, on the contrary, tried to stir her up with questions. It seemed this way I could understand whether my nighttime suspicions were justified or not. Maybe she'd give herself away somehow. But Virka didn't have a guilty look, didn't do anything inadequate. I almost convinced myself I'd imagined it.
 
@@ -290,7 +292,7 @@ Vandlik extended her hand to me in a manly way. Her handshake was surprisingly f
 
 We said goodbye, and I shuffled off to the biostation, feeling embarrassed.
 
----
+## Page 112
 
 From a distance I noticed that all our people were crowding outside, surrounding the transformer box. Anton, cursing under his breath, was rummaging inside. I stood behind the others' backs and silently watched, trying with all my might not to let one guess form into a full thought. I waved it off like a persistent autumn fly, mentally repeating the word "nonsense." But in a minute Anton turned to us, and the guess became reality: he disgustedly held out to us two freshly extracted from the transformer's depths dead reapers.
 
@@ -340,6 +342,6 @@ The nightmare happened the morning of the next day.
 
 It was around eight. Seems I was just standing in the middle of the kitchen and for the hundredth time rubbing my fingers, convincing myself everything would pass. Though actually that morning the "glove" on my hand had become noticeably longer. Now it evenly covered my whole wrist. Vira sat with her nose buried in a cup. We'd hardly talked for the second day. The radio chattered. I even remember that morning the announcer was reading the emergency forecast and promising some ridiculous fractions of a percent calculated per colony resident... And then gunshots rang out. So unexpectedly that I didn't believe my ears.
 
----
+## Page 113
 
 *End of Chunk 10 (Pages 109-120)*

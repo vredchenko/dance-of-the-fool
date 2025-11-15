@@ -1,9 +1,6 @@
-# The Dance of the Fool
-## Translation: Pages 25-36 (Chunk 03/39)
+# Translation: Pages 25-36 (Chunk 03/39)
 
----
-
-### Page 25
+## Page 25
 
 I shrugged:
 "They said something about extreme remoteness."
@@ -46,9 +43,7 @@ I thought. With ordinary transverse jumps, the desynchronization can reach sever
 
 "Are you sure?" Djokhar ironically raised an eyebrow. Then he took a toothpick and made a tiny mark in the center of the wooden table. "This is the sun. Imagine it's here, on this table, and the size of a poppy seed. And you need to mark the nearest star to the sun, keeping to scale. Not another galaxy yet, just the nearest little star. Where will it be?"
 
----
-
-### Page 26
+## Page 26
 
 "The nearest... Well, that's Proxima Centauri..." I tried to imagine it and the Sun, as if looking from the side. "If the Sun, as you say, is a poppy seed... I don't know..."
 
@@ -70,9 +65,7 @@ We were silent.
 
 The waitress came over again, put coffee in front of Djokhar and slid the desired mug to me. Djokhar fell silent, patiently waiting for her to leave. I used this pause to immediately fall upon the cold beverage. If I had lived in some ancient times,
 
----
-
-### Page 27
+## Page 27
 
 I might have thought that a person's stomach is located in their head. Be that as it may, the sensations were exactly like that: the brain, which until now had been flopping back and forth in the heated skull box, finally found peace and smoothly swayed in the beer. The bubbles tickled it, and from this it became good and calm...
 
@@ -100,9 +93,7 @@ I said nothing. Djokhar stood up, shook my hand firmly and unexpectedly warmly.
 
 And Djokhar hugged me tightly.
 
----
-
-### Page 28
+## Page 28
 
 When father jumped, we weren't home.
 
@@ -118,9 +109,7 @@ No, then I saw nothing strange in this. Now I know the reason: he couldn't talk 
 
 We were always very close. Only he never tired of saying how much he loved me. Mom more often played the role of one who is ready to accept love—with the caveat that my childish affection would be appropriate and not too rough, that mom wouldn't be too tired after work or very
 
----
-
-### Page 29
+## Page 29
 
 busy... But father—father gave love in its simplest and most precious manifestations, regardless of how he felt and under any circumstances. Before sleep he would come to kiss me and, kneeling before the bed, would voice his favorite question: "Do you know, Gilka, why I love you so much?" And I was the happiest in the world. And then we rubbed noses, like New Zealand aborigines...
 
@@ -134,9 +123,7 @@ Probably the only thing that can be said for certain is that the abnormal protei
 
 And then I cried. Not because I needed that damn pear. I just didn't understand what was happening and why father was called stupid, and he was standing and smiling. I cried and shouted: "Dad!" —helplessly looking at him. I thought he would just pay. But he threw himself at the seller and started beating him, putting some unprecedented fury into each blow...
 
----
-
-### Page 30
+## Page 30
 
 When they pulled him away, father suddenly broke free, easily scattering those who held him back, picked up the cursed pear and, wiping it on his sleeve, held it out to me.
 
@@ -156,9 +143,7 @@ I don't know why I remembered him now... Who am I fooling... I know, of course I
 
 I want to be alone.
 
----
-
-### Page 31
+## Page 31
 
 No. You want to finish the conversation with yourself, because you still haven't decided. And it's not at all about father's fate awaiting you. It's that you're afraid to act like great-grandfather.
 
@@ -182,9 +167,7 @@ But great-grandfather could?
 
 Oh yes. Great-grandfather could. The story of his death has been retold for two generations now. And, obviously, will be retold further if I preserve my sanity long enough to manage to initiate my daughter into this. After all, you can't act like that. Never, under no circumstances.
 
----
-
-### Page 32
+## Page 32
 
 And what are you, Gil, planning to do? Isn't your departure on a mission (to another galaxy) together with your family the same thing? Great-grandfather just chose a thermobaric grenade, and you—a contract with the Conquistador Corps. But there's something in common, right?
 
@@ -204,9 +187,7 @@ I felt a tear slide down my cheek, as if it lives its own separate life, and imm
 
 And a few years later Elsa was born, becoming an uninvited thread that tied me to this world. Eventually I even sold the bike... And though I didn't agree with Vira about the bike, the truth is that Elsa was worth all the gravicycles in the world. Probably, this was the only real purpose in my life—to give her happiness.
 
----
-
-### Page 33
+## Page 33
 
 And what are you doing now? Aren't you going to put your tiny Elsa's life on the same scales as yours? How can you even think about such a thing! Especially considering what you know about the Corps now.
 
@@ -222,9 +203,7 @@ The conquistadors made camp, set about clearing territory for the future osmium 
 
 The ship was descending to the planet with a small group of civilian specialists, and one of its engines failed. The emergency landing was managed quite far from camp, in a rocky gorge. The pilot died, the second pilot was seriously injured, osmium-rich rock completely blocked the signal of all communication devices. The civilian specialists with the wounded in their arms decided to move to the plain, where rescuers could detect them. And everything should have ended well: three or four days to the plain, the water supply should have been enough, there was no shortage of medicine,
 
----
-
-### Page 34
+## Page 34
 
 the second pilot's condition was stable. The only "but"—nobody told the civilians about the prescription to apply the cream. After all, this briefing was planned after arrival at camp...
 
@@ -250,9 +229,7 @@ He leaned across the table, his eyes burned with some fierce fire, and his finge
 
 Today in the cafe I decided not to let this story into my life. To mentally fence myself off from what I heard. It's an isolated case. An isolated case in Djokhar's life. Not in mine. What do I have to do with it! But now I didn't even understand, but acutely felt—Djokhar speaks the truth.
 
----
-
-### Page 35
+## Page 35
 
 I felt better. Somewhere over the boundless Dnipro, which stretched almost to the horizon, a seagull cried... Once it was narrow, and over there, quite nearby, towered, sparkling with residential districts, left-bank Kyiv. And now it has become a refuge for fish. Human dwellings and memories, sidewalks and squares dear to someone's heart are buried under tons of water. And for us who live today, this is now something as distant as that poppy seed in boundless emptiness...
 
@@ -282,9 +259,7 @@ Back in May I was supposed to update all these certificates of income and other 
 
 Vira turned around and went to the kitchen, apparently considering there was nothing more to discuss.
 
----
-
-### Page 36
+## Page 36
 
 "By the way, where did they hire you?" she asked indifferently, not even turning around.
 
@@ -321,7 +296,5 @@ I stood up and approached the kitchen cabinet. I didn't want to eat at all. But 
 "And where's Elsa?" I asked.
 
 Vira was still frowning, staring into space.
-
----
 
 *End of Chunk 03*

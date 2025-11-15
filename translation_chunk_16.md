@@ -46,7 +46,7 @@ I looked attentively at Alex's photo on the display, as if this could clarify so
 
 "I'll explain on site, bro! Everything's very serious. Waiting for you at the warehouses in fifteen minutes."
 
-## Page 183 (Chapter 19)
+## Page 183
 
 Alex was smoking under the blue light of lamps on the concrete pad by the back entrance. I waved to him from afar. He barely noticeably nodded and took a drag. Judging by the three cigarette butts, the guy was nervous.
 
@@ -228,7 +228,7 @@ He shrugged.
 
 ***
 
-## Page 188 (Chapter 20)
+## Page 188
 
 I stuffed the cocoon remains deeper into a trash container on the other end of the camp, then wandered the territory for about half an hour, maybe more—went home only when I could finally calm down and quiet the whirlpool in my head. Alex and I did everything right. Now the problem with the new one hatched from the cocoon will be solved one way or another. And the cause, I hope, Irma and I will know already tonight. And then I'll decide what to do with this.
 
@@ -358,7 +358,7 @@ Five minutes later the "black sleeves" were leading Okamura through the back ent
 
 The bolt of the needed section was absolutely intact. Confused by this fact, our medic mechanically unlocked and locked the door again, and then, without any sense, opened it. Inside, on a pull-out metal shelf, lay Corporal Okamura's corpse, the front part of whose head remained quite recognizable, while the back was completely absent. Not relying on the death-distorted features of the face, the medic took the corporal by the shoulder and slightly raised him—on the back of the deceased two black tattooed dragons intertwined in a fanciful dance.
 
-## Page 193 (Chapter 21)
+## Page 193
 
 Irma drove the rover herself. I sat on the armor. It was around ten.
 

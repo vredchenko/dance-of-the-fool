@@ -1,5 +1,7 @@
 # Translation: Pages 97-108 (Chunk 09/39)
 
+## Page 97
+
 "I don't know, lieutenant, why Irma decided to invite you to our club," Okamura said, "but in your place I'd be jumping for joy."
 
 "You're jumping anyway..." escaped from me.
@@ -152,7 +154,7 @@ Want to earn — bet on the girl...
 
 Capybara went gray and froze. His opponent with a victorious cry does a somersault over her head, and the hall explodes with enthusiastic shouts. I turned to look at Alex, but he wasn't there — he was towering over the crowd already somewhere near the exit...
 
----
+## Page 98
 
 When I ran out into the corridor, Alex was turning the corner. Excited spectators poured out of the hall, discussing the fight. I ran after him, pushing through the crowd. And suddenly ran into Okamura, naked to the waist. Above the elbows his arms were in blue paint.
 
@@ -282,7 +284,7 @@ He noticed me and jumped to the floor.
 
 Okamura went to the shower. I stood in the corridor thinking about where this damn raid with Irma had dragged me. Why did she decide to choose me specifically? But on the other hand — who? Anton — the eternally gloomy technician? Or offer to sell drugs to biocontrol commander Abu Asad? Oh right, it's not drugs, it's the greatest something-or-other. I remembered with what impassive expression Irma broke poor Capybara's leg, and I felt sick.
 
----
+## Page 99
 
 The corridor emptied — the next fight had started. Okamura wasn't coming out. All I needed now was for Irma to come and start feeding me all this delirium about a cure for all diseases again... Even if Okamura really did get on his feet after a spinal injury... And that still needs to be checked, what kind of injury it was... Where is he anyway?
 
@@ -406,6 +408,6 @@ I clenched my hand and rubbed my palm with my fingertips. The numbness in my fin
 
 "You're sick in the head, Irma. In case no one's told you that yet."
 
----
+## Page 100
 
 *End of Chunk 09 (Pages 97-108)*

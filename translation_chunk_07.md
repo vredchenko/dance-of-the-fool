@@ -1,5 +1,7 @@
 # Translation: Pages 73-84 (Chunk 07/39)
 
+## Page 73
+
 In practice, it only meant that we couldn't assimilate protein from the meat of local animals, and the local predators couldn't properly digest a human. And that was that.
 
 The colony was located in a temperate climate zone, closer to tundra. It was quite cool, and the low cloud cover made any day gloomy. The vegetation resembled northern coniferous forests on Earth, which is why we called the surrounding wilderness "taiga." The terrain was flat and swampy. The animal world was lush, diverse, and somewhat dangerous (there were plenty of predators), but also quite normal. And yet the very fact of studying something previously unseen was captivating.
@@ -20,7 +22,7 @@ And also nothing rotted here. Incredible! Nothing at all. We still hadn't figure
 
 Vira attended courses for civilian specialists, after which she was to take some position in administration or logistics. Elza went to kindergarten. By and large, the dream I'd unexpectedly formulated for myself in infinitely distant Kyiv had come true — "to live happily near Elza." And I was living. For the first time in a long time I was living, so to speak, "breathing deeply." Elza, my little sunshine, made this life truly happy. Relations with Virka, by the way, had also improved. Although the change of scenery wasn't a panacea: Virunchik, no matter how you turned it, remained herself. And yet our family crisis had stayed somewhere back there, a hundred and sixty-three thousand light years away.
 
----
+## Page 74
 
 That morning I, as usual, was making myself coffee. It was seven o'clock or somewhere close to that. Vira was still sleeping. I was listening to the local radio station, where, as it should be in the morning, they were just reading statistical forecasts. The probability of rain, equipment failure, migraine attacks, and even unexpected pregnancy precisely today. People adore all this nonsense, believing they can outwit fate. I know a person who changed his mind about getting married after hearing about a five percent probability of intrauterine pathology in his and his fiancée's not-yet-conceived child...
 
@@ -282,6 +284,6 @@ I stealthily looked at my fingers again. Now my hand was trembling even harder �
 
 She smiled at me, showing her dizzying dimples.
 
----
+## Page 75
 
 *End of Chunk 07 (Pages 73-84)*

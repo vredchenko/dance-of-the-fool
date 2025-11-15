@@ -18,7 +18,7 @@ Something was struggling right under the bed.
 
 He was eating her or trying to eat her—I saw only the gaping mouth reaching for her face, and Irma's disheveled hair...
 
-## Page 146 (Chapter 12)
+## Page 146
 
 I'm aiming and holding my finger on the trigger. But something stops me. Miss—and the charge could blow them both to pieces!
 
@@ -170,7 +170,7 @@ Virka suddenly approached me so rapidly, as if she was going to hit me, and, sta
 
 "Bastard!" she threw the jacket in my face.
 
-## Page 151 (Chapter 13)
+## Page 151
 
 "You scum! Scum!!!" she beat me with her palms on the shoulders and cried.
 
@@ -338,7 +338,7 @@ Then what kind of criterion is this factor "B," if for them it's more important 
 
 Everything inside me went cold. What do I tell them? That I fought with my wife? Like this, in the middle of the night? And what was I doing before, where was I? I won't get out of this... Or will I? I slowly turned my head toward the sound.
 
-## Page 157 (Chapter 14)
+## Page 157
 
 They weren't shouting at me, just calling to each other—two stormtroopers. But they were most likely looking for me. I carefully looked around. It seems no one's noticed me yet. And I quickly lay down right on the lawn. Safer this way, but for how long... If they find me like this, explaining everything with a fight with my wife will be even harder. And you can't lie on the cold ground for long. Now it became clear that walking around the camp was a completely idiotic idea. I cursed myself for completely forgetting about the patrols looking for suspicious people after the shooting in the hospital.
 

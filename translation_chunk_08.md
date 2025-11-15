@@ -1,5 +1,7 @@
 # Translation: Pages 85-96 (Chunk 08/39)
 
+## Page 85
+
 "I'll make more," and Irma pressed the button on the machine. "So will you go?"
 
 I'll go. Now even to the devil's horns. Just to distract myself from the horror I'd been accumulating for the last fifteen years and now — released outside...
@@ -60,7 +62,7 @@ Did he have something like this? Or did it affect his brain first? I wonder if I
 
 I was about to go inside when I heard from around the corner our Anton swearing loudly and filthily. I was curious, and Anton probably needed at least sympathy. So I went to look.
 
----
+## Page 86
 
 He was sitting with his legs dangling into the hatch of a technological shaft for an artesian well, and raining curses down into it.
 
@@ -138,7 +140,7 @@ My answer didn't actually mean "yes" at all. To start, I planned to hear more ab
 
 "Okay," I said to myself and went to get ready.
 
----
+## Page 87
 
 Irma and I had already been riding on the armor of our all-terrain vehicle for over two hours, far beyond the camp limits. I'd never been this far. I even forgot about the "glove" on my fingers. Raids were always what I loved most here. They made me live in the present day. Sitting on armor in the taiga is strictly forbidden, but biologists violated this rule point on all planets, believing they themselves knew where it was dangerous and where it wasn't.
 
@@ -276,7 +278,7 @@ I carefully walked around the petals and took the bag from her hands. There was 
 
 "Let's get out!" Irma commanded, and we returned to the all-terrain vehicle.
 
----
+## Page 88
 
 It was black, completely matte and fine like powder. Like dust. But the grains still had shape and weren't round but elongated. Irma and the corporal took off their helmets and began pouring the pollen into small bags. At one moment Irma carefully stuck her pinky into the large bag and got a tiny bit on the very tip of her nail. Bending over, she noisily sucked the black pollen into her nose. Froze. Then sharply straightened, throwing back her head, and breathed deeply.
 
@@ -376,6 +378,6 @@ Okamura easily jumped onto the all-terrain vehicle. I don't know about a world h
 
 "It grows neurons," Irma answered for him, "millions of neurons per hour! Restores muscle and bone tissue, increases reaction time. Lots of things."
 
----
+## Page 89
 
 *End of Chunk 08 (Pages 85-96)*
