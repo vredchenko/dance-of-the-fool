@@ -22,6 +22,8 @@ try:
     )
     from reportlab.lib.enums import TA_LEFT, TA_CENTER, TA_JUSTIFY
     from reportlab.lib import colors
+    from reportlab.pdfbase import pdfmetrics
+    from reportlab.pdfbase.ttfonts import TTFont
     REPORTLAB_AVAILABLE = True
 except ImportError:
     REPORTLAB_AVAILABLE = False
@@ -139,6 +141,25 @@ def markdown_to_flowables(text: str, styles) -> List:
     return flowables
 
 
+def register_unicode_fonts():
+    """Register TrueType fonts with Unicode (Cyrillic) support."""
+    try:
+        # Register DejaVu Serif fonts (excellent Unicode support including Cyrillic)
+        pdfmetrics.registerFont(TTFont('DejaVuSerif', '/usr/share/fonts/truetype/dejavu/DejaVuSerif.ttf'))
+        pdfmetrics.registerFont(TTFont('DejaVuSerif-Bold', '/usr/share/fonts/truetype/dejavu/DejaVuSerif-Bold.ttf'))
+
+        # Register DejaVu Sans for headers
+        pdfmetrics.registerFont(TTFont('DejaVuSans', '/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf'))
+        pdfmetrics.registerFont(TTFont('DejaVuSans-Bold', '/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf'))
+
+        print("   ✓ Registered Unicode fonts (DejaVu) with Cyrillic support")
+        return True
+    except Exception as e:
+        print(f"   ⚠ Warning: Could not register Unicode fonts: {e}")
+        print("   Ukrainian characters may not display correctly")
+        return False
+
+
 def generate_pdf(output_path: Path, include_uncertainties: bool = False):
     """Generate PDF from English translation."""
     if not REPORTLAB_AVAILABLE:
@@ -148,6 +169,9 @@ def generate_pdf(output_path: Path, include_uncertainties: bool = False):
 
     print(f"📄 Generating PDF: {output_path}")
     print(f"   Include uncertainties: {include_uncertainties}")
+
+    # Register Unicode fonts
+    register_unicode_fonts()
 
     # Load translation data
     print("   Loading translation chunks...")
@@ -167,10 +191,11 @@ def generate_pdf(output_path: Path, include_uncertainties: bool = False):
     # Styles
     styles = getSampleStyleSheet()
 
-    # Custom styles
+    # Custom styles with Unicode font support
     styles.add(ParagraphStyle(
         name='BookTitle',
         parent=styles['Heading1'],
+        fontName='DejaVuSans-Bold',
         fontSize=24,
         alignment=TA_CENTER,
         spaceAfter=12
@@ -179,6 +204,7 @@ def generate_pdf(output_path: Path, include_uncertainties: bool = False):
     styles.add(ParagraphStyle(
         name='BookSubtitle',
         parent=styles['Normal'],
+        fontName='DejaVuSans',
         fontSize=14,
         alignment=TA_CENTER,
         spaceAfter=24,
@@ -188,6 +214,7 @@ def generate_pdf(output_path: Path, include_uncertainties: bool = False):
     styles.add(ParagraphStyle(
         name='ChunkHeader',
         parent=styles['Heading2'],
+        fontName='DejaVuSans-Bold',
         fontSize=16,
         spaceAfter=12,
         textColor=colors.HexColor('#2563EB')
@@ -196,6 +223,7 @@ def generate_pdf(output_path: Path, include_uncertainties: bool = False):
     styles.add(ParagraphStyle(
         name='PageHeader',
         parent=styles['Heading3'],
+        fontName='DejaVuSans-Bold',
         fontSize=12,
         spaceAfter=8,
         textColor=colors.HexColor('#4B5563')
@@ -204,6 +232,7 @@ def generate_pdf(output_path: Path, include_uncertainties: bool = False):
     styles.add(ParagraphStyle(
         name='BookBody',
         parent=styles['Normal'],
+        fontName='DejaVuSerif',
         fontSize=11,
         alignment=TA_JUSTIFY,
         spaceAfter=8
@@ -212,6 +241,7 @@ def generate_pdf(output_path: Path, include_uncertainties: bool = False):
     styles.add(ParagraphStyle(
         name='UncertaintyNote',
         parent=styles['Normal'],
+        fontName='DejaVuSerif',
         fontSize=9,
         leftIndent=20,
         rightIndent=20,
