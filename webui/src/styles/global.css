@@ -20,15 +20,21 @@
 }
 
 @layer components {
-  /* Ukrainian text styling */
+  /* Ukrainian text styling - beautiful serif with Cyrillic support */
   .ukrainian-text {
-    @apply font-serif text-lg leading-relaxed;
+    font-family: 'Literata', 'Georgia', 'Times New Roman', serif;
+    @apply text-lg leading-relaxed;
     white-space: pre-wrap;
+    font-weight: 400;
+    letter-spacing: 0.01em;
   }
 
-  /* English text styling */
+  /* English text styling - elegant serif for reading */
   .english-text {
-    @apply font-sans text-base leading-normal;
+    font-family: 'Lora', 'Georgia', serif;
+    @apply text-base leading-normal;
+    font-weight: 400;
+    line-height: 1.7;
   }
 
   /* Preserve markdown formatting in English text */
@@ -36,6 +42,7 @@
   .english-text h2,
   .english-text h3,
   .english-text h4 {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     @apply font-semibold mb-3 mt-6;
   }
 
