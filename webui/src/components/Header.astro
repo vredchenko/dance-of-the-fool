@@ -1,5 +1,10 @@
 ---
 const { currentChunk } = Astro.props;
+
+// Get commit SHA and repo URL from environment variables (set during CI/CD build)
+const commitSha = import.meta.env.PUBLIC_COMMIT_SHA;
+const repoUrl = import.meta.env.PUBLIC_REPO_URL;
+const shaShort = commitSha ? commitSha.substring(0, 7) : null;
 ---
 
 <header class="sticky top-0 z-50 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 shadow-sm">
@@ -15,6 +20,20 @@ const { currentChunk } = Astro.props;
             / The Dance of the Fool
           </span>
         </a>
+        {shaShort && repoUrl && (
+          <a
+            href={`${repoUrl}/commit/${commitSha}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-1 mt-1 px-2 py-0.5 text-xs font-mono bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+            title={`Build from commit ${shaShort}`}
+          >
+            <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+            </svg>
+            {shaShort}
+          </a>
+        )}
       </div>
 
       <!-- Navigation -->

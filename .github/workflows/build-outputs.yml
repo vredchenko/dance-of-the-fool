@@ -1,0 +1,147 @@
+name: Build Translation Outputs
+
+on:
+  workflow_dispatch:
+    inputs:
+      build_webui:
+        description: 'Build WebUI static bundle'
+        type: boolean
+        default: true
+      build_pdf:
+        description: 'Build PDF exports'
+        type: boolean
+        default: true
+      build_epub:
+        description: 'Build EPUB exports'
+        type: boolean
+        default: true
+
+jobs:
+  webui-build:
+    name: Build WebUI Static Bundle
+    runs-on: ubuntu-latest
+    if: ${{ github.event.inputs.build_webui == 'true' }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Python dependencies
+        run: |
+          pip install reportlab ebooklib
+
+      - name: Build webui data
+        run: |
+          python3 tools/build-webui-data.py
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install webui dependencies
+        working-directory: webui
+        run: npm ci
+
+      - name: Build webui with commit SHA
+        working-directory: webui
+        env:
+          PUBLIC_COMMIT_SHA: ${{ github.sha }}
+          PUBLIC_REPO_URL: ${{ github.server_url }}/${{ github.repository }}
+        run: npm run build
+
+      - name: Upload webui bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: webui-bundle-${{ github.sha }}
+          path: webui/dist/
+          retention-days: 90
+
+  pdf-export:
+    name: Build PDF Exports
+    runs-on: ubuntu-latest
+    if: ${{ github.event.inputs.build_pdf == 'true' }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install reportlab
+          sudo apt-get update
+          sudo apt-get install -y fonts-dejavu fonts-dejavu-core
+
+      - name: Create output directory
+        run: mkdir -p dist
+
+      - name: Generate PDF without uncertainties
+        run: |
+          SHA_SHORT=$(echo ${{ github.sha }} | cut -c1-7)
+          python3 tools/generate-pdf.py \
+            --output "dist/Illarion_Pavlyuk_Fools_Dance_translation_${SHA_SHORT}.pdf"
+
+      - name: Generate PDF with uncertainties
+        run: |
+          SHA_SHORT=$(echo ${{ github.sha }} | cut -c1-7)
+          python3 tools/generate-pdf.py \
+            --output "dist/Illarion_Pavlyuk_Fools_Dance_translation_with_annotations_${SHA_SHORT}.pdf" \
+            --include-uncertainties
+
+      - name: Upload PDF artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: pdf-exports-${{ github.sha }}
+          path: dist/*.pdf
+          retention-days: 90
+
+  epub-export:
+    name: Build EPUB Exports
+    runs-on: ubuntu-latest
+    if: ${{ github.event.inputs.build_epub == 'true' }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install ebooklib
+
+      - name: Create output directory
+        run: mkdir -p dist
+
+      - name: Generate EPUB without uncertainties
+        run: |
+          SHA_SHORT=$(echo ${{ github.sha }} | cut -c1-7)
+          python3 tools/generate-epub.py \
+            --output "dist/Illarion_Pavlyuk_Fools_Dance_translation_${SHA_SHORT}.epub"
+
+      - name: Generate EPUB with uncertainties
+        run: |
+          SHA_SHORT=$(echo ${{ github.sha }} | cut -c1-7)
+          python3 tools/generate-epub.py \
+            --output "dist/Illarion_Pavlyuk_Fools_Dance_translation_with_annotations_${SHA_SHORT}.epub" \
+            --include-uncertainties
+
+      - name: Upload EPUB artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: epub-exports-${{ github.sha }}
+          path: dist/*.epub
+          retention-days: 90

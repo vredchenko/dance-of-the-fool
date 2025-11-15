@@ -1,0 +1,47 @@
+name: Build PDF Only
+
+on:
+  workflow_dispatch:
+
+jobs:
+  pdf-export:
+    name: Build PDF Exports
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install reportlab
+          sudo apt-get update
+          sudo apt-get install -y fonts-dejavu fonts-dejavu-core
+
+      - name: Create output directory
+        run: mkdir -p dist
+
+      - name: Generate PDF without uncertainties
+        run: |
+          SHA_SHORT=$(echo ${{ github.sha }} | cut -c1-7)
+          python3 tools/generate-pdf.py \
+            --output "dist/Illarion_Pavlyuk_Fools_Dance_translation_${SHA_SHORT}.pdf"
+
+      - name: Generate PDF with uncertainties
+        run: |
+          SHA_SHORT=$(echo ${{ github.sha }} | cut -c1-7)
+          python3 tools/generate-pdf.py \
+            --output "dist/Illarion_Pavlyuk_Fools_Dance_translation_with_annotations_${SHA_SHORT}.pdf" \
+            --include-uncertainties
+
+      - name: Upload PDF artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: pdf-exports-${{ github.sha }}
+          path: dist/*.pdf
+          retention-days: 90
