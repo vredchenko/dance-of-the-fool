@@ -16,7 +16,8 @@ Utility scripts for processing and exporting translation data.
 ### PDF Export
 
 **`generate-pdf.py`**
-- Generates PDF from English translation
+- Generates reader-friendly PDF from English translation
+- Removes chunk/page structure for natural book flow
 - Options:
   - `--output <path>` - Output file path (default: `translation_english.pdf`)
   - `--include-uncertainties` - Include translator notes
@@ -26,12 +27,13 @@ Utility scripts for processing and exporting translation data.
   python3 scripts/generate-pdf.py --include-uncertainties
   ```
 - Requires: `reportlab>=4.0.0`
-- Output: Letter-size PDF (~140-150KB)
+- Output: Letter-size PDF (0.97 MB clean, 1.03 MB with notes)
 
 ### EPUB Export
 
 **`generate-epub.py`**
-- Generates EPUB e-book from English translation
+- Generates reader-friendly EPUB e-book from English translation
+- Organizes 39 chunks into 6 natural chapters
 - Options:
   - `--output <path>` - Output file path (default: `translation_english.epub`)
   - `--include-uncertainties` - Include translator notes
@@ -41,7 +43,7 @@ Utility scripts for processing and exporting translation data.
   python3 scripts/generate-epub.py --include-uncertainties
   ```
 - Requires: `ebooklib>=0.18`
-- Output: EPUB 3 format (~70KB)
+- Output: EPUB 3 format (0.36 MB clean, 0.39 MB with notes)
 
 ## Quick Start
 
