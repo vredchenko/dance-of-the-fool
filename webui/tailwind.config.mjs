@@ -17,7 +17,8 @@ export default {
         'dark-uncertainty': '#3D3929',
       },
       fontFamily: {
-        'serif': ['Georgia', 'Times New Roman', 'serif'],
+        'serif': ['Lora', 'Georgia', 'Times New Roman', 'serif'],
+        'ukrainian': ['Literata', 'Georgia', 'Times New Roman', 'serif'],
         'sans': ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
         'mono': ['JetBrains Mono', 'Consolas', 'monospace'],
       },

@@ -4,6 +4,7 @@ import tailwind from '@astrojs/tailwind';
 export default defineConfig({
   integrations: [tailwind()],
   site: 'https://vredchenko.github.io',
-  base: '/spastics-dance',
+  // Comment out base path for local development
+  // base: '/spastics-dance',
   output: 'static',
 });
