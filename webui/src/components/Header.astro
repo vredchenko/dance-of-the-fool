@@ -51,6 +51,77 @@ const { currentChunk } = Astro.props;
           </div>
         )}
 
+        <!-- Settings dropdown -->
+        <div class="relative">
+          <button
+            id="settingsToggle"
+            class="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+            aria-label="Settings"
+            title="Settings"
+          >
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+            </svg>
+          </button>
+
+          <!-- Settings dropdown menu -->
+          <div
+            id="settingsMenu"
+            class="hidden absolute right-0 mt-2 w-80 bg-white dark:bg-gray-800 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 py-2 z-50"
+          >
+            <div class="px-4 py-2 border-b border-gray-200 dark:border-gray-700">
+              <h3 class="font-semibold text-gray-900 dark:text-white">Settings</h3>
+            </div>
+
+            <!-- Font Selection -->
+            <div class="px-4 py-3 border-b border-gray-200 dark:border-gray-700">
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                Reading Font
+              </label>
+              <select
+                id="fontSelect"
+                class="w-full px-3 py-2 bg-gray-50 dark:bg-gray-900 border border-gray-300 dark:border-gray-600 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              >
+                <option value="Noto Serif">Noto Serif (Default)</option>
+                <option value="PT Serif">PT Serif</option>
+                <option value="Merriweather">Merriweather</option>
+                <option value="Georgia">Georgia</option>
+              </select>
+            </div>
+
+            <!-- Line Numbers Toggle -->
+            <div class="px-4 py-3 border-b border-gray-200 dark:border-gray-700">
+              <label class="flex items-center justify-between cursor-pointer">
+                <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Line Numbers</span>
+                <div class="relative">
+                  <input type="checkbox" id="lineNumbersToggle" class="sr-only peer" />
+                  <div class="w-11 h-6 bg-gray-300 dark:bg-gray-600 rounded-full peer-checked:bg-blue-600 transition-colors"></div>
+                  <div class="absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition-transform peer-checked:translate-x-5"></div>
+                </div>
+              </label>
+              <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                Show line numbers in Ukrainian text column
+              </p>
+            </div>
+
+            <!-- Uncertainties Toggle -->
+            <div class="px-4 py-3">
+              <label class="flex items-center justify-between cursor-pointer">
+                <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Translation Notes</span>
+                <div class="relative">
+                  <input type="checkbox" id="uncertaintiesToggle" class="sr-only peer" checked />
+                  <div class="w-11 h-6 bg-gray-300 dark:bg-gray-600 rounded-full peer-checked:bg-blue-600 transition-colors"></div>
+                  <div class="absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition-transform peer-checked:translate-x-5"></div>
+                </div>
+              </label>
+              <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                Display translation uncertainties and notes
+              </p>
+            </div>
+          </div>
+        </div>
+
         <!-- Dark mode toggle -->
         <button
           id="darkModeToggle"
@@ -71,11 +142,91 @@ const { currentChunk } = Astro.props;
 </header>
 
 <script>
-  // Attach dark mode toggle to button
+  // Settings management
   document.addEventListener('DOMContentLoaded', () => {
-    const btn = document.getElementById('darkModeToggle');
-    if (btn && typeof window.toggleDarkMode === 'function') {
-      btn.addEventListener('click', window.toggleDarkMode);
+    // Dark mode toggle
+    const darkModeBtn = document.getElementById('darkModeToggle');
+    if (darkModeBtn && typeof window.toggleDarkMode === 'function') {
+      darkModeBtn.addEventListener('click', window.toggleDarkMode);
+    }
+
+    // Settings dropdown toggle
+    const settingsToggle = document.getElementById('settingsToggle');
+    const settingsMenu = document.getElementById('settingsMenu');
+
+    if (settingsToggle && settingsMenu) {
+      settingsToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        settingsMenu.classList.toggle('hidden');
+      });
+
+      // Close menu when clicking outside
+      document.addEventListener('click', (e) => {
+        if (!settingsMenu.contains(e.target as Node) && !settingsToggle.contains(e.target as Node)) {
+          settingsMenu.classList.add('hidden');
+        }
+      });
+
+      // Prevent menu from closing when clicking inside
+      settingsMenu.addEventListener('click', (e) => {
+        e.stopPropagation();
+      });
+    }
+
+    // Initialize settings from localStorage
+    const savedFont = localStorage.getItem('readingFont') || 'Noto Serif';
+    const savedLineNumbers = localStorage.getItem('lineNumbers') === 'true';
+    const savedUncertainties = localStorage.getItem('showUncertainties') !== 'false'; // default true
+
+    // Font selection
+    const fontSelect = document.getElementById('fontSelect') as HTMLSelectElement;
+    if (fontSelect) {
+      fontSelect.value = savedFont;
+      document.documentElement.style.setProperty('--reading-font', savedFont);
+
+      fontSelect.addEventListener('change', () => {
+        const font = fontSelect.value;
+        localStorage.setItem('readingFont', font);
+        document.documentElement.style.setProperty('--reading-font', font);
+      });
+    }
+
+    // Line numbers toggle
+    const lineNumbersToggle = document.getElementById('lineNumbersToggle') as HTMLInputElement;
+    if (lineNumbersToggle) {
+      lineNumbersToggle.checked = savedLineNumbers;
+      if (savedLineNumbers) {
+        document.documentElement.classList.add('line-numbers-enabled');
+      }
+
+      lineNumbersToggle.addEventListener('change', () => {
+        const enabled = lineNumbersToggle.checked;
+        localStorage.setItem('lineNumbers', String(enabled));
+        if (enabled) {
+          document.documentElement.classList.add('line-numbers-enabled');
+        } else {
+          document.documentElement.classList.remove('line-numbers-enabled');
+        }
+      });
+    }
+
+    // Uncertainties toggle
+    const uncertaintiesToggle = document.getElementById('uncertaintiesToggle') as HTMLInputElement;
+    if (uncertaintiesToggle) {
+      uncertaintiesToggle.checked = savedUncertainties;
+      if (!savedUncertainties) {
+        document.querySelectorAll('.uncertainty-panel').forEach(el => {
+          (el as HTMLElement).style.display = 'none';
+        });
+      }
+
+      uncertaintiesToggle.addEventListener('change', () => {
+        const enabled = uncertaintiesToggle.checked;
+        localStorage.setItem('showUncertainties', String(enabled));
+        document.querySelectorAll('.uncertainty-panel').forEach(el => {
+          (el as HTMLElement).style.display = enabled ? '' : 'none';
+        });
+      });
     }
   });
 </script>

@@ -42,21 +42,61 @@
 }
 
 @layer components {
-  /* Ukrainian text styling - beautiful serif with Cyrillic support */
-  .ukrainian-text {
-    font-family: 'Literata', 'Georgia', 'Times New Roman', serif;
-    @apply text-lg leading-relaxed;
-    white-space: pre-wrap;
+  /* Text styling - unified font for both Ukrainian and English */
+  .ukrainian-text,
+  .english-text {
+    font-family: var(--reading-font, 'Noto Serif'), 'Georgia', 'Times New Roman', serif;
+    @apply text-base;
     font-weight: 400;
+    line-height: 1.7;
+  }
+
+  .ukrainian-text {
+    white-space: pre-wrap;
     letter-spacing: 0.01em;
   }
 
-  /* English text styling - elegant serif for reading */
-  .english-text {
-    font-family: 'Lora', 'Georgia', serif;
-    @apply text-base leading-normal;
-    font-weight: 400;
+  /* Line numbers for Ukrainian text */
+  .line-numbers-enabled .ukrainian-text {
+    counter-reset: line-number;
+    position: relative;
+    padding-left: 3rem;
+  }
+
+  .line-numbers-enabled .ukrainian-text::before {
+    content: '';
+    position: absolute;
+    left: 2.5rem;
+    top: 0;
+    width: 1px;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.1);
+  }
+
+  .dark .line-numbers-enabled .ukrainian-text::before {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .line-numbers-enabled .ukrainian-text-line {
+    counter-increment: line-number;
+    position: relative;
+  }
+
+  .line-numbers-enabled .ukrainian-text-line::before {
+    content: counter(line-number);
+    position: absolute;
+    left: -2.5rem;
+    width: 2rem;
+    text-align: right;
+    color: rgba(0, 0, 0, 0.3);
+    font-size: 0.75rem;
     line-height: 1.7;
+    user-select: none;
+    pointer-events: none;
+  }
+
+  .dark .line-numbers-enabled .ukrainian-text-line::before {
+    color: rgba(255, 255, 255, 0.3);
   }
 
   /* Preserve markdown formatting in English text */

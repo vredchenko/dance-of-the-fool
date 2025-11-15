@@ -14,6 +14,12 @@ export function getStaticPaths() {
 const { chunk } = Astro.props;
 const { chunk_number, page_range, pages, uncertainty_count } = chunk;
 
+// Function to split text into lines for line numbering
+function splitIntoLines(text: string): string[] {
+  if (!text) return [];
+  return text.split('\n').filter(line => line.trim() || line === '');
+}
+
 // Simple markdown-to-HTML converter for English text
 function simpleMarkdownToHtml(text: string): string {
   return text
@@ -88,7 +94,7 @@ function simpleMarkdownToHtml(text: string): string {
           <!-- Split Pane Layout -->
           <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <!-- Ukrainian Column -->
-            <div class="bg-light-uk dark:bg-dark-uk rounded-lg p-6 shadow-sm border border-gray-200 dark:border-gray-700">
+            <div class="bg-light-uk dark:bg-dark-uk rounded-lg p-6 shadow-sm border border-gray-200 dark:border-gray-700 overflow-x-hidden">
               <div class="flex items-center justify-between mb-4">
                 <h3 class="text-sm font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-wide">
                   🇺🇦 Ukrainian
@@ -98,7 +104,13 @@ function simpleMarkdownToHtml(text: string): string {
                 </span>
               </div>
               <div class="ukrainian-text text-gray-800 dark:text-gray-200">
-                {page.ukrainian_text || <em class="text-gray-400">Empty page</em>}
+                {page.ukrainian_text ? (
+                  splitIntoLines(page.ukrainian_text).map(line => (
+                    <div class="ukrainian-text-line">{line || '\u00A0'}</div>
+                  ))
+                ) : (
+                  <em class="text-gray-400">Empty page</em>
+                )}
               </div>
             </div>
 
