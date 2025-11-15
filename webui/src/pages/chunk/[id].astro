@@ -97,7 +97,7 @@ function simpleMarkdownToHtml(text: string): string {
                   {page.char_count} chars • {page.word_count} words
                 </span>
               </div>
-              <div class="ukrainian-text text-gray-800 dark:text-gray-200 max-h-[600px] overflow-y-auto custom-scrollbar pr-2">
+              <div class="ukrainian-text text-gray-800 dark:text-gray-200">
                 {page.ukrainian_text || <em class="text-gray-400">Empty page</em>}
               </div>
             </div>
@@ -109,7 +109,7 @@ function simpleMarkdownToHtml(text: string): string {
                   🇬🇧 English
                 </h3>
               </div>
-              <div class="english-text text-gray-800 dark:text-gray-200 max-h-[600px] overflow-y-auto custom-scrollbar pr-2">
+              <div class="english-text text-gray-800 dark:text-gray-200">
                 <Fragment set:html={simpleMarkdownToHtml(page.english_text)} />
               </div>
             </div>
