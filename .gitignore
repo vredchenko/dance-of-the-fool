@@ -58,3 +58,9 @@ webui/node_modules/
 webui/dist/
 webui/.astro/
 webui/src/data/translation-data.json
+
+# Generated translation exports
+translation_english.pdf
+translation_english.epub
+translation_english_with_notes.pdf
+translation_english_with_notes.epub
