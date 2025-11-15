@@ -36,22 +36,19 @@ def load_translation_chunks() -> List[Dict[str, Any]]:
         with open(translation_file, 'r', encoding='utf-8') as f:
             content = f.read()
 
-        # Extract page sections
-        pages = []
-        page_splits = re.split(r'### Page (\d+)', content)
+        # For reader-friendly output, get clean content without chunk/page headers
+        # Remove the main header (# Translation: Pages X-Y (Chunk N/39))
+        content = re.sub(r'^# .*?\n', '', content, flags=re.MULTILINE, count=1)
+        content = re.sub(r'^# The Dance of the Fool\n', '', content, flags=re.MULTILINE)
+        content = re.sub(r'^## Translation:.*?\n', '', content, flags=re.MULTILINE)
 
-        for i in range(1, len(page_splits), 2):
-            if i + 1 >= len(page_splits):
-                break
+        # Remove page markers (### Page N) and separators (---)
+        content = re.sub(r'### Page \d+\n', '', content)
+        content = re.sub(r'\n---+\n', '\n\n', content)
 
-            page_num = int(page_splits[i])
-            page_content = page_splits[i + 1]
-            page_content = re.sub(r'\n---+\n', '\n', page_content).strip()
-
-            pages.append({
-                "page_number": page_num,
-                "content": page_content
-            })
+        # Clean up excess whitespace
+        content = re.sub(r'\n{3,}', '\n\n', content)
+        content = content.strip()
 
         # Load uncertainties if file exists
         uncertainties = []
@@ -84,7 +81,7 @@ def load_translation_chunks() -> List[Dict[str, Any]]:
 
         chunks.append({
             "chunk_number": chunk_num,
-            "pages": pages,
+            "content": content,
             "uncertainties": uncertainties
         })
 
@@ -258,74 +255,85 @@ def generate_epub(output_path: Path, include_uncertainties: bool = False):
     all_chapters = [title_page]
     toc = []
 
-    # Process each chunk
-    for chunk in chunks:
-        chunk_num = chunk['chunk_number']
-        pages = chunk['pages']
-        uncertainties = chunk['uncertainties']
+    # Process each chunk, combining content naturally without chunk headers
+    # Group into larger chapters (every 6-7 chunks)
+    chapter_size = 7
+    chapter_num = 1
 
-        print(f"   Processing chunk {chunk_num:02d}...")
+    for chunk_start in range(0, len(chunks), chapter_size):
+        chunk_group = chunks[chunk_start:min(chunk_start + chapter_size, len(chunks))]
 
-        # Group uncertainties by page
-        unc_by_page = {}
-        for unc in uncertainties:
-            page_num = unc['page_number']
-            if page_num not in unc_by_page:
-                unc_by_page[page_num] = []
-            unc_by_page[page_num].append(unc)
+        first_chunk = chunk_group[0]['chunk_number']
+        last_chunk = chunk_group[-1]['chunk_number']
 
-        # Create chapter for this chunk
+        print(f"   Creating chapter {chapter_num} (chunks {first_chunk:02d}-{last_chunk:02d})...")
+
+        # Create chapter
         chapter = epub.EpubHtml(
-            title=f'Chunk {chunk_num:02d}',
-            file_name=f'chunk_{chunk_num:02d}.xhtml',
+            title=f'Chapter {chapter_num}',
+            file_name=f'chapter_{chapter_num:02d}.xhtml',
             lang='en'
         )
 
-        # Build chapter content
-        content_parts = [
-            '<html>',
-            '<head>',
-            f'<title>Chunk {chunk_num:02d}</title>',
-            '<link href="style/nav.css" rel="stylesheet" type="text/css"/>',
-            '</head>',
-            '<body>',
-            f'<h2 class="chunk-header">Chunk {chunk_num:02d}</h2>'
-        ]
+        # Build chapter content - collect all text first
+        all_content = []
 
-        for page in pages:
-            page_num = page['page_number']
-            page_content = page['content']
+        for chunk in chunk_group:
+            content = chunk['content']
+            uncertainties = chunk['uncertainties']
+            print(f"      Processing chunk {chunk['chunk_number']:02d}")
 
-            # Page header
-            content_parts.append(f'<h3>Page {page_num}</h3>')
+            # Skip empty chunks
+            if not content.strip():
+                continue
 
             # Convert markdown to HTML
-            html_content = markdown_to_html(page_content)
-            content_parts.append(html_content)
+            html_content = markdown_to_html(content)
+            if html_content.strip():
+                all_content.append(html_content)
 
-            # Add uncertainties if requested
-            if include_uncertainties and page_num in unc_by_page:
-                for unc in unc_by_page[page_num]:
-                    unc_html = f'''
-                    <div class="uncertainty-box">
-                        <p><strong>Translator's Note:</strong></p>
-                        <p><strong>Original:</strong> "{unc['original_text']}"</p>
-                        <p><strong>Question:</strong> {unc['question']}</p>
-                        <p><strong>Translation:</strong> "{unc['current_translation']}"</p>
-                    </div>
-                    '''
-                    content_parts.append(unc_html)
+            # Add uncertainties at end of chunk if requested
+            if include_uncertainties and uncertainties:
+                # Group uncertainties by page
+                unc_by_page = {}
+                for unc in uncertainties:
+                    page_num = unc['page_number']
+                    if page_num not in unc_by_page:
+                        unc_by_page[page_num] = []
+                    unc_by_page[page_num].append(unc)
 
-        content_parts.append('</body>')
-        content_parts.append('</html>')
+                # Add all uncertainties for this chunk
+                for page_num in sorted(unc_by_page.keys()):
+                    for unc in unc_by_page[page_num]:
+                        unc_html = f'''<div class="uncertainty-box">
+<p><strong>Translator's Note (page {page_num}):</strong></p>
+<p><strong>Original:</strong> "{unc['original_text']}"</p>
+<p><strong>Question:</strong> {unc['question']}</p>
+<p><strong>Translation:</strong> "{unc['current_translation']}"</p>
+</div>'''
+                        all_content.append(unc_html)
 
-        chapter.content = '\n'.join(content_parts)
+        # Build the complete HTML
+        body_content = ''.join(all_content)
+        chapter_html = f'''<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Chapter {chapter_num}</title>
+<link href="style/nav.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+{body_content}
+</body>
+</html>'''
+
+        chapter.content = chapter_html
+        print(f"      Chapter has {len(all_content)} content sections, {len(body_content)} chars")
         book.add_item(chapter)
         all_chapters.append(chapter)
 
-        # Add to TOC (every 5 chunks for cleaner navigation)
-        if chunk_num % 5 == 1 or chunk_num == 1:
-            toc.append(epub.Link(f'chunk_{chunk_num:02d}.xhtml', f'Chunk {chunk_num:02d}', f'chunk{chunk_num}'))
+        # Add to TOC
+        toc.append(epub.Link(f'chapter_{chapter_num:02d}.xhtml', f'Chapter {chapter_num}', f'chapter{chapter_num}'))
+
+        chapter_num += 1
 
     # Define TOC
     book.toc = tuple(toc)
