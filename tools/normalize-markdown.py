@@ -80,7 +80,7 @@ def main():
     print()
 
     for chunk_num in range(1, 40):
-        file_path = REPO_ROOT / f"translation_chunk_{chunk_num:02d}.md"
+        file_path = REPO_ROOT / "book" / "translations" / "v1" / f"translation_chunk_{chunk_num:02d}.md"
 
         if not file_path.exists():
             print(f"   ⚠ Skipping chunk {chunk_num:02d} - file not found")
