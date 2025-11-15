@@ -26,6 +26,12 @@ epub-tools = [
     "lxml>=5.0.0",           # XML/HTML parsing for EPUB internals
 ]
 
+# Export tools (for generating translation outputs)
+export-tools = [
+    "reportlab>=4.0.0",      # PDF generation
+    "ebooklib>=0.18",        # EPUB generation
+]
+
 # Development tools
 dev = [
     "pytest>=7.4.0",
@@ -37,7 +43,7 @@ dev = [
 
 # All tools combined
 all = [
-    "spastics-dance[pdf-tools,epub-tools]",
+    "spastics-dance[pdf-tools,epub-tools,export-tools]",
 ]
 
 [project.scripts]

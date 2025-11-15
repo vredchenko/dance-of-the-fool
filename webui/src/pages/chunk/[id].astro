@@ -1,0 +1,185 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import UncertaintyPanel from '../../components/UncertaintyPanel.astro';
+import translationData from '../../data/translation-data.json';
+
+export function getStaticPaths() {
+  return translationData.chunks.map((chunk) => ({
+    params: { id: String(chunk.chunk_number).padStart(2, '0') },
+    props: { chunk },
+  }));
+}
+
+const { chunk } = Astro.props;
+const { chunk_number, page_range, pages, uncertainty_count } = chunk;
+
+// Simple markdown-to-HTML converter for English text
+function simpleMarkdownToHtml(text: string): string {
+  return text
+    // Headers
+    .replace(/^#### (.+)$/gm, '<h4>$1</h4>')
+    .replace(/^### (.+)$/gm, '<h3>$1</h3>')
+    .replace(/^## (.+)$/gm, '<h2>$1</h2>')
+    .replace(/^# (.+)$/gm, '<h1>$1</h1>')
+    // Bold
+    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    // Italic
+    .replace(/\*(.+?)\*/g, '<em>$1</em>')
+    // Paragraphs (double newline)
+    .split('\n\n')
+    .map(para => para.trim() ? `<p>${para}</p>` : '')
+    .join('\n');
+}
+---
+
+<BaseLayout title={`Chunk ${String(chunk_number).padStart(2, '0')} - ${translationData.book_title}`}>
+  <Header currentChunk={chunk_number} />
+
+  <main class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <!-- Chunk Header -->
+    <div class="mb-6">
+      <div class="flex items-center justify-between flex-wrap gap-4">
+        <div>
+          <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">
+            Chunk {String(chunk_number).padStart(2, '0')}
+          </h1>
+          <p class="text-gray-600 dark:text-gray-400">
+            Pages {page_range} • {pages.length} pages
+            {uncertainty_count > 0 && (
+              <span class="ml-2 uncertainty-badge">
+                <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+                </svg>
+                {uncertainty_count} notes
+              </span>
+            )}
+          </p>
+        </div>
+
+        <a
+          href="/"
+          class="px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-sm font-medium transition-colors"
+        >
+          ← Back to Overview
+        </a>
+      </div>
+    </div>
+
+    <!-- Pages -->
+    <div class="space-y-8">
+      {pages.map((page) => (
+        <div id={`page-${page.page_number}`} class="scroll-mt-20">
+          <!-- Page Number Header -->
+          <div class="mb-4 flex items-center gap-3">
+            <h2 class="text-xl font-bold text-gray-900 dark:text-white">
+              Page {page.page_number}
+            </h2>
+            {page.uncertainties.length > 0 && (
+              <span class="uncertainty-badge">
+                <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+                </svg>
+                {page.uncertainties.length}
+              </span>
+            )}
+          </div>
+
+          <!-- Split Pane Layout -->
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <!-- Ukrainian Column -->
+            <div class="bg-light-uk dark:bg-dark-uk rounded-lg p-6 shadow-sm border border-gray-200 dark:border-gray-700">
+              <div class="flex items-center justify-between mb-4">
+                <h3 class="text-sm font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-wide">
+                  🇺🇦 Ukrainian
+                </h3>
+                <span class="text-xs text-gray-500 dark:text-gray-400">
+                  {page.char_count} chars • {page.word_count} words
+                </span>
+              </div>
+              <div class="ukrainian-text text-gray-800 dark:text-gray-200 max-h-[600px] overflow-y-auto custom-scrollbar pr-2">
+                {page.ukrainian_text || <em class="text-gray-400">Empty page</em>}
+              </div>
+            </div>
+
+            <!-- English Column -->
+            <div class="bg-light-en dark:bg-dark-en rounded-lg p-6 shadow-sm border border-gray-200 dark:border-gray-700">
+              <div class="flex items-center justify-between mb-4">
+                <h3 class="text-sm font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-wide">
+                  🇬🇧 English
+                </h3>
+              </div>
+              <div class="english-text text-gray-800 dark:text-gray-200 max-h-[600px] overflow-y-auto custom-scrollbar pr-2">
+                <Fragment set:html={simpleMarkdownToHtml(page.english_text)} />
+              </div>
+            </div>
+          </div>
+
+          <!-- Uncertainty Panel for this page -->
+          {page.uncertainties.length > 0 && (
+            <UncertaintyPanel uncertainties={page.uncertainties} pageNumber={page.page_number} />
+          )}
+
+          {/* Divider between pages */}
+          {page.page_number !== pages[pages.length - 1].page_number && (
+            <div class="mt-8 border-t border-gray-300 dark:border-gray-700" />
+          )}
+        </div>
+      ))}
+    </div>
+
+    <!-- Bottom Navigation -->
+    <div class="mt-12 pt-8 border-t border-gray-300 dark:border-gray-700">
+      <div class="flex items-center justify-between">
+        <a
+          href={chunk_number > 1 ? `/chunk/${String(chunk_number - 1).padStart(2, '0')}` : '#'}
+          class={`px-6 py-3 rounded-lg font-medium transition-colors ${
+            chunk_number > 1
+              ? 'bg-blue-600 hover:bg-blue-700 text-white'
+              : 'bg-gray-100 dark:bg-gray-800 text-gray-400 cursor-not-allowed'
+          }`}
+          aria-disabled={chunk_number <= 1}
+        >
+          ← Previous Chunk
+        </a>
+
+        <a
+          href="/"
+          class="px-6 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 font-medium transition-colors"
+        >
+          Overview
+        </a>
+
+        <a
+          href={chunk_number < 39 ? `/chunk/${String(chunk_number + 1).padStart(2, '0')}` : '#'}
+          class={`px-6 py-3 rounded-lg font-medium transition-colors ${
+            chunk_number < 39
+              ? 'bg-blue-600 hover:bg-blue-700 text-white'
+              : 'bg-gray-100 dark:bg-gray-800 text-gray-400 cursor-not-allowed'
+          }`}
+          aria-disabled={chunk_number >= 39}
+        >
+          Next Chunk →
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      const target = e.target as HTMLElement;
+      if (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA') {
+        return;
+      }
+
+      const chunkNum = parseInt(window.location.pathname.split('/').pop() || '0');
+
+      if (e.key === 'ArrowLeft' && chunkNum > 1) {
+        window.location.href = `/chunk/${String(chunkNum - 1).padStart(2, '0')}`;
+      } else if (e.key === 'ArrowRight' && chunkNum < 39) {
+        window.location.href = `/chunk/${String(chunkNum + 1).padStart(2, '0')}`;
+      }
+    });
+  </script>
+</BaseLayout>

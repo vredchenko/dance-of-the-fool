@@ -1,0 +1,78 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = 'Translation proofreading interface for Танець недоумка (The Dance of the Fool)' } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+
+    <script is:inline>
+      // Dark mode initialization (before page renders)
+      const theme = localStorage.getItem('theme') || 'light';
+      if (theme === 'dark') {
+        document.documentElement.classList.add('dark');
+      }
+    </script>
+  </head>
+  <body>
+    <slot />
+
+    <script>
+      // Dark mode toggle functionality
+      function toggleDarkMode() {
+        const html = document.documentElement;
+        const isDark = html.classList.contains('dark');
+
+        if (isDark) {
+          html.classList.remove('dark');
+          localStorage.setItem('theme', 'light');
+        } else {
+          html.classList.add('dark');
+          localStorage.setItem('theme', 'dark');
+        }
+      }
+
+      // Attach to window for global access
+      (window as any).toggleDarkMode = toggleDarkMode;
+
+      // Keyboard shortcuts
+      document.addEventListener('keydown', (e) => {
+        // D key for dark mode toggle
+        if (e.key === 'd' && !e.ctrlKey && !e.metaKey && !e.altKey) {
+          const target = e.target as HTMLElement;
+          // Don't trigger if in an input/textarea
+          if (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA') {
+            return;
+          }
+          toggleDarkMode();
+        }
+
+        // ? key for help (future feature)
+        if (e.key === '?') {
+          const target = e.target as HTMLElement;
+          if (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA') {
+            return;
+          }
+          console.log('Keyboard shortcuts: D = toggle dark mode, ← = previous chunk, → = next chunk');
+        }
+      });
+    </script>
+  </body>
+</html>
