@@ -53,7 +53,7 @@ const { currentChunk } = Astro.props;
 
         <!-- Dark mode toggle -->
         <button
-          onclick="(window as any).toggleDarkMode()"
+          id="darkModeToggle"
           class="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
           aria-label="Toggle dark mode"
           title="Toggle dark mode (D)"
@@ -69,3 +69,13 @@ const { currentChunk } = Astro.props;
     </div>
   </div>
 </header>
+
+<script>
+  // Attach dark mode toggle to button
+  document.addEventListener('DOMContentLoaded', () => {
+    const btn = document.getElementById('darkModeToggle');
+    if (btn && typeof window.toggleDarkMode === 'function') {
+      btn.addEventListener('click', window.toggleDarkMode);
+    }
+  });
+</script>
