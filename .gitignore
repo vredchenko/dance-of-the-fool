@@ -52,3 +52,9 @@ output/
 # Temporary files
 *.tmp
 *.log
+
+# Web UI build artifacts
+webui/node_modules/
+webui/dist/
+webui/.astro/
+webui/src/data/translation-data.json

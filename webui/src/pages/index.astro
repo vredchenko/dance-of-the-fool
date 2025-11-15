@@ -1,0 +1,132 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import translationData from '../data/translation-data.json';
+
+const { book_title, author, total_chunks, total_pages, actual_pages_with_content, total_uncertainties, chunks } = translationData;
+---
+
+<BaseLayout title={book_title}>
+  <Header />
+
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <!-- Hero Section -->
+    <div class="text-center mb-12">
+      <h1 class="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+        {book_title}
+      </h1>
+      <p class="text-xl text-gray-600 dark:text-gray-400 mb-2">
+        {author}
+      </p>
+      <p class="text-sm text-gray-500 dark:text-gray-500">
+        Translation Proofreading Interface
+      </p>
+    </div>
+
+    <!-- Stats -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
+      <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm border border-gray-200 dark:border-gray-700">
+        <div class="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-1">
+          {total_chunks}
+        </div>
+        <div class="text-sm text-gray-600 dark:text-gray-400">
+          Chunks
+        </div>
+      </div>
+
+      <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm border border-gray-200 dark:border-gray-700">
+        <div class="text-3xl font-bold text-green-600 dark:text-green-400 mb-1">
+          {total_pages}
+        </div>
+        <div class="text-sm text-gray-600 dark:text-gray-400">
+          Pages
+        </div>
+      </div>
+
+      <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm border border-gray-200 dark:border-gray-700">
+        <div class="text-3xl font-bold text-yellow-600 dark:text-yellow-400 mb-1">
+          {total_uncertainties}
+        </div>
+        <div class="text-sm text-gray-600 dark:text-gray-400">
+          Uncertainties
+        </div>
+      </div>
+
+      <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm border border-gray-200 dark:border-gray-700">
+        <div class="text-3xl font-bold text-purple-600 dark:text-purple-400 mb-1">
+          100%
+        </div>
+        <div class="text-sm text-gray-600 dark:text-gray-400">
+          Complete
+        </div>
+      </div>
+    </div>
+
+    <!-- Chunk Navigator -->
+    <div class="mb-8">
+      <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">
+        Browse by Chunk
+      </h2>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        {chunks.map((chunk) => (
+          <a
+            href={`/chunk/${String(chunk.chunk_number).padStart(2, '0')}`}
+            class="group bg-white dark:bg-gray-800 rounded-lg p-5 shadow-sm border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-400 hover:shadow-md transition-all"
+          >
+            <div class="flex items-start justify-between mb-3">
+              <div>
+                <div class="text-sm font-medium text-gray-500 dark:text-gray-400 mb-1">
+                  Chunk {String(chunk.chunk_number).padStart(2, '0')}
+                </div>
+                <div class="text-lg font-bold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                  Pages {chunk.page_range}
+                </div>
+              </div>
+              {chunk.uncertainty_count > 0 && (
+                <span class="uncertainty-badge">
+                  <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+                  </svg>
+                  {chunk.uncertainty_count}
+                </span>
+              )}
+            </div>
+
+            <div class="flex items-center gap-4 text-xs text-gray-500 dark:text-gray-400">
+              <span>{chunk.page_count} pages</span>
+              {chunk.uncertainty_count > 0 && (
+                <span>{chunk.uncertainty_count} notes</span>
+              )}
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+
+    <!-- Quick Info -->
+    <div class="mt-12 p-6 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
+      <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+        How to Use
+      </h3>
+      <ul class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
+        <li class="flex items-start gap-2">
+          <span class="text-blue-600 dark:text-blue-400">•</span>
+          <span>Click any chunk to view the Ukrainian and English text side-by-side</span>
+        </li>
+        <li class="flex items-start gap-2">
+          <span class="text-blue-600 dark:text-blue-400">•</span>
+          <span>Yellow badges indicate translation uncertainties and questions</span>
+        </li>
+        <li class="flex items-start gap-2">
+          <span class="text-blue-600 dark:text-blue-400">•</span>
+          <span>Use ← → arrow keys or navigation buttons to move between chunks</span>
+        </li>
+        <li class="flex items-start gap-2">
+          <span class="text-blue-600 dark:text-blue-400">•</span>
+          <span>Press 'D' to toggle dark mode for comfortable reading</span>
+        </li>
+      </ul>
+    </div>
+  </main>
+</BaseLayout>
