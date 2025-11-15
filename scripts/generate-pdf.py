@@ -44,22 +44,19 @@ def load_translation_chunks() -> List[Dict[str, Any]]:
         with open(translation_file, 'r', encoding='utf-8') as f:
             content = f.read()
 
-        # Extract page sections
-        pages = []
-        page_splits = re.split(r'### Page (\d+)', content)
+        # For reader-friendly output, get clean content without chunk/page headers
+        # Remove the main header (# Translation: Pages X-Y (Chunk N/39))
+        content = re.sub(r'^# .*?\n', '', content, flags=re.MULTILINE, count=1)
+        content = re.sub(r'^# The Dance of the Fool\n', '', content, flags=re.MULTILINE)
+        content = re.sub(r'^## Translation:.*?\n', '', content, flags=re.MULTILINE)
 
-        for i in range(1, len(page_splits), 2):
-            if i + 1 >= len(page_splits):
-                break
+        # Remove page markers (### Page N) and separators (---)
+        content = re.sub(r'### Page \d+\n', '', content)
+        content = re.sub(r'\n---+\n', '\n\n', content)
 
-            page_num = int(page_splits[i])
-            page_content = page_splits[i + 1]
-            page_content = re.sub(r'\n---+\n', '\n', page_content).strip()
-
-            pages.append({
-                "page_number": page_num,
-                "content": page_content
-            })
+        # Clean up excess whitespace
+        content = re.sub(r'\n{3,}', '\n\n', content)
+        content = content.strip()
 
         # Load uncertainties if file exists
         uncertainties = []
@@ -92,7 +89,7 @@ def load_translation_chunks() -> List[Dict[str, Any]]:
 
         chunks.append({
             "chunk_number": chunk_num,
-            "pages": pages,
+            "content": content,
             "uncertainties": uncertainties
         })
 
@@ -239,55 +236,47 @@ def generate_pdf(output_path: Path, include_uncertainties: bool = False):
         story.append(Paragraph("(with translator notes)", styles['BookSubtitle']))
     story.append(PageBreak())
 
-    # Process each chunk
+    # Process each chunk - natural reading flow without chunk/page headers
     for chunk in chunks:
         chunk_num = chunk['chunk_number']
-        pages = chunk['pages']
+        content = chunk['content']
         uncertainties = chunk['uncertainties']
 
         print(f"   Processing chunk {chunk_num:02d}...")
 
-        # Chunk header
-        story.append(Paragraph(f"Chunk {chunk_num:02d}", styles['ChunkHeader']))
-        story.append(Spacer(1, 0.2*inch))
+        # Skip empty chunks
+        if not content.strip():
+            continue
 
-        # Group uncertainties by page for easy lookup
-        unc_by_page = {}
-        for unc in uncertainties:
-            page_num = unc['page_number']
-            if page_num not in unc_by_page:
-                unc_by_page[page_num] = []
-            unc_by_page[page_num].append(unc)
+        # Convert markdown to flowables (continuous text)
+        flowables = markdown_to_flowables(content, styles)
+        story.extend(flowables)
 
-        # Process each page
-        for page in pages:
-            page_num = page['page_number']
-            content = page['content']
+        # Add uncertainties at end of chunk if requested
+        if include_uncertainties and uncertainties:
+            story.append(Spacer(1, 0.2*inch))
 
-            # Page header
-            story.append(Paragraph(f"Page {page_num}", styles['PageHeader']))
+            # Group uncertainties by page
+            unc_by_page = {}
+            for unc in uncertainties:
+                page_num = unc['page_number']
+                if page_num not in unc_by_page:
+                    unc_by_page[page_num] = []
+                unc_by_page[page_num].append(unc)
 
-            # Page content
-            flowables = markdown_to_flowables(content, styles)
-            story.extend(flowables)
-
-            # Add uncertainties if requested
-            if include_uncertainties and page_num in unc_by_page:
-                story.append(Spacer(1, 0.15*inch))
-
+            # Add all uncertainties for this chunk
+            for page_num in sorted(unc_by_page.keys()):
                 for unc in unc_by_page[page_num]:
                     unc_text = f"""
-                    <b>Translator's Note:</b><br/>
+                    <b>Translator's Note (page {page_num}):</b><br/>
                     <b>Original:</b> "{unc['original_text']}"<br/>
                     <b>Question:</b> {unc['question']}<br/>
                     <b>Translation:</b> "{unc['current_translation']}"
                     """
                     story.append(Paragraph(unc_text, styles['UncertaintyNote']))
+                    story.append(Spacer(1, 0.1*inch))
 
-            story.append(Spacer(1, 0.3*inch))
-
-        # Page break after each chunk
-        story.append(PageBreak())
+            story.append(Spacer(1, 0.2*inch))
 
     # Build PDF
     print("   Building PDF...")
