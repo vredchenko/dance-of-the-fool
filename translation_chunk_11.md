@@ -1,5 +1,7 @@
 # Translation: Pages 121-132 (Chunk 11/39)
 
+## Page 121
+
 I froze, listening. Silence... Even had time to think it seemed... And here — again. The sound was recognizable and clear. A shot — and immediately a second! And again — a shot! And immediately another! More! More! Now not the slightest doubt — they're shooting, and very close! And not at all at the shooting range, which is a good kilometer away, and definitely not beyond the Perimeter. They're shooting very nearby. Here again! I started putting on my shoes.
 
 "What is it?" Vira asked fearfully.
@@ -78,7 +80,7 @@ I looked at Irma. But she shook her head, as if saying: "Not here!". And immedia
 
 She flared up at these words and pressed her lips tight. And I simply turned and ran home.
 
----
+## Page 122
 
 Vira and Elza were already gone. At first I wanted to call Vira, but changed my mind. She won't confess anyway. And I ran to the bathroom — for some reason I thought I'd find the pollen exactly there. Even seemed I'd seen a packet on the shelf among Vira's creams. But in the bathroom there was nothing like that... The robe! Of course... It hung in our bedroom. I ran there and thoroughly searched the pockets. Empty.
 
@@ -88,7 +90,7 @@ Okay, and if it's not pollen but something else. For example, coke — even ordi
 
 I suddenly realized I must check this — whether Irma is lying. Or maybe not lying, but simply exaggerating the healing properties. I immediately mechanically rubbed my numb hand. No, that's not the question yet. I simply need to understand what we're dealing with. If a guy who's on pollen shot a bunch of people, and I also suspect my own wife of using it, I absolutely must learn everything possible about this filth!
 
----
+## Page 123
 
 Alex was leading me down an unfamiliar corridor. Ahead sounded uniform loud blows, but I couldn't understand what kind of sound it was.
 
@@ -384,6 +386,6 @@ And she looked at me with a nasty smile.
 
 "Data on exits beyond the camp. My guys from internal security keep them," she said this sharply, and because of the cigarette it came out through her teeth too. "And by the way, Captain Irma Salvatierro, who so values sharp-minded..."
 
----
+## Page 124
 
 *End of Chunk 11 (Pages 121-132)*

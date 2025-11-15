@@ -52,8 +52,6 @@ allowing the possibility not only to think but to comprehend. Except on a roller
 
 I could see the sky far above again—I'd finally been flipped onto my back.
 
-
-
 She grabbed me by the strap of the load-bearing vest and pressed me against the wall. I kept sliding, and the rough edges of the cells scraped my lips and nose. And then I hung suspended. That same second I clung firmly to the partitions, instantly finding footing. Panic flared up in yellow-hot tongues of flame, spreading through my body in a ticklish desire to act.
 
 "Are you stable?" Irma's voice sounded from somewhere far away.
@@ -208,8 +206,6 @@ Irma came down. We tore off down the wide street of the neglected alien city. La
 
 After a while Irma confidently turned a corner, I followed... And we both froze in shock. Rapture and lightness were displaced by the eerie spectacle that appeared before us.
 
-
-
 This was, probably, an avenue—a wide passage between towering buildings. A gorge flooded with midday sun. And this was a battlefield—one glance was enough to understand. The field of the last battle. The death hour of an entire civilization preserved by time. Corpses were easy to make out, even buried under dust and wilted leaves. There were many of them. Huge, over two meters tall, mutilated, hidden behind barricades of fanciful machines—the masters of this city, and once of the entire planet. I crouched by one of the bodies, carefully examining the dried mummy. Six eyes, broad chest. Something like armor worn on torso and shoulders.
 
 "Who could destroy an entire civilization!" burst from me, and at that second I was, of course, thinking about our tiny camp behind the Contour wall.
@@ -243,7 +239,6 @@ It was a sign. Old, judging by the peeling paint, bent metal-plastic sign with w
 We turned (precisely north, as far as I could orient myself) and already around the corner of the next street we saw a fence. High, mesh, only here and there damaged by rust and absolutely terrestrial, with Bruno coil on top. Neither ivy nor other plants even approached the fence—along the posts neat rows of numerous insulators were lined up. And judging by the barely audible hum, solar batteries still worked, though the complex itself had a neglected appearance. Gray monoliths of buildings lurking under alien overpasses were thickly covered with dry branches and leaves. Everywhere possible, ubiquitous shrubs had sprouted.
 
 A white sign with writing faded by time announced:
-
 
 "Government Space Research Agency
 

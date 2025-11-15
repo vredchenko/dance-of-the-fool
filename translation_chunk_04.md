@@ -1,9 +1,6 @@
-# The Dance of the Fool
-## Translation: Pages 37-48 (Chunk 04/39)
+# Translation: Pages 37-48 (Chunk 04/39)
 
----
-
-### Page 37
+## Page 37
 
 "At the pool... What do you mean 'nowhere', Gil?! You had three interviews. Three! Did you blow them all?"
 
@@ -39,9 +36,7 @@ She seemed not to hear.
 
 I was taken aback by such a sharp turn. Twenty variants of answers flashed through my head, but I still couldn't decide on one.
 
----
-
-### Page 38
+## Page 38
 
 After all, the choice was between the prospect of fighting but proving my point, or leaving everything as is, swallowing her accusations along with it... And I thought I was too tired to fight.
 
@@ -67,9 +62,7 @@ Nothing affected this sacred process! Even when we fought and Vira didn't talk t
 
 This didn't mean that Vira stopped being offended and started talking to me. No. Food is like medics on the battlefield: they don't shoot at them, but the battle doesn't end because of this.
 
----
-
-### Page 39
+## Page 39
 
 doesn't end because of this. For the sake of food, Vira declared a partial ceasefire.
 
@@ -109,9 +102,7 @@ I picked up my daughter in my arms, and we began to silently rub noses according
 
 Half an hour ago, on the roof, it seemed to me that the decision was made. I need to stop sending resumes to large companies and
 
----
-
-### Page 40
+## Page 40
 
 focus on simpler positions... Once, as a seventeen-year-old kid, I entered the biology department, dreaming of working at a dolphinarium. Money so-so... And no prestige at all (if you don't count the opinion of children)... But what a job! Once it seemed like the best in the world. Why not try now? I knew this would cause Vira to have a fit and probably even become a reason for threats to take Elsa and leave. But we both know she'll never do that. "You'd have to be a complete idiot to divorce your husband at thirty-two with a child in your arms"—those are her words.
 
@@ -149,9 +140,7 @@ An ironic smile played on Vira's lips.
 
 I suddenly became confused, thinking that Vira was unlikely to be able to grasp the essence of desynchronization, and didn't know how to explain.
 
----
-
-### Page 41
+## Page 41
 
 "Roughly speaking, during the jump," I barely uttered, "twenty years will pass on Earth..."
 
@@ -187,9 +176,7 @@ She started to clear the table, no longer looking at me. Bowls and plates flew i
 
 "And?" she repeated with emphasis.
 
----
-
-### Page 42
+## Page 42
 
 "If you decide to draw a complete map of the galaxy, its edge will be farther than the Moon. And they're inviting us even farther, understand?"
 
@@ -215,9 +202,7 @@ Vira suddenly threw a spoon into the sink, and it clanged with such force that I
 
 I slowly nodded. There was a rational grain in this... The death of a civilian on a mission is not at all the same as losses among conquistadors. If not the children, then the grandchildren of the deceased will ruin the Corps in lawsuits. The scale of the scandal is even hard to imagine!
 
----
-
-### Page 43
+## Page 43
 
 "And after this planet you can break the contract and not climb into new missions," Vira said. "It's a way out, don't you understand! And enlighten me if I suddenly don't know something, but as I see it, it's the only way out for us!"
 
@@ -241,9 +226,7 @@ I wanted to answer, but hesitated. Vira doesn't know anything about the disease.
 
 Insurance... This word stuck in my brain like a nail. Vira continued to say something, enveloping me with soft, almost tender intonations, but I heard nothing more. Insurance. What an idiot I am!
 
----
-
-### Page 44
+## Page 44
 
 What an idiot I am! That's the main thing! Not to die young, outsmarting the disease! The main thing is to protect my little Elsa! What could be worse than leaving this life, leaving them with Vira without a penny!
 
@@ -275,9 +258,7 @@ I shrugged. Vira suddenly hugged me, pressing her cheek to my chest.
 
 "Yes, perfect!" and Virunka kissed me firmly on the cheek.
 
----
-
-### Page 45
+## Page 45
 
 ...At ten o'clock Elsa went to bed, Vira immersed herself in reading, and I unfolded the tablet on the table. I don't even remember at what moment I decided to search for "Ix-Chel."
 
@@ -293,9 +274,7 @@ The bus smoothly swayed on the magnetic cushion and started off, leaving behind 
 
 The optimist in me said that since they paid for the flight both ways and issued quite generous per diems, I was almost accepted. The pessimist philosophically noted that it's unknown what's worse—to fail the exam or to pass it and fly toward god-knows-what. There was also a frightened skeptic who kept repeating that they'll open my file at the medical commission and someone will unceremoniously say: "Did you see what syndrome he has? Hereditary time bomb! Who even calls them here?!"
 
----
-
-### Page 46
+## Page 46
 
 calls them here?!" And then he'll turn to me and ask snidely: "Are you even aware that you can't be given weapons? Lord, with such a diagnosis you can't even be given a hair dryer in the bathroom!"
 
@@ -309,9 +288,7 @@ Still better than sitting without a penny and waiting for that cursed protein in
 
 Then what are you, Gil, doing on this bus? As always, instead of making a decision, you relied on chance?
 
----
-
-### Page 47
+## Page 47
 
 And there is no decision. Probably there will be one soon. But for now, the bank gave us a three-month extension only because smart Virunka thought to send them my invitation to the interview at the Corps. So at this moment—no problems, no decisions. I'm just riding in a tunnel. And what will happen next—nobody knows...
 
@@ -327,9 +304,7 @@ Already at the tunnel exit I felt that my heart was beating much faster than usu
 
 Outside the window, artificial light gave way to the milky haze of a foggy morning. There was no rain here. Behind the five-meter transparent fence of the highway towered Tokyo with swarms of air transport. After hypersonic speeds, movement at six hundred kilometers per hour seemed
 
----
-
-### Page 48
+## Page 48
 
 almost crawling, and I looked with satisfaction at the cliffs of the planet's tallest skyscrapers floating past us.
 
@@ -346,7 +321,5 @@ The Tokyo headquarters of the Conquistador Corps was located in a separate build
 I kept repeating to myself that nothing was decided yet. That they won't take me a hundred times and all that. And that it'll be for the better. But in my soul I couldn't get rid of the thought that now is my only chance to solve everything in one fell swoop: the loan, lack of work, protein mutation... and also the absence of sex with Vira for six months, her whining about loneliness, my depression...—Ix-Chel could become our El Dorado.
 
 ...The heavy doors of thick transparent macromolecular slid aside, and I found myself in the reception area. One of the reception areas... Where they met people like me. A familiar feeling gripped me... I call
-
----
 
 *End of Chunk 04*

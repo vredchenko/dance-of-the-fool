@@ -1,9 +1,6 @@
-# The Dance of the Fool
-## Translation: Pages 49-60 (Chunk 05/39)
+# Translation: Pages 49-60 (Chunk 05/39)
 
----
-
-### Page 49
+## Page 49
 
 its "smell of money." It's a special atmosphere. Not luxury, not deliberate demonstration of wealth, no. It's an atmosphere you feel in companies where they don't think about whether something could be done cheaper. Why cheaper? It's the best floor covering, the best furniture, the best design... The reception area looked like the captain's bridge of a space liner as depicted in movies. That is—huge, radiant, all so... cosmic!
 
@@ -25,9 +22,7 @@ I turned around in surprise at the voice: to hear such pure English in Japan is 
 
 Good mood? It seemed like all this wasn't real. Somehow too... frivolous or what. I mentally mimicked his inappropriate
 
----
-
-### Page 50
+## Page 50
 
 manner of expression: "If you don't pass the selection, you'll have the opportunity to jump from the skyscraper roof this very evening! And if you pass, you'll go to a planet where they'll skin you, and you might even manage to record it on your gadget!" Interesting, is this strange cheerfulness a feature of this specific manager or their policy?
 
@@ -61,9 +56,7 @@ And then I felt Vira's hand take my wrist and lightly squeeze—phone neuro-call
 
 "Vira..." I wanted to say something like "They haven't taken me anywhere yet," but glancing at Max, I changed my mind. "I'll call. Wish
 
----
-
-### Page 51
+## Page 51
 
 me luck!"
 
@@ -95,9 +88,7 @@ The floor we got off at was not at all like the radiant company reception. Gray 
 
 I quickly corrected myself, afraid he'd notice my agitation:
 
----
-
-### Page 52
+## Page 52
 
 "The medical exam results—so fast?"
 
@@ -129,9 +120,7 @@ Max opened the door, letting me go first. I entered.
 
 Max closed the door behind my back.
 
----
-
-### Page 53
+## Page 53
 
 There were several people in white coats in the room, they sat facing projection monitors and didn't even turn their heads in my direction. The only one who looked at me was a gray-haired Japanese man about sixty in appearance.
 
@@ -155,9 +144,7 @@ Fourteen, to be precise. Until thirty-five there was still a whole eternity, but
 
 And now, finally, I'm walking between ideally whitewashed curbs, heavily moving legs cotton from agitation. The disease either manifests spontaneously, at an undefined moment from thirty-five to forty-four, or—never manifests at all... An elderly professor reread father's medical history for a long time, and then opened great-grandfather's
 
----
-
-### Page 54
+## Page 54
 
 file that I brought. And finally, removing, putting back on and removing his glasses again, in an apologetic tone he issued his verdict: I inherited the abnormal protein from my father. After thirty-five the probability of pathological changes is fifty percent.
 
@@ -201,9 +188,7 @@ My God, ankle! I didn't even remember right away. Well, of course! There was suc
 
 Silence fell. They again quietly conversed in Japanese. I turned my head, squinting my eyes as much as possible. The gray-haired man stood with his
 
----
-
-### Page 55
+## Page 55
 
 back to me next to some woman in a white coat, pointing with his hand at something on the volumetric hologram of my foot.
 
@@ -245,9 +230,7 @@ If only you knew, buddy... If only you knew...
 
 We left the white corridor and soon found ourselves at smooth gray doors without symbols and markings. It seems it only now started to dawn on me what had happened. I passed the medical commission! I don't understand how, but I—passed...
 
----
-
-### Page 56
+## Page 56
 
 "The test zone begins from here," Max said seriously, without his former enthusiasm. "You perform each task in a separate room. Try to spend minimum time, it affects the result."
 
@@ -281,9 +264,7 @@ From the other side a melodious "bam" sounded.
 
 I tried to focus. "You must guess my symbol"—do they want telepathic abilities from me? Nonsense, nobody has even proven they exist. Some kind of intuition? Same thing... A minute
 
----
-
-### Page 57
+## Page 57
 
 for the first symbol... Why more than for the others? Should I understand the principle? I closed my eyes for a few seconds. Yes. If it's telepathy or other nonsense—that's not for me. Everything will be off, I might as well not press anything. On the other hand, this isn't that kind of outfit. What do they need? To back me into a corner and see what I can do. What do they want? For me to choose the same symbol. How? They didn't specify.
 
@@ -321,9 +302,7 @@ Here's a brand new induction pistol, next to it—a completely ancient laser, fr
 
 In the room, besides Max and me, there was no one.
 
----
-
-### Page 58
+## Page 58
 
 "If not for the ethylene laser, I would have thought you have an exhibition of weapons manufacturing achievements here," I said jokingly.
 
@@ -347,9 +326,7 @@ Darkness. Something unbearably clearly reminded me of Proxima. Jungle. Eternal, 
 
 I squinted briefly, and then again started peering into the darkness. Black as pitch. Blood pulses in my temples. Unexpectedly for myself
 
----
-
-### Page 59
+## Page 59
 
 I discovered that the pistol was already in my hand. So instincts are working.
 
@@ -365,9 +342,7 @@ Damn swamp spiders of Proxima.
 
 Huge as a good calf, predatory arthropods. In Latin they're called "lycosa satanas," that is "satanic tarantula," and in my opinion that's too mild a name. To say I was very scared at that moment—that doesn't convey even a tenth of my horror. Physically felt a lump of pain and nausea somewhere in the solar plexus region.
 
----
-
-### Page 60
+## Page 60
 
 My heart pounded like crazy. There wasn't enough air. My desperate attempts to quiet my breathing echoed with dull pain in my chest. With my own eyes I saw these creatures only once. From a platoon of fifteen fighters, two of us survived. Up to our ears smeared with someone else's blood, we ran, dragging on ourselves what remained of the third... Not understanding that this scrap of human body simply couldn't be alive...
 
@@ -384,7 +359,5 @@ I took three deep and slow breaths. Held my breath "on half-exhale." Aimed in th
 Let's hope there's only one spider here... And I smoothly pressed the trigger. Flash!
 
 There were six spiders.
-
----
 
 *End of Chunk 05*

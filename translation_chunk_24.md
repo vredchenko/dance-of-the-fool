@@ -210,8 +210,6 @@ The lamp went out and immediately lit uncertainly, hummed and flickered disgusti
 
 It seemed to me the woman scornfully twisted her lips under the mask.
 
-
-
 That day I showed Vira pictures with words. Elza had recently learned to read from them. On Vira's face was carefree calm and something like curiosity in her eyes. This spark in her gaze was my last straw. "She's not indifferent, so reason remains in her," I told myself.
 
 "Girl," I pronounce almost by syllables and stick the next card under her nose.

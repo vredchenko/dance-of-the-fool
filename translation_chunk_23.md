@@ -238,8 +238,6 @@ Karakurt.
 
 It seems the woman smiled there under the mask, and I wanted to strangle her.
 
-
-
 ...Irma and I returned from the forbidden city around five in the morning.
 
 "Thank you!" kissing me, she satisfiedly patted the metal thermos sticking from her pocket. "In two weeks the commandant will personally help us pack—just to fly away faster."

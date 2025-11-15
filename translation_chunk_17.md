@@ -128,7 +128,7 @@ In a shaky half-sleep it seemed to me I was again on Proxima, sitting inside a t
 
 the smell of some unbearable evening perfume and tobacco. "Cheer up, soldier!" Vandlik rehearsed, as if she's not a control officer but a sergeant overheated in the sun. "We'll kick those spiders' asses!" Here Vandlik insistently shoves a bottle of pollen under my nose, and I pull back in fright, hit the back of my head on the rack (already in reality, not in the dream) and wake up. But I don't have time to examine in detail what's happening around before sticky, exhausting sleep again wraps around my head, like that predatory ivy around the surveillance camera... Crash—and the head hangs helplessly on wire, fallen on my chest and dangling from merciless shaking. "The camera hangs," I correct myself, "not the head, but the camera." And I'm glad I managed to preserve crumbs of sound mind even in a dream. For now I managed. Haven't yet gone out a window or crashed into a bridge support. Haven't yet locked myself in the bathroom, pressing a thermobaric grenade to my chest... "You'll never have the courage for that!" I say (for some reason in Virka's voice) with reproach and realize I'm sitting astride a fence with yellow-hot signs "Danger! Prohibited Zone." I can't get down because my right arm has become completely plastic and no longer obeys me. "It's not scary to pull the pin—no! It's scary when you want to pull it, but you—have nothing to do it with!" flashed through my head, and this thought for some reason amuses me greatly. "Fear is cocaine," suddenly a phrase pronounced in Vandlik's voice surfaces in memory. "And you're hooked, buddy. Badly hooked."
 
-## Page 198 (Chapter 22)
+## Page 198
 
 "Fear is cocaine," Vandlik once told me in training.
 
@@ -272,7 +272,7 @@ Irma leaned back in her seat and closed her eyes.
 
 "Go crazy..." I muttered and climbed out of the rover.
 
-## Page 204 (Chapter 23)
+## Page 204
 
 We stood in the center of some valley or... Maybe once it was the bed of a wide river: trees grew on both sides of a passage overgrown with low shrubs that resembled a clearing. Just in case I closed my helmet visor and jumped off the rover.
 

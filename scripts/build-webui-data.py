@@ -56,11 +56,11 @@ def parse_translation_md(chunk_num: int) -> List[Dict[str, Any]]:
         content = f.read()
 
     # Extract page sections
-    # Pattern: ### Page N followed by content until next ### Page or ---
+    # Pattern: ## Page N followed by content until next ## Page
     pages = []
 
-    # Split by ### Page markers
-    page_splits = re.split(r'### Page (\d+)', content)
+    # Split by ## Page markers
+    page_splits = re.split(r'^##\s+Page\s+(\d+)', content, flags=re.MULTILINE)
 
     # Skip the header (before first page)
     for i in range(1, len(page_splits), 2):
@@ -71,8 +71,6 @@ def parse_translation_md(chunk_num: int) -> List[Dict[str, Any]]:
         page_content = page_splits[i + 1]
 
         # Clean up the content
-        # Remove the page separator lines (---)
-        page_content = re.sub(r'\n---+\n', '\n', page_content)
         page_content = page_content.strip()
 
         pages.append({

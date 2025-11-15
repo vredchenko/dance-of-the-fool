@@ -250,8 +250,6 @@ The surrounding world with all its chimeras, giant spiders and dead clones cease
 
 I released my hands, plopping to the floor. It seems Irma also jumped down and tried to grab my sleeve, but I easily broke free. She shouted frantically after me. I didn't hear. I ran at full speed to protect my tiny daughter. Raced, blinded by the greatest of all conceivable fears—fear for her life. Not understanding that Elza couldn't be here under any, even the most fantastic circumstances. Not seeing that my little girl's legs didn't end where ankles should be, but continued, growing into the shins of Rosalyn Dilan kneeling.
 
-
-
 Fear is cocaine. It makes you deaf to reason's arguments, and you see only what you're afraid to see.
 
 ## Page 263 - Part 3: Woman with Jaguar Eyes

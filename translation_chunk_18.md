@@ -56,7 +56,7 @@ I straightened up and looked ahead. And went numb.
 
 Ahead almost to the horizon spread a city.
 
-## Page 207 (Chapter 24)
+## Page 207
 
 The city was strange, unlike any in the world, but obviously dead. It hadn't been built, like ordinary cities, but on the contrary—carved into the earth's surface. A large plateau where the road led was flat and covered with some smooth, glass-like material.
 
@@ -282,7 +282,7 @@ They landed quite noisily and, judging by the sound, very close—almost at my b
 
 And I jumped.
 
-## Page 215 (Chapter 25)
+## Page 215
 
 The jump fell on my left leg, too far from the edge, and came out weak and uncertain. Already hanging over the abyss, I thought this was the end. It tickled sweetly somewhere in my groin, I helplessly waved my arms. With the toes of my shoes I almost slid along the wall, not jumping a few centimeters short. Fortunately inertia saved me—hitting painfully, I fell onto the edge of the "window" on my stomach. Irma's hand immediately lay on my back and pulled me inside. The forest devils stopped at the edge of the overpass—looked at us and fearfully sniffed the air.
 

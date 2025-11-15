@@ -164,7 +164,7 @@ This time before me was an absolutely healthy brain, without any tumors or anoma
 
 "The key word is 'had,'" her eyes burned with triumph.
 
-## Page 163 (Chapter 15)
+## Page 163
 
 Irma closed the tablet.
 
@@ -228,7 +228,7 @@ I turned over. Irma was sleeping with her back to me, curled up in a ball. I tri
 
 Oh God... It's started... My arm fell onto my knees. With an awkward movement I brought it to my face, almost hitting myself. The shoulder worked, but the hand was as if dead. Grabbing the numb right hand with my left palm, I started massaging it... Not now... What will happen to Vira if I become a fool here, in another galaxy... Please, Lord, not now!
 
-## Page 165 (Chapter 16)
+## Page 165
 
 The finest needles pierced my fingers and started pricking somewhere deep-deep, as if breaking through with nerve endings from another reality. My heart pounded wildly. Sweat broke out on my forehead. After a few more seconds of energetic rubbing I felt how a hot wave of blood flowed to my arm... But the "needles" didn't want to disappear yet, and the fingertips felt almost nothing, as if they were made of latex.
 
