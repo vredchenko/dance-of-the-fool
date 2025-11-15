@@ -149,12 +149,12 @@ def generate_epub(output_path: Path, include_uncertainties: bool = False):
 
     book.add_metadata('DC', 'description', description)
 
-    # CSS for styling
+    # CSS for styling - font stack with Cyrillic support
     style = '''
     @namespace epub "http://www.idpf.org/2007/ops";
 
     body {
-        font-family: Georgia, serif;
+        font-family: "DejaVu Serif", "Liberation Serif", Georgia, "Times New Roman", serif;
         line-height: 1.6;
         margin: 1em;
     }
