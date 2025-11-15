@@ -17,8 +17,8 @@ from pathlib import Path
 
 def run_script(script_name: str, args: list[str] = None) -> bool:
     """Run a Python script and return success status."""
-    scripts_dir = Path(__file__).parent
-    script_path = scripts_dir / script_name
+    tools_dir = Path(__file__).parent
+    script_path = tools_dir / script_name
 
     cmd = [sys.executable, str(script_path)]
     if args:
@@ -28,7 +28,7 @@ def run_script(script_name: str, args: list[str] = None) -> bool:
     print(f"Running: {' '.join(cmd[1:])}")
     print(f"{'='*60}\n")
 
-    result = subprocess.run(cmd, cwd=scripts_dir.parent)
+    result = subprocess.run(cmd, cwd=tools_dir.parent)
 
     if result.returncode != 0:
         print(f"\n❌ Failed: {script_name}", file=sys.stderr)
@@ -46,10 +46,10 @@ def main():
 
     tasks = [
         ("build-webui-data.py", [], "Webui data"),
-        ("generate-pdf.py", ["--output", "translation.pdf"], "PDF (no uncertainties)"),
-        ("generate-pdf.py", ["--output", "translation-with-notes.pdf", "--include-uncertainties"], "PDF (with uncertainties)"),
-        ("generate-epub.py", ["--output", "translation.epub"], "EPUB (no uncertainties)"),
-        ("generate-epub.py", ["--output", "translation-with-notes.epub", "--include-uncertainties"], "EPUB (with uncertainties)"),
+        ("generate-pdf.py", ["--output", "dist/translation.pdf"], "PDF (no uncertainties)"),
+        ("generate-pdf.py", ["--output", "dist/translation-with-notes.pdf", "--include-uncertainties"], "PDF (with uncertainties)"),
+        ("generate-epub.py", ["--output", "dist/translation.epub"], "EPUB (no uncertainties)"),
+        ("generate-epub.py", ["--output", "dist/translation-with-notes.epub", "--include-uncertainties"], "EPUB (with uncertainties)"),
     ]
 
     results = []

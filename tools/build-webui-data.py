@@ -22,7 +22,7 @@ OUTPUT_FILE = REPO_ROOT / "webui" / "src" / "data" / "translation-data.json"
 
 def parse_chunk_json(chunk_num: int) -> Dict[str, Any]:
     """Parse Ukrainian source from chunk_XX.json"""
-    path = REPO_ROOT / f"chunk_{chunk_num:02d}.json"
+    path = REPO_ROOT / "book" / "originals" / "chunks" / f"chunk_{chunk_num:02d}.json"
 
     if not path.exists():
         print(f"⚠ Warning: {path} not found")
@@ -46,7 +46,7 @@ def parse_chunk_json(chunk_num: int) -> Dict[str, Any]:
 
 def parse_translation_md(chunk_num: int) -> List[Dict[str, Any]]:
     """Parse English translation from markdown"""
-    path = REPO_ROOT / f"translation_chunk_{chunk_num:02d}.md"
+    path = REPO_ROOT / "book" / "translations" / "v1" / f"translation_chunk_{chunk_num:02d}.md"
 
     if not path.exists():
         print(f"⚠ Warning: {path} not found")
@@ -82,7 +82,7 @@ def parse_translation_md(chunk_num: int) -> List[Dict[str, Any]]:
 
 def parse_uncertainty_md(chunk_num: int) -> List[Dict[str, Any]]:
     """Parse uncertainty notes from markdown"""
-    path = REPO_ROOT / f"translation_chunk_{chunk_num:02d}_uncertainty.md"
+    path = REPO_ROOT / "book" / "translations" / "v1" / f"translation_chunk_{chunk_num:02d}_uncertainty.md"
 
     if not path.exists():
         return []

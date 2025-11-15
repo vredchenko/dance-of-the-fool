@@ -72,7 +72,7 @@ def normalize_chunk_file(chunk_path: Path) -> dict:
 
 def main():
     """Normalize all chunk JSON files."""
-    chunk_files = sorted(REPO_ROOT.glob('chunk_*.json'))
+    chunk_files = sorted((REPO_ROOT / "book" / "originals" / "chunks").glob('chunk_*.json'))
 
     if not chunk_files:
         print("❌ No chunk files found!")

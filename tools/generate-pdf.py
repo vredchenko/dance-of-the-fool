@@ -37,8 +37,8 @@ def load_translation_chunks() -> List[Dict[str, Any]]:
     chunks = []
 
     for chunk_num in range(1, 40):  # 1-39
-        translation_file = REPO_ROOT / f"translation_chunk_{chunk_num:02d}.md"
-        uncertainty_file = REPO_ROOT / f"translation_chunk_{chunk_num:02d}_uncertainty.md"
+        translation_file = REPO_ROOT / "book" / "translations" / "v1" / f"translation_chunk_{chunk_num:02d}.md"
+        uncertainty_file = REPO_ROOT / "book" / "translations" / "v1" / f"translation_chunk_{chunk_num:02d}_uncertainty.md"
 
         if not translation_file.exists():
             continue

@@ -12,7 +12,7 @@
 
 set -e  # Exit on error
 
-SCRIPTS_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/scripts" && pwd)"
+TOOLS_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/tools" && pwd)"
 PROJECT_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 echo ""
@@ -29,47 +29,47 @@ echo "============================================================"
 echo "Running: build-webui-data.py"
 echo "============================================================"
 echo ""
-python3 "$SCRIPTS_DIR/build-webui-data.py"
+python3 "$TOOLS_DIR/build-webui-data.py"
 echo ""
 echo "✓ Completed: Webui data"
 
 # 2. PDF without uncertainties
 echo ""
 echo "============================================================"
-echo "Running: generate-pdf.py --output translation.pdf"
+echo "Running: generate-pdf.py --output dist/translation.pdf"
 echo "============================================================"
 echo ""
-python3 "$SCRIPTS_DIR/generate-pdf.py" --output translation.pdf
+python3 "$TOOLS_DIR/generate-pdf.py" --output dist/translation.pdf
 echo ""
 echo "✓ Completed: PDF (no uncertainties)"
 
 # 3. PDF with uncertainties
 echo ""
 echo "============================================================"
-echo "Running: generate-pdf.py --output translation-with-notes.pdf --include-uncertainties"
+echo "Running: generate-pdf.py --output dist/translation-with-notes.pdf --include-uncertainties"
 echo "============================================================"
 echo ""
-python3 "$SCRIPTS_DIR/generate-pdf.py" --output translation-with-notes.pdf --include-uncertainties
+python3 "$TOOLS_DIR/generate-pdf.py" --output dist/translation-with-notes.pdf --include-uncertainties
 echo ""
 echo "✓ Completed: PDF (with uncertainties)"
 
 # 4. EPUB without uncertainties
 echo ""
 echo "============================================================"
-echo "Running: generate-epub.py --output translation.epub"
+echo "Running: generate-epub.py --output dist/translation.epub"
 echo "============================================================"
 echo ""
-python3 "$SCRIPTS_DIR/generate-epub.py" --output translation.epub
+python3 "$TOOLS_DIR/generate-epub.py" --output dist/translation.epub
 echo ""
 echo "✓ Completed: EPUB (no uncertainties)"
 
 # 5. EPUB with uncertainties
 echo ""
 echo "============================================================"
-echo "Running: generate-epub.py --output translation-with-notes.epub --include-uncertainties"
+echo "Running: generate-epub.py --output dist/translation-with-notes.epub --include-uncertainties"
 echo "============================================================"
 echo ""
-python3 "$SCRIPTS_DIR/generate-epub.py" --output translation-with-notes.epub --include-uncertainties
+python3 "$TOOLS_DIR/generate-epub.py" --output dist/translation-with-notes.epub --include-uncertainties
 echo ""
 echo "✓ Completed: EPUB (with uncertainties)"
 

@@ -96,15 +96,15 @@ regenerate-all
 
 **Option 3: Using Python directly**
 ```bash
-python3 scripts/regenerate_all.py
+python3 tools/regenerate_all.py
 ```
 
 This will generate:
 - `webui/src/data/translation-data.json` - Data for the web UI
-- `translation.pdf` - PDF without translator notes
-- `translation-with-notes.pdf` - PDF with uncertainty annotations
-- `translation.epub` - EPUB without translator notes
-- `translation-with-notes.epub` - EPUB with uncertainty annotations
+- `dist/translation.pdf` - PDF without translator notes
+- `dist/translation-with-notes.pdf` - PDF with uncertainty annotations
+- `dist/translation.epub` - EPUB without translator notes
+- `dist/translation-with-notes.epub` - EPUB with uncertainty annotations
 
 ### Individual Format Generation
 
@@ -112,19 +112,19 @@ You can also run individual generators:
 
 ```bash
 # Webui data only
-python3 scripts/build-webui-data.py
+python3 tools/build-webui-data.py
 
 # PDF without uncertainties
-python3 scripts/generate-pdf.py --output translation.pdf
+python3 tools/generate-pdf.py --output dist/translation.pdf
 
 # PDF with uncertainties
-python3 scripts/generate-pdf.py --output translation-with-notes.pdf --include-uncertainties
+python3 tools/generate-pdf.py --output dist/translation-with-notes.pdf --include-uncertainties
 
 # EPUB without uncertainties
-python3 scripts/generate-epub.py --output translation.epub
+python3 tools/generate-epub.py --output dist/translation.epub
 
 # EPUB with uncertainties
-python3 scripts/generate-epub.py --output translation-with-notes.epub --include-uncertainties
+python3 tools/generate-epub.py --output dist/translation-with-notes.epub --include-uncertainties
 ```
 
 ## Dependency Groups

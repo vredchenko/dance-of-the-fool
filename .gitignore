@@ -6,7 +6,6 @@ __pycache__/
 .Python
 build/
 develop-eggs/
-dist/
 downloads/
 eggs/
 .eggs/
@@ -55,12 +54,7 @@ htmlcov/
 
 # Web UI build artifacts
 webui/node_modules/
-webui/dist/
 webui/.astro/
-webui/src/data/translation-data.json
 
-# Generated translation exports
-translation_english.pdf
-translation_english.epub
-translation_english_with_notes.pdf
-translation_english_with_notes.epub
+# Generated outputs (PDFs, EPUBs, webui builds)
+/dist/

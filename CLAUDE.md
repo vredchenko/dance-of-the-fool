@@ -17,6 +17,36 @@ spastics-dance/
 ├── PROPOSED_SKILLS.md         # Planned CLI skills/commands
 ├── demo_pdf_tools.py          # PyMuPDF demonstration
 ├── demo_epub_tools.py         # ebooklib demonstration
+├── regenerate-all.sh          # Bash script to regenerate all formats
+├── book/                      # Book content
+│   ├── originals/            # Original source files
+│   │   ├── pavlyuk_tanets_nedoumka_e27087_470337.pdf
+│   │   ├── pavlyuk_tanets_nedoumka_e27087_470337.epub
+│   │   └── chunks/           # Extracted Ukrainian chunks (JSON)
+│   │       └── chunk_01.json through chunk_39.json
+│   └── translations/         # Translation outputs
+│       └── v1/              # Version 1 translation
+│           ├── translation_chunk_01.md through translation_chunk_39.md
+│           └── translation_chunk_01_uncertainty.md through _39_uncertainty.md
+├── tools/                     # Processing and generation scripts
+│   ├── build-webui-data.py   # Build webui JSON data
+│   ├── generate-pdf.py       # Generate PDF from translation
+│   ├── generate-epub.py      # Generate EPUB from translation
+│   ├── regenerate_all.py     # Python script to regenerate all formats
+│   ├── extract-cover.py      # Extract book cover for webui
+│   ├── normalize-markdown.py # Normalize translation markdown format
+│   └── normalize-ukrainian-linebreaks.py # Normalize Ukrainian text
+├── dist/                      # Generated outputs (gitignored)
+│   ├── translation.pdf
+│   ├── translation-with-notes.pdf
+│   ├── translation.epub
+│   └── translation-with-notes.epub
+├── webui/                     # Web UI for reading translation
+│   ├── src/
+│   │   ├── data/
+│   │   │   └── translation-data.json  # Generated from build-webui-data.py
+│   │   └── pages/
+│   └── public/
 ├── src/
 │   └── spastics_dance/        # Main package (to be developed)
 └── tests/                     # Test suite (to be developed)

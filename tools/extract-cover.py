@@ -6,7 +6,7 @@ Extract book cover from PDF page 1 as an image for webui background.
 import fitz  # PyMuPDF
 from pathlib import Path
 
-PDF_PATH = Path(__file__).parent.parent / "pavlyuk_tanets_nedoumka_e27087_470337.pdf"
+PDF_PATH = Path(__file__).parent.parent / "book" / "originals" / "pavlyuk_tanets_nedoumka_e27087_470337.pdf"
 OUTPUT_DIR = Path(__file__).parent.parent / "webui" / "public"
 
 def extract_cover():
