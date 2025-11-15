@@ -74,6 +74,30 @@ const { currentChunk } = Astro.props;
               <h3 class="font-semibold text-gray-900 dark:text-white">Settings</h3>
             </div>
 
+            <!-- View Mode -->
+            <div class="px-4 py-3 border-b border-gray-200 dark:border-gray-700">
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                View Mode
+              </label>
+              <div class="grid grid-cols-2 gap-2">
+                <a
+                  href="/"
+                  class="px-3 py-2 text-center text-sm rounded-md border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                >
+                  📑 Chunk View
+                </a>
+                <a
+                  href="/book"
+                  class="px-3 py-2 text-center text-sm rounded-md border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                >
+                  📖 Full Book
+                </a>
+              </div>
+              <p class="text-xs text-gray-500 dark:text-gray-400 mt-2">
+                Switch between chunked navigation or continuous reading
+              </p>
+            </div>
+
             <!-- Font Selection -->
             <div class="px-4 py-3 border-b border-gray-200 dark:border-gray-700">
               <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
