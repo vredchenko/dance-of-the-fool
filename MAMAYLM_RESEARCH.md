@@ -4,6 +4,16 @@
 
 **MamayLM** is a state-of-the-art Ukrainian language model developed by INSAIT (Institute for Computer Science, Artificial Intelligence and Technology) in Bulgaria and ETH Zurich in Switzerland. It's the best-performing efficient Ukrainian LLM available, optimized for both Ukrainian and English languages.
 
+### Quick System Check
+
+Before diving into the details, you can check if your system meets the requirements to run MamayLM locally:
+
+```bash
+./tools/check-mamaylm-requirements.sh
+```
+
+This script will analyze your GPU, CUDA, RAM, storage, and Python environment to determine if your hardware is adequate for running MamayLM.
+
 ---
 
 ## 1. What Makes MamayLM Special?

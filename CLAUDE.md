@@ -16,6 +16,7 @@ spastics-dance/
 ├── README.md                   # User-facing documentation
 ├── CLAUDE.md                   # This file - AI assistant notes
 ├── PDF_CHUNKING_RESEARCH.md   # Comprehensive PDF library research
+├── MAMAYLM_RESEARCH.md        # Ukrainian LLM research and setup guide
 ├── PROPOSED_SKILLS.md         # Planned CLI skills/commands
 ├── demo_pdf_tools.py          # PyMuPDF demonstration
 ├── demo_epub_tools.py         # ebooklib demonstration
@@ -37,7 +38,8 @@ spastics-dance/
 │   ├── regenerate_all.py     # Python script to regenerate all formats
 │   ├── extract-cover.py      # Extract book cover for webui
 │   ├── normalize-markdown.py # Normalize translation markdown format
-│   └── normalize-ukrainian-linebreaks.py # Normalize Ukrainian text
+│   ├── normalize-ukrainian-linebreaks.py # Normalize Ukrainian text
+│   └── check-mamaylm-requirements.sh # Check system requirements for MamayLM
 ├── dist/                      # Generated outputs (gitignored)
 │   ├── translation.pdf
 │   ├── translation-with-notes.pdf
