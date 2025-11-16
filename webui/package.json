@@ -4,9 +4,10 @@
   "description": "Translation proofreading interface for Танець недоумка",
   "type": "module",
   "scripts": {
-    "prebuild": "python3 ../scripts/build-webui-data.py",
-    "dev": "npm run prebuild && astro dev",
-    "build": "npm run prebuild && astro build",
+    "dev": "astro dev",
+    "dev:full": "python3 ../tools/build-webui-data.py && astro dev",
+    "prebuild": "python3 ../tools/build-webui-data.py",
+    "build": "astro build",
     "preview": "astro preview"
   },
   "dependencies": {

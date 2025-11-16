@@ -58,3 +58,4 @@ webui/.astro/
 
 # Generated outputs (PDFs, EPUBs, webui builds)
 /dist/
+webui/src/data/translation-data.json
