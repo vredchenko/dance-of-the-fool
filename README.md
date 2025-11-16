@@ -12,18 +12,48 @@ Python toolkit for efficient PDF and EPUB book processing - chunking, splitting,
 
 ## Installation
 
+This project uses [uv](https://github.com/astral-sh/uv) for fast, reliable dependency management.
+
+### Quick Start
+
 ```bash
-# Install with PDF tools
-pip install -e ".[pdf-tools]"
+# Install uv if you haven't already
+curl -LsSf https://astral.sh/uv/install.sh | sh
 
-# Install with EPUB tools
-pip install -e ".[epub-tools]"
+# Clone and sync all dependencies (creates .venv automatically)
+uv sync --all-extras
+```
 
-# Install everything
+### Selective Installation
+
+```bash
+# Install with PDF tools only
+uv sync --extra pdf-tools
+
+# Install with EPUB tools only
+uv sync --extra epub-tools
+
+# Install with export tools only
+uv sync --extra export-tools
+
+# Install everything (all extras)
+uv sync --all-extras
+
+# Development tools
+uv sync --extra dev
+```
+
+### Alternative: Using pip
+
+If you prefer pip:
+
+```bash
 pip install -e ".[all]"
 ```
 
 ## Quick Start
+
+All examples below assume you've run `uv sync --all-extras` to set up the environment.
 
 ### PDF Splitting
 
@@ -38,6 +68,8 @@ for i, page in enumerate(doc):
     new_doc.close()
 doc.close()
 ```
+
+Run with: `uv run python3 your_script.py`
 
 ### Page-by-Page Processing
 
@@ -68,10 +100,10 @@ Try the included demos:
 
 ```bash
 # PDF processing demo
-python3 demo_pdf_tools.py
+uv run python3 demo_pdf_tools.py
 
 # EPUB processing demo
-python3 demo_epub_tools.py
+uv run python3 demo_epub_tools.py
 ```
 
 ## Translation Output Generation
@@ -82,21 +114,19 @@ This project includes scripts to generate translation outputs in multiple format
 
 To regenerate all translation outputs at once (webui data, PDF, and EPUB with/without uncertainties):
 
-**Option 1: Using uv/pip scripts (recommended)**
+**Option 1: Using uv (recommended)**
 ```bash
-# After installing the package with pip/uv
-regenerate-all
+uv run regenerate-all
 ```
 
 **Option 2: Using the bash script**
 ```bash
-# From project root
 ./regenerate-all.sh
 ```
 
 **Option 3: Using Python directly**
 ```bash
-python3 tools/regenerate_all.py
+uv run python3 tools/regenerate_all.py
 ```
 
 This will generate:
@@ -112,19 +142,19 @@ You can also run individual generators:
 
 ```bash
 # Webui data only
-python3 tools/build-webui-data.py
+uv run python3 tools/build-webui-data.py
 
 # PDF without uncertainties
-python3 tools/generate-pdf.py --output dist/translation.pdf
+uv run python3 tools/generate-pdf.py --output dist/translation.pdf
 
 # PDF with uncertainties
-python3 tools/generate-pdf.py --output dist/translation-with-notes.pdf --include-uncertainties
+uv run python3 tools/generate-pdf.py --output dist/translation-with-notes.pdf --include-uncertainties
 
 # EPUB without uncertainties
-python3 tools/generate-epub.py --output dist/translation.epub
+uv run python3 tools/generate-epub.py --output dist/translation.epub
 
 # EPUB with uncertainties
-python3 tools/generate-epub.py --output dist/translation-with-notes.epub --include-uncertainties
+uv run python3 tools/generate-epub.py --output dist/translation-with-notes.epub --include-uncertainties
 ```
 
 ## Local Development - WebUI
@@ -156,7 +186,7 @@ npm run dev:full
 
 Or manually:
 ```bash
-python3 tools/build-webui-data.py
+uv run python3 tools/build-webui-data.py
 cd webui
 npm run dev
 ```
@@ -172,14 +202,28 @@ The build output will be in `webui/dist/`.
 
 **Note:** The translation data file (`webui/src/data/translation-data.json`) is derived from the source of truth (markdown files in `book/translations/v1/`). Always regenerate it after updating translation files.
 
-## Dependency Groups
+## Dependency Management
 
-This project uses optional dependency groups:
+This project uses [uv](https://github.com/astral-sh/uv) for dependency management, providing:
+- ⚡ **10-100x faster** installs than pip
+- 🔒 **Lock file** (`uv.lock`) for reproducible builds
+- 🐍 **Python version management** (`.python-version`)
+- 📦 **Optional dependency groups** for modular installs
+
+### Dependency Groups
 
 - **pdf-tools**: PyMuPDF, pypdf, pdfplumber, pikepdf
 - **epub-tools**: ebooklib, lxml
-- **dev**: pytest, black, ruff, mypy
+- **export-tools**: reportlab, ebooklib
+- **dev**: pytest, black, ruff, mypy, coverage
 - **all**: All of the above
+
+### Why uv?
+
+- **Speed**: Rust-based implementation is dramatically faster
+- **Reliability**: Lock files ensure everyone gets the same versions
+- **Modern**: Follows latest Python packaging standards (PEP 621)
+- **Convenience**: Manages Python versions and virtualenvs automatically
 
 ## Technology
 
@@ -195,16 +239,35 @@ See [PDF_CHUNKING_RESEARCH.md](PDF_CHUNKING_RESEARCH.md) for detailed tool compa
 
 ```bash
 # Install with dev tools
-pip install -e ".[dev]"
+uv sync --extra dev
 
 # Run tests
-pytest
+uv run pytest
+
+# Run tests with coverage
+uv run pytest --cov
 
 # Format code
-black .
+uv run black .
 
 # Lint
-ruff check .
+uv run ruff check .
+
+# Type check
+uv run mypy .
+```
+
+### Adding Dependencies
+
+```bash
+# Add a new dependency
+uv add package-name
+
+# Add to a specific group
+uv add --group dev package-name
+
+# Update all dependencies
+uv lock --upgrade
 ```
 
 ## Documentation
