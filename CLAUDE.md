@@ -11,6 +11,8 @@
 ```
 spastics-dance/
 ├── pyproject.toml              # Project config with dependency groups
+├── uv.lock                     # Dependency lock file (uv)
+├── .python-version             # Python version pin (3.11)
 ├── README.md                   # User-facing documentation
 ├── CLAUDE.md                   # This file - AI assistant notes
 ├── PDF_CHUNKING_RESEARCH.md   # Comprehensive PDF library research
@@ -78,29 +80,66 @@ spastics-dance/
 - Easier to parse than PDF for structured content
 - Natural chapter/section boundaries
 
-## Dependency Groups
+## Dependency Management with uv
 
-We use `uv` for dependency management with separate groups:
+We use [`uv`](https://github.com/astral-sh/uv) for fast, reliable dependency management.
+
+### Quick Start
 
 ```bash
-# PDF tools only
-uv pip install -e ".[pdf-tools]"
+# Install all dependencies (recommended)
+uv sync --all-extras
 
-# EPUB tools only
-uv pip install -e ".[epub-tools]"
-
-# Everything
-uv pip install -e ".[all]"
-
-# Development tools
-uv pip install -e ".[dev]"
+# Install specific groups only
+uv sync --extra pdf-tools
+uv sync --extra epub-tools
+uv sync --extra export-tools
+uv sync --extra dev
 ```
+
+### Why uv?
+
+- **Speed**: 10-100x faster than pip (Rust-based)
+- **Reliability**: Lock file (`uv.lock`) ensures reproducible builds
+- **Python version management**: `.python-version` file pins Python 3.11
+- **Modern standards**: Follows PEP 621 (pyproject.toml)
+
+### Dependency Groups
 
 **Rationale for separation:**
 - Users may only need PDF OR EPUB support
 - Reduces dependency bloat
-- Some dependencies (PyMuPDF) are larger (~20MB)
+- Some dependencies (PyMuPDF) are larger (~23MB)
 - Allows targeted installations in constrained environments
+
+**Groups:**
+- `pdf-tools`: PyMuPDF, pypdf, pdfplumber, pikepdf
+- `epub-tools`: ebooklib, lxml
+- `export-tools`: reportlab, ebooklib (for generating PDFs/EPUBs)
+- `dev`: pytest, black, ruff, mypy, coverage
+- `all`: Everything
+
+### Common Commands
+
+```bash
+# Run scripts
+uv run python3 script.py
+uv run regenerate-all
+
+# Run tests
+uv run pytest
+
+# Format and lint
+uv run black .
+uv run ruff check .
+
+# Add new dependencies
+uv add package-name
+uv add --group dev pytest-plugin
+
+# Update dependencies
+uv lock --upgrade
+```
 
 ## Key Research Findings
 
@@ -230,17 +269,18 @@ def extract_text_generator(pdf_path):
 # Clone and enter directory
 cd spastics-dance
 
-# Install PDF tools (recommended to start)
-uv pip install -e ".[pdf-tools]"
+# Install all dependencies (recommended)
+uv sync --all-extras
 
-# Test installation
-python3 demo_pdf_tools.py
+# Test PDF tools
+uv run python3 demo_pdf_tools.py
 
-# Install EPUB tools
-uv pip install -e ".[epub-tools]"
+# Test EPUB tools
+uv run python3 demo_epub_tools.py
 
-# Test EPUB
-python3 demo_epub_tools.py
+# Or install specific tools only
+uv sync --extra pdf-tools
+uv sync --extra epub-tools
 ```
 
 ## Git Workflow
@@ -402,6 +442,7 @@ spastics-dance/
 
 ---
 
-*Last updated: 2025-11-13*
+*Last updated: 2025-11-16*
 *Project initialized with research on PDF/EPUB processing tools*
 *Translation workflow documented for "Танець недоумка"*
+*Migrated to uv for dependency management*
