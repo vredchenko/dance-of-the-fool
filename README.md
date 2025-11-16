@@ -127,6 +127,51 @@ python3 tools/generate-epub.py --output dist/translation.epub
 python3 tools/generate-epub.py --output dist/translation-with-notes.epub --include-uncertainties
 ```
 
+## Local Development - WebUI
+
+The translation proofreading web interface lives in the `webui/` directory.
+
+### First Time Setup
+
+```bash
+cd webui
+npm install
+```
+
+### Running the WebUI Locally
+
+The WebUI reads from `webui/src/data/translation-data.json`, which is **generated** from the markdown translation files. This file is not tracked in git.
+
+**Option 1: Quick start (if data already exists)**
+```bash
+cd webui
+npm run dev
+```
+
+**Option 2: Full rebuild (regenerates data first)**
+```bash
+cd webui
+npm run dev:full
+```
+
+Or manually:
+```bash
+python3 tools/build-webui-data.py
+cd webui
+npm run dev
+```
+
+### Building for Production
+
+```bash
+cd webui
+npm run build  # Automatically regenerates data via prebuild hook
+```
+
+The build output will be in `webui/dist/`.
+
+**Note:** The translation data file (`webui/src/data/translation-data.json`) is derived from the source of truth (markdown files in `book/translations/v1/`). Always regenerate it after updating translation files.
+
 ## Dependency Groups
 
 This project uses optional dependency groups:
