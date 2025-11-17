@@ -152,8 +152,10 @@ def generate_epub(output_path: Path, include_uncertainties: bool = False):
 
     body {
         font-family: "DejaVu Serif", "Liberation Serif", Georgia, "Times New Roman", serif;
+        font-size: 1em;
         line-height: 1.6;
         margin: 1em;
+        page-break-before: always;
     }
 
     h1 {
