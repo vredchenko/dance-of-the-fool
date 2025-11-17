@@ -4,10 +4,22 @@ import Header from '../components/Header.astro';
 import translationData from '../data/translation-data.json';
 
 const { book_title, author, total_chunks, total_pages, actual_pages_with_content, total_uncertainties, chunks } = translationData;
+
+// Flatten all pages for search
+const allPages = chunks
+  .flatMap(chunk => chunk.pages)
+  .sort((a, b) => a.page_number - b.page_number);
 ---
 
 <BaseLayout title={book_title}>
-  <Header />
+  <!-- Search data for Header component -->
+  <script id="search-data" type="application/json" is:inline set:html={JSON.stringify(allPages.map(p => ({
+    page_number: p.page_number,
+    ukrainian_text: p.ukrainian_text,
+    english_text: p.english_text
+  })))} />
+
+  <Header searchData={true} />
 
   <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
     <!-- Hero Section -->
@@ -167,6 +179,10 @@ const { book_title, author, total_chunks, total_pages, actual_pages_with_content
         <li class="flex items-start gap-2">
           <span class="text-blue-600 dark:text-blue-400">•</span>
           <span>Press 'D' to toggle dark mode for comfortable reading</span>
+        </li>
+        <li class="flex items-start gap-2">
+          <span class="text-blue-600 dark:text-blue-400">•</span>
+          <span>Use the search box (Ctrl/Cmd+K) to find Ukrainian or English text across all pages</span>
         </li>
       </ul>
     </div>
