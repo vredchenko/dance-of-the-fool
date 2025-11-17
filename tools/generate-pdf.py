@@ -263,47 +263,67 @@ def generate_pdf(output_path: Path, include_uncertainties: bool = False):
         story.append(Paragraph("(with translator notes)", styles['BookSubtitle']))
     story.append(PageBreak())
 
-    # Process each chunk - natural reading flow without chunk/page headers
-    for chunk in chunks:
-        chunk_num = chunk['chunk_number']
-        content = chunk['content']
-        uncertainties = chunk['uncertainties']
+    # Process chunks in chapter groups - natural reading flow without chunk/page headers
+    # Group into larger chapters (every 7 chunks, same as EPUB)
+    chapter_size = 7
+    chapter_num = 1
 
-        print(f"   Processing chunk {chunk_num:02d}...")
+    for chunk_start in range(0, len(chunks), chapter_size):
+        chunk_group = chunks[chunk_start:min(chunk_start + chapter_size, len(chunks))]
 
-        # Skip empty chunks
-        if not content.strip():
-            continue
+        first_chunk = chunk_group[0]['chunk_number']
+        last_chunk = chunk_group[-1]['chunk_number']
 
-        # Convert markdown to flowables (continuous text)
-        flowables = markdown_to_flowables(content, styles)
-        story.extend(flowables)
+        print(f"   Creating chapter {chapter_num} (chunks {first_chunk:02d}-{last_chunk:02d})...")
 
-        # Add uncertainties at end of chunk if requested
-        if include_uncertainties and uncertainties:
-            story.append(Spacer(1, 0.2*inch))
+        # Process each chunk in the chapter
+        for chunk in chunk_group:
+            chunk_num = chunk['chunk_number']
+            content = chunk['content']
+            uncertainties = chunk['uncertainties']
 
-            # Group uncertainties by page
-            unc_by_page = {}
-            for unc in uncertainties:
-                page_num = unc['page_number']
-                if page_num not in unc_by_page:
-                    unc_by_page[page_num] = []
-                unc_by_page[page_num].append(unc)
+            print(f"      Processing chunk {chunk_num:02d}...")
 
-            # Add all uncertainties for this chunk
-            for page_num in sorted(unc_by_page.keys()):
-                for unc in unc_by_page[page_num]:
-                    unc_text = f"""
-                    <b>Translator's Note (page {page_num}):</b><br/>
-                    <b>Original:</b> "{unc['original_text']}"<br/>
-                    <b>Question:</b> {unc['question']}<br/>
-                    <b>Translation:</b> "{unc['current_translation']}"
-                    """
-                    story.append(Paragraph(unc_text, styles['UncertaintyNote']))
-                    story.append(Spacer(1, 0.1*inch))
+            # Skip empty chunks
+            if not content.strip():
+                continue
 
-            story.append(Spacer(1, 0.2*inch))
+            # Convert markdown to flowables (continuous text)
+            flowables = markdown_to_flowables(content, styles)
+            story.extend(flowables)
+
+            # Add uncertainties at end of chunk if requested
+            if include_uncertainties and uncertainties:
+                story.append(Spacer(1, 0.2*inch))
+
+                # Group uncertainties by page
+                unc_by_page = {}
+                for unc in uncertainties:
+                    page_num = unc['page_number']
+                    if page_num not in unc_by_page:
+                        unc_by_page[page_num] = []
+                    unc_by_page[page_num].append(unc)
+
+                # Add all uncertainties for this chunk
+                for page_num in sorted(unc_by_page.keys()):
+                    for unc in unc_by_page[page_num]:
+                        unc_text = f"""
+                        <b>Translator's Note (page {page_num}):</b><br/>
+                        <b>Original:</b> "{unc['original_text']}"<br/>
+                        <b>Question:</b> {unc['question']}<br/>
+                        <b>Translation:</b> "{unc['current_translation']}"
+                        """
+                        story.append(Paragraph(unc_text, styles['UncertaintyNote']))
+                        story.append(Spacer(1, 0.1*inch))
+
+                story.append(Spacer(1, 0.2*inch))
+
+        # Add page break between chapters (but not after the last chapter)
+        if chunk_start + chapter_size < len(chunks):
+            story.append(PageBreak())
+            print(f"      Added page break after chapter {chapter_num}")
+
+        chapter_num += 1
 
     # Build PDF
     print("   Building PDF...")
