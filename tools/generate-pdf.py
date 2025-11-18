@@ -18,7 +18,7 @@ try:
     from reportlab.lib.units import inch
     from reportlab.platypus import (
         SimpleDocTemplate, Paragraph, Spacer, PageBreak,
-        Table, TableStyle, KeepTogether
+        Table, TableStyle, KeepTogether, Image
     )
     from reportlab.lib.enums import TA_LEFT, TA_CENTER, TA_JUSTIFY
     from reportlab.lib import colors
@@ -250,8 +250,18 @@ def generate_pdf(output_path: Path, include_uncertainties: bool = False):
     # Build document
     story = []
 
-    # Title page
-    story.append(Spacer(1, 2*inch))
+    # Title page with cover image
+    # Add cover image from first page of original PDF
+    cover_path = REPO_ROOT / "webui" / "public" / "book-cover.png"
+    if cover_path.exists():
+        # Size the image to fit nicely on the page (about 4 inches wide)
+        img = Image(str(cover_path), width=4*inch, height=4*inch, kind='proportional')
+        story.append(Spacer(1, 0.5*inch))
+        story.append(img)
+        story.append(Spacer(1, 0.5*inch))
+    else:
+        story.append(Spacer(1, 2*inch))
+
     story.append(Paragraph("The Dance of the Fool", styles['BookTitle']))
     story.append(Paragraph("Танець недоумка", styles['BookTitle']))
     story.append(Spacer(1, 0.3*inch))
