@@ -221,12 +221,33 @@ def generate_epub(output_path: Path, include_uncertainties: bool = False):
     )
     book.add_item(nav_css)
 
+    # Add cover image from webui
+    cover_path = REPO_ROOT / "webui" / "public" / "book-cover.png"
+    has_cover = False
+    if cover_path.exists():
+        with open(cover_path, 'rb') as f:
+            cover_content = f.read()
+        # Add cover image as a regular item for use in title page
+        cover_image = epub.EpubImage(
+            uid="cover_image",
+            file_name="images/cover.png",
+            media_type="image/png",
+            content=cover_content
+        )
+        book.add_item(cover_image)
+        has_cover = True
+
     # Create title page
     title_page = epub.EpubHtml(
         title='Title Page',
         file_name='title.xhtml',
         lang='en'
     )
+
+    # Include cover image in title page if it exists
+    cover_img_html = ''
+    if has_cover:
+        cover_img_html = '<img src="images/cover.png" alt="Book Cover" style="max-width: 80%; height: auto; margin-bottom: 2em;"/>'
 
     title_content = f'''
     <html>
@@ -236,6 +257,7 @@ def generate_epub(output_path: Path, include_uncertainties: bool = False):
     </head>
     <body>
         <div style="text-align: center; margin-top: 3em;">
+            {cover_img_html}
             <h1>The Dance of the Fool</h1>
             <h1 style="font-style: italic;">Танець недоумка</h1>
             <p style="margin-top: 2em; font-size: 1.2em;">by</p>
