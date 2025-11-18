@@ -35,7 +35,14 @@ function simpleMarkdownToHtml(text: string): string {
 ---
 
 <BaseLayout title={`Full Book - ${translationData.book_title}`}>
-  <Header />
+  <!-- Search data for Header component -->
+  <script id="search-data" type="application/json" is:inline set:html={JSON.stringify(allPages.map(p => ({
+    page_number: p.page_number,
+    ukrainian_text: p.ukrainian_text,
+    english_text: p.english_text
+  })))} />
+
+  <Header searchData={true} />
 
   <main class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-8">
     <!-- Book Header -->
