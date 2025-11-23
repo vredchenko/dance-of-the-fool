@@ -3,7 +3,7 @@
 Aggregate translation data into structured JSON for the web UI.
 
 This script reads:
-- chunk_*.json files (Ukrainian source text)
+- original_chunk_*.md files (Ukrainian source text in markdown)
 - translation_chunk_*.md files (English translations)
 - translation_chunk_*_uncertainty.md files (translation notes)
 
@@ -20,29 +20,47 @@ from typing import List, Dict, Any
 REPO_ROOT = Path(__file__).parent.parent
 OUTPUT_FILE = REPO_ROOT / "webui" / "src" / "data" / "translation-data.json"
 
-def parse_chunk_json(chunk_num: int) -> Dict[str, Any]:
-    """Parse Ukrainian source from chunk_XX.json"""
-    path = REPO_ROOT / "book" / "originals" / "chunks" / f"chunk_{chunk_num:02d}.json"
+def parse_ukrainian_md(chunk_num: int) -> List[Dict[str, Any]]:
+    """Parse Ukrainian source from original_chunk_XX.md"""
+    path = REPO_ROOT / "book" / "translations" / "v1" / f"original_chunk_{chunk_num:02d}.md"
 
     if not path.exists():
         print(f"⚠ Warning: {path} not found")
-        return {"chunk_number": chunk_num, "pages": []}
+        return []
 
     with open(path, 'r', encoding='utf-8') as f:
-        pages = json.load(f)
+        content = f.read()
 
-    return {
-        "chunk_number": chunk_num,
-        "pages": [
-            {
-                "page_number": p["page"],
-                "ukrainian_text": p["text"],
-                "char_count": p["char_count"],
-                "word_count": p["word_count"]
-            }
-            for p in pages
-        ]
-    }
+    # Extract page sections
+    # Pattern: ## Сторінка N followed by content until next ## Сторінка
+    pages = []
+
+    # Split by ## Сторінка markers
+    page_splits = re.split(r'^##\s+Сторінка\s+(\d+)', content, flags=re.MULTILINE)
+
+    # Skip the header (before first page)
+    for i in range(1, len(page_splits), 2):
+        if i + 1 >= len(page_splits):
+            break
+
+        page_num = int(page_splits[i])
+        page_content = page_splits[i + 1]
+
+        # Clean up the content
+        page_content = page_content.strip()
+
+        # Calculate stats
+        char_count = len(page_content)
+        word_count = len(page_content.split()) if page_content else 0
+
+        pages.append({
+            "page_number": page_num,
+            "ukrainian_text": page_content,
+            "char_count": char_count,
+            "word_count": word_count
+        })
+
+    return pages
 
 def parse_translation_md(chunk_num: int) -> List[Dict[str, Any]]:
     """Parse English translation from markdown"""
@@ -132,8 +150,8 @@ def build_complete_data() -> List[Dict[str, Any]]:
     for chunk_num in range(1, 40):  # 1-39
         print(f"Processing chunk {chunk_num:02d}...")
 
-        # Get Ukrainian source
-        ukrainian_data = parse_chunk_json(chunk_num)
+        # Get Ukrainian source (from markdown)
+        ukrainian_pages = parse_ukrainian_md(chunk_num)
 
         # Get English translation
         english_pages = parse_translation_md(chunk_num)
@@ -145,7 +163,7 @@ def build_complete_data() -> List[Dict[str, Any]]:
         page_map = {}
 
         # Add Ukrainian text
-        for page in ukrainian_data["pages"]:
+        for page in ukrainian_pages:
             page_num = page["page_number"]
             page_map[page_num] = {
                 "page_number": page_num,
