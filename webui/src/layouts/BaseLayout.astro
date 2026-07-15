@@ -7,16 +7,20 @@ interface Props {
 }
 
 const { title, description = 'Translation proofreading interface for Танець недоумка (The Dance of the Fool)' } = Astro.props;
+
+// Base URL for assets/links. Respects the configured `base`, so the site works
+// at the domain root locally and under /dance-of-the-fool/ on GitHub Pages.
+const base = import.meta.env.BASE_URL;
 ---
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style={`--book-cover-url: url("${base}book-cover.png")`}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <title>{title}</title>
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />

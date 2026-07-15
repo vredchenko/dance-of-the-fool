@@ -1,0 +1,70 @@
+name: Deploy WebUI to GitHub Pages
+
+on:
+  # Deploy on every push to main
+  push:
+    branches: [main]
+  # ...and allow manual runs from the Actions tab
+  workflow_dispatch:
+
+# Grant GITHUB_TOKEN the permissions required to deploy to Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow one concurrent deployment; don't cancel an in-progress production deploy
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: Build webui bundle
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+          cache-dependency-path: webui/package-lock.json
+
+      - name: Install webui dependencies
+        working-directory: webui
+        run: npm ci
+
+      # `npm run build` runs the prebuild hook (tools/build-webui-data.py, pure
+      # stdlib) to generate translation-data.json, then `astro build`.
+      - name: Build webui (project Pages base path)
+        working-directory: webui
+        env:
+          BASE_PATH: /dance-of-the-fool/
+          PUBLIC_COMMIT_SHA: ${{ github.sha }}
+          PUBLIC_REPO_URL: ${{ github.server_url }}/${{ github.repository }}
+        run: npm run build
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: webui/dist
+
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

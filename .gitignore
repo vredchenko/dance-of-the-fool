@@ -54,6 +54,7 @@ htmlcov/
 # Web UI build artifacts
 webui/node_modules/
 webui/.astro/
+webui/dist/
 
 # Generated outputs (PDFs, EPUBs, webui builds)
 /dist/

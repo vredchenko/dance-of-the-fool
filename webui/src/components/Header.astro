@@ -5,6 +5,7 @@ const { currentChunk, searchData } = Astro.props;
 const commitSha = import.meta.env.PUBLIC_COMMIT_SHA;
 const repoUrl = import.meta.env.PUBLIC_REPO_URL;
 const shaShort = commitSha ? commitSha.substring(0, 7) : null;
+const base = import.meta.env.BASE_URL;
 ---
 
 <header class="sticky top-0 z-50 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 shadow-sm">
@@ -12,7 +13,7 @@ const shaShort = commitSha ? commitSha.substring(0, 7) : null;
     <div class="flex items-center justify-between h-16">
       <!-- Logo / Title -->
       <div class="flex-shrink-0">
-        <a href="/" class="flex items-center gap-3 hover:opacity-80 transition-opacity">
+        <a href={base} class="flex items-center gap-3 hover:opacity-80 transition-opacity">
           <span class="text-xl font-bold text-gray-900 dark:text-white">
             Танець недоумка
           </span>
@@ -76,7 +77,7 @@ const shaShort = commitSha ? commitSha.substring(0, 7) : null;
         {currentChunk && (
           <div class="flex items-center gap-2">
             <a
-              href={`/chunk/${String(currentChunk - 1).padStart(2, '0')}`}
+              href={`${base}chunk/${String(currentChunk - 1).padStart(2, '0')}`}
               class={`px-3 py-1.5 rounded text-sm font-medium transition-colors ${
                 currentChunk > 1
                   ? 'bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700'
@@ -92,7 +93,7 @@ const shaShort = commitSha ? commitSha.substring(0, 7) : null;
             </span>
 
             <a
-              href={`/chunk/${String(currentChunk + 1).padStart(2, '0')}`}
+              href={`${base}chunk/${String(currentChunk + 1).padStart(2, '0')}`}
               class={`px-3 py-1.5 rounded text-sm font-medium transition-colors ${
                 currentChunk < 39
                   ? 'bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700'
@@ -135,13 +136,13 @@ const shaShort = commitSha ? commitSha.substring(0, 7) : null;
               </label>
               <div class="grid grid-cols-2 gap-2">
                 <a
-                  href="/"
+                  href={base}
                   class="px-3 py-2 text-center text-sm rounded-md border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
                 >
                   📑 Chunk View
                 </a>
                 <a
-                  href="/book"
+                  href={`${base}book`}
                   class="px-3 py-2 text-center text-sm rounded-md border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
                 >
                   📖 Full Book
@@ -372,10 +373,11 @@ const shaShort = commitSha ? commitSha.substring(0, 7) : null;
         snippet: string;
       }> = [];
 
-      // Determine base URL for page links
+      // Determine base URL for page links (BASE_URL respects the site's base path)
+      const siteBase = import.meta.env.BASE_URL;
       const currentPath = window.location.pathname;
-      const isIndexPage = currentPath === '/' || currentPath === '/index.html';
-      const pageBaseUrl = isIndexPage ? '/book' : '';
+      const isIndexPage = currentPath === siteBase || currentPath === siteBase + 'index.html';
+      const pageBaseUrl = isIndexPage ? siteBase + 'book' : '';
 
       // Search through all pages
       searchData.forEach((page: any) => {
