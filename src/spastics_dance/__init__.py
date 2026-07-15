@@ -1,2 +1,2 @@
 def hello() -> str:
-    return "Hello from spastics-dance!"
+    return "Hello from dance-of-the-fool!"

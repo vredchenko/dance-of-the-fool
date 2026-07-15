@@ -1,10 +1,10 @@
 [project]
-name = "spastics-dance"
+name = "dance-of-the-fool"
 version = "0.1.0"
-description = "PDF and EPUB processing tools for chunking, splitting, and extracting content from books"
+description = "Tooling and pipeline for an English fan translation of the novel 'The Dance of the Fool' (PDF/EPUB processing, output generation, web reader)"
 readme = "README.md"
 authors = [
-    { name = "Valerii Redchenko", email = "noreply@example.com" }
+    { name = "Valerii Redchenko", email = "vredchenko@users.noreply.github.com" }
 ]
 requires-python = ">=3.11"
 dependencies = [
@@ -43,7 +43,7 @@ dev = [
 
 # All tools combined
 all = [
-    "spastics-dance[pdf-tools,epub-tools,export-tools]",
+    "dance-of-the-fool[pdf-tools,epub-tools,export-tools]",
 ]
 
 [project.scripts]
@@ -63,3 +63,8 @@ regenerate-all = "tools.regenerate_all:main"
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
+
+# The distribution is named "dance-of-the-fool", but the import package is
+# "spastics_dance", so point hatchling at it explicitly.
+[tool.hatch.build.targets.wheel]
+packages = ["src/spastics_dance"]

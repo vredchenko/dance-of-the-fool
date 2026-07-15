@@ -180,7 +180,7 @@ export PYTHONIOENCODING=utf-8
 Make sure you're running the scripts from the repository root:
 
 ```bash
-cd /path/to/spastics-dance
+cd /path/to/dance-of-the-fool
 python3 scripts/generate-pdf.py
 ```
 

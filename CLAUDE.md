@@ -4,20 +4,24 @@
 
 ## Project Overview
 
-**spastics-dance** is a Python toolkit for processing PDF and EPUB book files, with a focus on efficient chunking, splitting, and content extraction. The project was created to handle large book files (like the 468-page Ukrainian book "Танець недоумка" by Ілларіон Павлюк) in a memory-efficient way.
+**dance-of-the-fool** is a project that produces an unofficial, non-commercial English fan translation of the Ukrainian novel "Танець недоумка" ("The Dance of the Fool") by Ілларіон Павлюк. It combines the translation content (`book/`) with a Python toolkit for memory-efficient PDF/EPUB chunking and extraction, a build pipeline that renders the translation to PDF/EPUB/web, and an Astro web reader (`webui/`). The toolkit grew out of the need to handle the 468-page source book in a memory-efficient way.
 
 ## Project Structure
 
 ```
-spastics-dance/
+dance-of-the-fool/
 ├── pyproject.toml              # Project config with dependency groups
 ├── uv.lock                     # Dependency lock file (uv)
 ├── .python-version             # Python version pin (3.11)
 ├── README.md                   # User-facing documentation
 ├── CLAUDE.md                   # This file - AI assistant notes
-├── PDF_CHUNKING_RESEARCH.md   # Comprehensive PDF library research
-├── MAMAYLM_RESEARCH.md        # Ukrainian LLM research and setup guide
-├── PROPOSED_SKILLS.md         # Planned CLI skills/commands
+├── docs/                      # Research notes & dev plans
+│   ├── PDF_CHUNKING_RESEARCH.md   # Comprehensive PDF library research
+│   ├── MAMAYLM_RESEARCH.md        # Ukrainian LLM research and setup guide
+│   ├── PROPOSED_SKILLS.md         # Planned CLI skills/commands
+│   ├── WEBUI_DEVPLAN.md           # Web reader development plan
+│   ├── WEBUI_SETUP.md             # Web reader setup notes
+│   └── TRANSLATION_EXPORT.md      # Export pipeline notes
 ├── demo_pdf_tools.py          # PyMuPDF demonstration
 ├── demo_epub_tools.py         # ebooklib demonstration
 ├── regenerate-all.sh          # Bash script to regenerate all formats
@@ -172,7 +176,7 @@ texts = [page.get_text() for page in doc]
 
 ## Planned Skills/Commands
 
-See `PROPOSED_SKILLS.md` for full details. Priority order:
+See `docs/PROPOSED_SKILLS.md` for full details. Priority order:
 
 1. **pdf-split** - Split PDF into one-page files (most requested)
 2. **pdf-chunk** - Memory-efficient page-by-page processing
@@ -269,7 +273,7 @@ def extract_text_generator(pdf_path):
 
 ```bash
 # Clone and enter directory
-cd spastics-dance
+cd dance-of-the-fool
 
 # Install all dependencies (recommended)
 uv sync --all-extras
@@ -300,8 +304,8 @@ uv sync --extra epub-tools
 - uv: https://github.com/astral-sh/uv
 
 ### Research Files
-- `PDF_CHUNKING_RESEARCH.md` - Detailed tool comparison
-- `PROPOSED_SKILLS.md` - Command specifications
+- `docs/PDF_CHUNKING_RESEARCH.md` - Detailed tool comparison
+- `docs/PROPOSED_SKILLS.md` - Command specifications
 - Demo files show working code
 
 ## Questions & Decisions Log
@@ -418,7 +422,7 @@ If translation is interrupted:
 
 After completion, the repository will contain:
 ```
-spastics-dance/
+dance-of-the-fool/
 ├── chunk_01.json through chunk_39.json          # Raw extractions
 ├── translation_chunk_01.md through _39.md       # Translated text
 └── translation_chunk_01_uncertainty.md          # Translation questions

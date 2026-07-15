@@ -354,6 +354,62 @@ wheels = [
 ]
 
 [[package]]
+name = "dance-of-the-fool"
+version = "0.1.0"
+source = { editable = "." }
+
+[package.optional-dependencies]
+all = [
+    { name = "ebooklib" },
+    { name = "lxml" },
+    { name = "pdfplumber" },
+    { name = "pikepdf" },
+    { name = "pymupdf" },
+    { name = "pypdf" },
+    { name = "reportlab" },
+]
+dev = [
+    { name = "black" },
+    { name = "mypy" },
+    { name = "pytest" },
+    { name = "pytest-cov" },
+    { name = "ruff" },
+]
+epub-tools = [
+    { name = "ebooklib" },
+    { name = "lxml" },
+]
+export-tools = [
+    { name = "ebooklib" },
+    { name = "reportlab" },
+]
+pdf-tools = [
+    { name = "pdfplumber" },
+    { name = "pikepdf" },
+    { name = "pymupdf" },
+    { name = "pypdf" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "black", marker = "extra == 'dev'", specifier = ">=23.0.0" },
+    { name = "dance-of-the-fool", extras = ["pdf-tools", "epub-tools", "export-tools"], marker = "extra == 'all'" },
+    { name = "ebooklib", marker = "extra == 'epub-tools'", specifier = ">=0.18" },
+    { name = "ebooklib", marker = "extra == 'export-tools'", specifier = ">=0.18" },
+    { name = "lxml", marker = "extra == 'epub-tools'", specifier = ">=5.0.0" },
+    { name = "mypy", marker = "extra == 'dev'", specifier = ">=1.7.0" },
+    { name = "pdfplumber", marker = "extra == 'pdf-tools'", specifier = ">=0.11.0" },
+    { name = "pikepdf", marker = "extra == 'pdf-tools'", specifier = ">=8.0.0" },
+    { name = "pymupdf", marker = "extra == 'pdf-tools'", specifier = ">=1.23.0" },
+    { name = "pypdf", marker = "extra == 'pdf-tools'", specifier = ">=4.0.0" },
+    { name = "pytest", marker = "extra == 'dev'", specifier = ">=7.4.0" },
+    { name = "pytest-cov", marker = "extra == 'dev'", specifier = ">=4.1.0" },
+    { name = "reportlab", marker = "extra == 'export-tools'", specifier = ">=4.0.0" },
+    { name = "ruff", marker = "extra == 'dev'", specifier = ">=0.1.0" },
+]
+provides-extras = ["pdf-tools", "epub-tools", "export-tools", "dev", "all"]
+
+[[package]]
 name = "deprecated"
 version = "1.3.1"
 source = { registry = "https://pypi.org/simple" }
@@ -875,62 +931,6 @@ sdist = { url = "https://files.pythonhosted.org/packages/94/e7/b2c673351809dca68
 wheels = [
     { url = "https://files.pythonhosted.org/packages/b7/ce/149a00dd41f10bc29e5921b496af8b574d8413afcd5e30dfa0ed46c2cc5e/six-1.17.0-py2.py3-none-any.whl", hash = "sha256:4721f391ed90541fddacab5acf947aa0d3dc7d27b2e1e8eda2be8970586c3274", size = 11050, upload-time = "2024-12-04T17:35:26.475Z" },
 ]
-
-[[package]]
-name = "spastics-dance"
-version = "0.1.0"
-source = { editable = "." }
-
-[package.optional-dependencies]
-all = [
-    { name = "ebooklib" },
-    { name = "lxml" },
-    { name = "pdfplumber" },
-    { name = "pikepdf" },
-    { name = "pymupdf" },
-    { name = "pypdf" },
-    { name = "reportlab" },
-]
-dev = [
-    { name = "black" },
-    { name = "mypy" },
-    { name = "pytest" },
-    { name = "pytest-cov" },
-    { name = "ruff" },
-]
-epub-tools = [
-    { name = "ebooklib" },
-    { name = "lxml" },
-]
-export-tools = [
-    { name = "ebooklib" },
-    { name = "reportlab" },
-]
-pdf-tools = [
-    { name = "pdfplumber" },
-    { name = "pikepdf" },
-    { name = "pymupdf" },
-    { name = "pypdf" },
-]
-
-[package.metadata]
-requires-dist = [
-    { name = "black", marker = "extra == 'dev'", specifier = ">=23.0.0" },
-    { name = "ebooklib", marker = "extra == 'epub-tools'", specifier = ">=0.18" },
-    { name = "ebooklib", marker = "extra == 'export-tools'", specifier = ">=0.18" },
-    { name = "lxml", marker = "extra == 'epub-tools'", specifier = ">=5.0.0" },
-    { name = "mypy", marker = "extra == 'dev'", specifier = ">=1.7.0" },
-    { name = "pdfplumber", marker = "extra == 'pdf-tools'", specifier = ">=0.11.0" },
-    { name = "pikepdf", marker = "extra == 'pdf-tools'", specifier = ">=8.0.0" },
-    { name = "pymupdf", marker = "extra == 'pdf-tools'", specifier = ">=1.23.0" },
-    { name = "pypdf", marker = "extra == 'pdf-tools'", specifier = ">=4.0.0" },
-    { name = "pytest", marker = "extra == 'dev'", specifier = ">=7.4.0" },
-    { name = "pytest-cov", marker = "extra == 'dev'", specifier = ">=4.1.0" },
-    { name = "reportlab", marker = "extra == 'export-tools'", specifier = ">=4.0.0" },
-    { name = "ruff", marker = "extra == 'dev'", specifier = ">=0.1.0" },
-    { name = "spastics-dance", extras = ["pdf-tools", "epub-tools", "export-tools"], marker = "extra == 'all'" },
-]
-provides-extras = ["pdf-tools", "epub-tools", "export-tools", "dev", "all"]
 
 [[package]]
 name = "tomli"

@@ -534,7 +534,7 @@ font-family: 'JetBrains Mono', 'Consolas', monospace;
 ## File Structure
 
 ```
-spastics-dance/
+dance-of-the-fool/
 ├── public/                      # Static assets
 │   ├── favicon.ico
 │   └── fonts/
@@ -765,7 +765,7 @@ jobs:
    - Free for public repos
    - Easy CI/CD with GitHub Actions
    - Custom domain support
-   - URL: `https://username.github.io/spastics-dance/`
+   - URL: `https://username.github.io/dance-of-the-fool/`
 
 2. **Netlify** (Recommended for features)
    - Free tier with 100GB bandwidth

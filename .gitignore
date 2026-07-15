@@ -58,3 +58,9 @@ webui/.astro/
 # Generated outputs (PDFs, EPUBs, webui builds)
 /dist/
 webui/src/data/translation-data.json
+
+# Claude Code local tooling (locally-installed skills, local settings)
+.claude/
+
+# Astro auto-generated type declarations
+webui/src/env.d.ts

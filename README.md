@@ -1,291 +1,182 @@
-# spastics-dance
+# The Dance of the Fool — English translation
 
-Python toolkit for efficient PDF and EPUB book processing - chunking, splitting, and content extraction.
+An unofficial, non-commercial English fan translation of the Ukrainian science-fiction
+novel **_Танець недоумка_ ("The Dance of the Fool")** by **Ілларіон Павлюк (Illarion Pavliuk)**,
+together with the open-source tooling used to produce it — a PDF/EPUB processing pipeline
+and a web reader for proofreading the translation.
 
-## Features
+> [!IMPORTANT]
+> **This is a fan translation, published for non-commercial and educational purposes.**
+> It is **not** authorized by or affiliated with the author or the original publisher.
+> See [Copyright & Attribution](#copyright--attribution) below before reading, reusing,
+> or redistributing anything in this repository.
 
-- **PDF Processing**: Split, chunk, and extract content from PDF files
-- **EPUB Support**: Parse and extract content from EPUB ebooks
-- **Memory Efficient**: Process large books page-by-page without loading entire files
-- **Unicode Support**: Handles international text (tested with Ukrainian, Cyrillic)
-- **Modular Dependencies**: Install only the tools you need
+---
 
-## Installation
+## About the book
 
-This project uses [uv](https://github.com/astral-sh/uv) for fast, reliable dependency management.
+- **Title:** _Танець недоумка_ ("The Dance of the Fool")
+- **Author:** Ілларіон Павлюк (Illarion Pavliuk)
+- **Original publisher:** Видавництво Старого Лева (The Old Lion Publishing House), 2019
+- **Genre:** Science fiction / psychological thriller (~468 pages)
 
-### Quick Start
+Space biologist Gil — a veteran of many off-world military operations — takes a job on a
+scientific expedition to the distant, strange planet Ix-Chel, hoping it will solve all his
+problems at once. It doesn't.
+
+## What's in this repository
+
+This repo has two halves that grew together:
+
+1. **The translation** (`book/`) — the source text chunked for translation, the English
+   translation itself (39 chunks), and per-chunk *uncertainty notes* recording ambiguous
+   passages and the reasoning behind translation choices.
+2. **The tooling** (`src/`, `tools/`, `webui/`) — a small Python toolkit for chunking and
+   extracting text from PDF/EPUB books, a build pipeline that renders the translation into
+   PDF/EPUB/web outputs, and an [Astro](https://astro.build) web app for reading and
+   proofreading the result side by side with the original.
+
+## Reading the translation
+
+The translation lives as Markdown in `book/translations/v1/` and can be rendered into:
+
+- **PDF** — clean, or with translator's uncertainty notes
+- **EPUB** — clean, or with translator's uncertainty notes
+- **Web** — a browsable reader (the `webui/` Astro app)
+
+See [Building the outputs](#building-the-outputs) to generate them locally.
+
+## Repository layout
+
+```
+dance-of-the-fool/
+├── book/
+│   ├── originals/                  # Source book + extracted text chunks (see Copyright)
+│   │   ├── *.pdf, *.epub
+│   │   └── chunks/                 # Ukrainian text extracted as JSON
+│   └── translations/v1/            # English translation + uncertainty notes (Markdown)
+│       ├── original_chunk_NN.md
+│       ├── translation_chunk_NN.md
+│       └── translation_chunk_NN_uncertainty.md
+├── src/spastics_dance/             # PDF/EPUB toolkit (pdf-info/split/chunk, epub-*)
+├── tools/                          # Build pipeline: PDF/EPUB/webui generators
+├── webui/                          # Astro web reader (proofreading UI)
+├── .github/workflows/              # CI to build outputs
+├── dist/                           # Generated PDFs/EPUBs (gitignored)
+└── pyproject.toml                  # uv-managed Python project
+```
+
+## Setup
+
+The Python side uses [`uv`](https://github.com/astral-sh/uv):
 
 ```bash
-# Install uv if you haven't already
+# Install uv if needed
 curl -LsSf https://astral.sh/uv/install.sh | sh
 
-# Clone and sync all dependencies (creates .venv automatically)
+# Install everything (creates .venv automatically)
 uv sync --all-extras
 ```
 
-### Selective Installation
+Selective installs are available via extras — `pdf-tools`, `epub-tools`, `export-tools`,
+`dev` — e.g. `uv sync --extra pdf-tools`.
 
-```bash
-# Install with PDF tools only
-uv sync --extra pdf-tools
+## Building the outputs
 
-# Install with EPUB tools only
-uv sync --extra epub-tools
+Regenerate every format at once (web data, PDFs, EPUBs, with and without notes):
 
-# Install with export tools only
-uv sync --extra export-tools
-
-# Install everything (all extras)
-uv sync --all-extras
-
-# Development tools
-uv sync --extra dev
-```
-
-### Alternative: Using pip
-
-If you prefer pip:
-
-```bash
-pip install -e ".[all]"
-```
-
-## Quick Start
-
-All examples below assume you've run `uv sync --all-extras` to set up the environment.
-
-### PDF Splitting
-
-```python
-import fitz  # PyMuPDF
-
-doc = fitz.open("book.pdf")
-for i, page in enumerate(doc):
-    new_doc = fitz.open()
-    new_doc.insert_pdf(doc, from_page=i, to_page=i)
-    new_doc.save(f"page_{i+1}.pdf")
-    new_doc.close()
-doc.close()
-```
-
-Run with: `uv run python3 your_script.py`
-
-### Page-by-Page Processing
-
-```python
-import fitz
-
-doc = fitz.open("book.pdf")
-for page_num, page in enumerate(doc):
-    text = page.get_text()
-    print(f"Page {page_num + 1}: {len(text)} characters")
-doc.close()
-```
-
-### EPUB Chapter Extraction
-
-```python
-from ebooklib import epub, ITEM_DOCUMENT
-
-book = epub.read_epub("book.epub")
-for item in book.get_items_of_type(ITEM_DOCUMENT):
-    content = item.get_content().decode('utf-8')
-    # Process chapter content
-```
-
-## Demo Scripts
-
-Try the included demos:
-
-```bash
-# PDF processing demo
-uv run python3 demo_pdf_tools.py
-
-# EPUB processing demo
-uv run python3 demo_epub_tools.py
-```
-
-## Translation Output Generation
-
-This project includes scripts to generate translation outputs in multiple formats.
-
-### Regenerate All Formats
-
-To regenerate all translation outputs at once (webui data, PDF, and EPUB with/without uncertainties):
-
-**Option 1: Using uv (recommended)**
 ```bash
 uv run regenerate-all
 ```
 
-**Option 2: Using the bash script**
-```bash
-./regenerate-all.sh
-```
-
-**Option 3: Using Python directly**
-```bash
-uv run python3 tools/regenerate_all.py
-```
-
-This will generate:
-- `webui/src/data/translation-data.json` - Data for the web UI
-- `dist/translation.pdf` - PDF without translator notes
-- `dist/translation-with-notes.pdf` - PDF with uncertainty annotations
-- `dist/translation.epub` - EPUB without translator notes
-- `dist/translation-with-notes.epub` - EPUB with uncertainty annotations
-
-### Individual Format Generation
-
-You can also run individual generators:
+Or generate individual formats:
 
 ```bash
-# Webui data only
+# Web reader data (derived from the Markdown translation)
 uv run python3 tools/build-webui-data.py
 
-# PDF without uncertainties
-uv run python3 tools/generate-pdf.py --output dist/translation.pdf
+# PDF — clean, or with uncertainty notes
+uv run python3 tools/generate-pdf.py  --output dist/translation.pdf
+uv run python3 tools/generate-pdf.py  --output dist/translation-with-notes.pdf  --include-uncertainties
 
-# PDF with uncertainties
-uv run python3 tools/generate-pdf.py --output dist/translation-with-notes.pdf --include-uncertainties
-
-# EPUB without uncertainties
+# EPUB — clean, or with uncertainty notes
 uv run python3 tools/generate-epub.py --output dist/translation.epub
-
-# EPUB with uncertainties
 uv run python3 tools/generate-epub.py --output dist/translation-with-notes.epub --include-uncertainties
 ```
 
-## Local Development - WebUI
+Generated outputs land in `dist/` (gitignored). The source of truth is always the Markdown
+in `book/translations/v1/` — regenerate after editing it.
 
-The translation proofreading web interface lives in the `webui/` directory.
-
-### First Time Setup
+## Web reader (development)
 
 ```bash
 cd webui
 npm install
+npm run dev        # if translation-data.json already exists
+npm run dev:full   # regenerates data first, then serves
+npm run build      # production build (regenerates data via prebuild hook)
 ```
 
-### Running the WebUI Locally
+`webui/src/data/translation-data.json` is generated from the Markdown translation and is
+not tracked in git.
 
-The WebUI reads from `webui/src/data/translation-data.json`, which is **generated** from the markdown translation files. This file is not tracked in git.
+## The PDF/EPUB toolkit
 
-**Option 1: Quick start (if data already exists)**
-```bash
-cd webui
-npm run dev
-```
-
-**Option 2: Full rebuild (regenerates data first)**
-```bash
-cd webui
-npm run dev:full
-```
-
-Or manually:
-```bash
-uv run python3 tools/build-webui-data.py
-cd webui
-npm run dev
-```
-
-### Building for Production
+The translation pipeline is built on a reusable toolkit for splitting, chunking, and
+extracting text from large books memory-efficiently (page-by-page, so 500+ page PDFs stay
+near-constant memory). It exposes CLI commands:
 
 ```bash
-cd webui
-npm run build  # Automatically regenerates data via prebuild hook
+pdf-info <file.pdf>            # metadata
+pdf-split <file.pdf>           # split into per-page PDFs
+pdf-chunk <file.pdf> ...       # extract page ranges as text/JSON
+epub-info / epub-split / epub-chunk   # EPUB equivalents
 ```
 
-The build output will be in `webui/dist/`.
-
-**Note:** The translation data file (`webui/src/data/translation-data.json`) is derived from the source of truth (markdown files in `book/translations/v1/`). Always regenerate it after updating translation files.
-
-## Dependency Management
-
-This project uses [uv](https://github.com/astral-sh/uv) for dependency management, providing:
-- ⚡ **10-100x faster** installs than pip
-- 🔒 **Lock file** (`uv.lock`) for reproducible builds
-- 🐍 **Python version management** (`.python-version`)
-- 📦 **Optional dependency groups** for modular installs
-
-### Dependency Groups
-
-- **pdf-tools**: PyMuPDF, pypdf, pdfplumber, pikepdf
-- **epub-tools**: ebooklib, lxml
-- **export-tools**: reportlab, ebooklib
-- **dev**: pytest, black, ruff, mypy, coverage
-- **all**: All of the above
-
-### Why uv?
-
-- **Speed**: Rust-based implementation is dramatically faster
-- **Reliability**: Lock files ensure everyone gets the same versions
-- **Modern**: Follows latest Python packaging standards (PEP 621)
-- **Convenience**: Manages Python versions and virtualenvs automatically
-
-## Technology
-
-- **PyMuPDF** (primary): Fast C++ backend, excellent Unicode support
-- **pypdf**: Pure Python PDF manipulation
-- **pdfplumber**: Advanced text/table extraction
-- **pikepdf**: PDF repair and manipulation
-- **ebooklib**: EPUB reading and writing
-
-See [PDF_CHUNKING_RESEARCH.md](PDF_CHUNKING_RESEARCH.md) for detailed tool comparison.
+It uses **PyMuPDF** (fast C++ backend, strong Unicode support — important for Cyrillic),
+with `pypdf`, `pdfplumber`, and `pikepdf` available for specific tasks, and `ebooklib`
+for EPUB. See [`docs/PDF_CHUNKING_RESEARCH.md`](docs/PDF_CHUNKING_RESEARCH.md) for the tool comparison
+that informed these choices.
 
 ## Development
 
 ```bash
-# Install with dev tools
 uv sync --extra dev
-
-# Run tests
-uv run pytest
-
-# Run tests with coverage
-uv run pytest --cov
-
-# Format code
-uv run black .
-
-# Lint
-uv run ruff check .
-
-# Type check
-uv run mypy .
+uv run pytest              # tests
+uv run black .             # format
+uv run ruff check .        # lint
+uv run mypy .              # type-check
 ```
 
-### Adding Dependencies
+## Copyright & Attribution
 
-```bash
-# Add a new dependency
-uv add package-name
+The original novel **_Танець недоумка_ is © Ілларіон Павлюк** and its publisher,
+**Видавництво Старого Лева (The Old Lion Publishing House)**. All rights to the original
+work belong to them.
 
-# Add to a specific group
-uv add --group dev package-name
+This repository contains an **unofficial, fan-made English translation** created and shared
+on a **non-commercial basis** for readers who cannot access the work in Ukrainian. It is
+**not endorsed by, affiliated with, or licensed by** the author or publisher. The English
+translation is a derivative work; no rights in the underlying novel are claimed or granted.
 
-# Update all dependencies
-uv lock --upgrade
-```
+**If you are the rights holder** and would like the original text, this translation, or any
+part of this repository amended or removed, please open an issue or contact the maintainer —
+requests will be honored promptly.
 
-## Documentation
+If you enjoy the story, please **support the author** by buying the original book:
+[Старий Лев](https://starylev.com.ua/tanec-nedoumka) ·
+[Yakaboo](https://www.yakaboo.ua/ua/tanec-nedoumka.html) ·
+[Goodreads](https://www.goodreads.com/book/show/49447405).
 
-- [CLAUDE.md](CLAUDE.md) - Technical notes and development guide
-- [PDF_CHUNKING_RESEARCH.md](PDF_CHUNKING_RESEARCH.md) - Library research and comparison
-- [PROPOSED_SKILLS.md](PROPOSED_SKILLS.md) - Planned CLI commands
+### Code license
 
-## Test Files
-
-Includes test books in both formats:
-- Ukrainian novel (468 pages PDF, 13 chapters EPUB)
-- Perfect for testing large file handling and Unicode support
-
-## License
-
-TBD
+The **software** in this repository (the toolkit in `src/`, the build pipeline in `tools/`,
+and the `webui/` app) is separate from the book content and is offered under the MIT
+License (see [`LICENSE-CODE`](LICENSE-CODE)). The book text and its translation are **not**
+covered by that license — see above.
 
 ## Credits
 
-Research and development assisted by Claude Code.
+- Original novel: **Ілларіон Павлюк** — buy it, it's good.
+- Translation, tooling, and web reader: this project's maintainer, with development
+  assistance from Claude Code.
