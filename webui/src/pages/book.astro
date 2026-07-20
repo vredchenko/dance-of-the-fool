@@ -1,42 +1,20 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
-import UncertaintyPanel from '../components/UncertaintyPanel.astro';
+import PageSpread from '../components/PageSpread.astro';
 import translationData from '../data/translation-data.json';
 
-// Flatten all pages from all chunks into a single array
+// Flatten all pages from all chunks into a single array in reading order
 const allPages = translationData.chunks
-  .flatMap(chunk => chunk.pages)
+  .flatMap((chunk) => chunk.pages)
   .sort((a, b) => a.page_number - b.page_number);
 
 const base = import.meta.env.BASE_URL;
-
-// Function to split text into lines for line numbering
-function splitIntoLines(text: string): string[] {
-  if (!text) return [];
-  return text.split('\n').filter(line => line.trim() || line === '');
-}
-
-// Simple markdown-to-HTML converter for English text
-function simpleMarkdownToHtml(text: string): string {
-  return text
-    // Headers
-    .replace(/^#### (.+)$/gm, '<h4>$1</h4>')
-    .replace(/^### (.+)$/gm, '<h3>$1</h3>')
-    .replace(/^## (.+)$/gm, '<h2>$1</h2>')
-    .replace(/^# (.+)$/gm, '<h1>$1</h1>')
-    // Bold
-    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-    // Italic
-    .replace(/\*(.+?)\*/g, '<em>$1</em>')
-    // Paragraphs (double newline)
-    .split('\n\n')
-    .map(para => para.trim() ? `<p>${para}</p>` : '')
-    .join('\n');
-}
+const lastPage = allPages[allPages.length - 1];
+const maxPage = lastPage ? lastPage.page_number : translationData.total_pages;
 ---
 
-<BaseLayout title={`Full Book - ${translationData.book_title}`}>
+<BaseLayout title={`Read — ${translationData.book_title}`}>
   <!-- Search data for Header component -->
   <script id="search-data" type="application/json" is:inline set:html={JSON.stringify(allPages.map(p => ({
     page_number: p.page_number,
@@ -46,261 +24,86 @@ function simpleMarkdownToHtml(text: string): string {
 
   <Header searchData={true} />
 
-  <main class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-8">
-    <!-- Book Header -->
-    <div class="mb-8">
-      <div class="flex items-center justify-between flex-wrap gap-4">
-        <div>
-          <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">
-            Full Book View
-          </h1>
-          <p class="text-gray-600 dark:text-gray-400">
-            All {allPages.length} pages • Continuous reading mode
-          </p>
-        </div>
-
-        <div class="flex items-center gap-2">
-          <div class="flex items-center gap-2">
-            <label for="pageJump" class="text-sm text-gray-700 dark:text-gray-300">
-              Jump to page:
-            </label>
-            <input
-              type="number"
-              id="pageJump"
-              min="1"
-              max={allPages.length}
-              placeholder="1-468"
-              class="w-20 px-2 py-1 text-sm border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-            <button
-              onclick="const pageNum = document.getElementById('pageJump').value; if (pageNum) window.location.hash = 'page-' + pageNum;"
-              class="px-3 py-1 text-sm bg-blue-600 hover:bg-blue-700 text-white rounded transition-colors"
-            >
-              Go
-            </button>
-          </div>
-          <a
-            href={base}
-            class="px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-sm font-medium transition-colors"
-          >
-            ← Back to Overview
-          </a>
+  <main class="reader-main max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <!-- Book header -->
+    <div class="mb-8 max-w-[40rem] mx-auto reader-lede">
+      <a href={base} class="inline-flex items-center gap-1 text-sm text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors mb-3">
+        ← Contents
+      </a>
+      <div class="flex items-end justify-between gap-4 flex-wrap">
+        <h1 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">
+          {translationData.book_title}
+        </h1>
+        <div class="flex items-center gap-2 text-sm">
+          <label for="pageJump" class="text-gray-500 dark:text-gray-400">Jump to page</label>
+          <input
+            type="number"
+            id="pageJump"
+            min="1"
+            max={maxPage}
+            placeholder={`1–${maxPage}`}
+            class="w-24 px-2 py-1 border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
         </div>
       </div>
+      <p class="text-gray-500 dark:text-gray-400 mt-1 text-sm">{translationData.author} · continuous reading</p>
     </div>
 
     <!-- Pages -->
-    <div class="space-y-8">
+    <div class="space-y-10">
       {allPages.map((page) => (
-        <div id={`page-${page.page_number}`} class="scroll-mt-20">
-          <!-- Page Number Header -->
-          <div class="mb-4 flex items-center gap-3">
-            <h2 class="text-xl font-bold text-gray-900 dark:text-white">
-              Page {page.page_number}
-            </h2>
-            {page.uncertainties.length > 0 && (
-              <span class="uncertainty-badge">
-                <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
-                </svg>
-                {page.uncertainties.length}
-              </span>
-            )}
-          </div>
-
-          <!-- Split Pane Layout -->
-          <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <!-- Ukrainian Column -->
-            <div class="bg-light-uk dark:bg-dark-uk rounded-lg p-6 shadow-sm border border-gray-200 dark:border-gray-700 overflow-x-hidden">
-              <div class="flex items-center justify-between mb-4">
-                <h3 class="text-sm font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-wide">
-                  🇺🇦 Ukrainian
-                </h3>
-                <span class="text-xs text-gray-500 dark:text-gray-400">
-                  {page.char_count} chars • {page.word_count} words
-                </span>
-              </div>
-              <div class="ukrainian-text text-gray-800 dark:text-gray-200">
-                {page.ukrainian_text ? (
-                  splitIntoLines(page.ukrainian_text).map(line => (
-                    <div class="ukrainian-text-line">{line || '\u00A0'}</div>
-                  ))
-                ) : (
-                  <em class="text-gray-400">Empty page</em>
-                )}
-              </div>
-            </div>
-
-            <!-- English Column -->
-            <div class="bg-light-en dark:bg-dark-en rounded-lg p-6 shadow-sm border border-gray-200 dark:border-gray-700">
-              <div class="flex items-center justify-between mb-4">
-                <h3 class="text-sm font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-wide">
-                  🇬🇧 English
-                </h3>
-              </div>
-              <div class="english-text text-gray-800 dark:text-gray-200">
-                <Fragment set:html={simpleMarkdownToHtml(page.english_text)} />
-              </div>
-            </div>
-          </div>
-
-          <!-- Uncertainty Panel for this page -->
-          {page.uncertainties.length > 0 && (
-            <UncertaintyPanel uncertainties={page.uncertainties} pageNumber={page.page_number} />
-          )}
-
-          {/* Divider between pages */}
-          {page.page_number !== allPages[allPages.length - 1].page_number && (
-            <div class="mt-8 border-t border-gray-300 dark:border-gray-700" />
-          )}
-        </div>
+        <PageSpread page={page} showDivider={page.page_number !== lastPage.page_number} />
       ))}
     </div>
 
-    <!-- Keyboard Shortcuts Info -->
-    <div class="mt-12 p-6 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
-      <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-3">
-        Keyboard Shortcuts
-      </h3>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-700 dark:text-gray-300">
-        <div class="space-y-2">
-          <div class="flex items-center gap-2">
-            <kbd class="px-2 py-1 bg-gray-200 dark:bg-gray-700 rounded text-xs font-mono">Page Down</kbd>
-            <span>Next page</span>
-          </div>
-          <div class="flex items-center gap-2">
-            <kbd class="px-2 py-1 bg-gray-200 dark:bg-gray-700 rounded text-xs font-mono">Page Up</kbd>
-            <span>Previous page</span>
-          </div>
-          <div class="flex items-center gap-2">
-            <kbd class="px-2 py-1 bg-gray-200 dark:bg-gray-700 rounded text-xs font-mono">Ctrl</kbd>
-            <span>+</span>
-            <kbd class="px-2 py-1 bg-gray-200 dark:bg-gray-700 rounded text-xs font-mono">↓</kbd>
-            <span>Skip 5 pages forward</span>
-          </div>
-        </div>
-        <div class="space-y-2">
-          <div class="flex items-center gap-2">
-            <kbd class="px-2 py-1 bg-gray-200 dark:bg-gray-700 rounded text-xs font-mono">Home</kbd>
-            <span>Jump to first page</span>
-          </div>
-          <div class="flex items-center gap-2">
-            <kbd class="px-2 py-1 bg-gray-200 dark:bg-gray-700 rounded text-xs font-mono">End</kbd>
-            <span>Jump to last page</span>
-          </div>
-          <div class="flex items-center gap-2">
-            <kbd class="px-2 py-1 bg-gray-200 dark:bg-gray-700 rounded text-xs font-mono">D</kbd>
-            <span>Toggle dark mode</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Scroll to Top Button -->
-    <div class="mt-8 pt-8 border-t border-gray-300 dark:border-gray-700">
-      <div class="flex items-center justify-center">
-        <button
-          onclick="window.scrollTo({top: 0, behavior: 'smooth'})"
-          class="px-6 py-3 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-medium transition-colors"
-        >
-          ↑ Back to Top
-        </button>
-      </div>
+    <!-- Back to top -->
+    <div class="mt-12 pt-8 border-t border-gray-300 dark:border-gray-700 max-w-[40rem] mx-auto reader-lede flex justify-center">
+      <button
+        onclick="window.scrollTo({top: 0, behavior: 'smooth'})"
+        class="px-6 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 font-medium transition-colors"
+      >
+        ↑ Back to top
+      </button>
     </div>
   </main>
 
-  <script>
-    // Add page number highlights when scrolling
+  <script define:vars={{ maxPage }}>
+    // Track the currently-visible page in the URL hash (for resume + deep links)
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            // Update URL hash without scrolling
-            const pageId = entry.target.id;
-            if (pageId && history.replaceState) {
-              history.replaceState(null, '', `#${pageId}`);
-            }
+          if (entry.isIntersecting && entry.target.id && history.replaceState) {
+            history.replaceState(null, '', `#${entry.target.id}`);
           }
         });
       },
       { threshold: 0.5, rootMargin: '-100px 0px -50% 0px' }
     );
+    document.querySelectorAll('[id^="page-"]').forEach((el) => observer.observe(el));
 
-    // Observe all page sections
-    document.querySelectorAll('[id^="page-"]').forEach((el) => {
-      observer.observe(el);
-    });
+    const jumpTo = (n) => {
+      const el = document.getElementById(`page-${n}`);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    };
+    const currentPage = () => {
+      const h = window.location.hash;
+      if (h.startsWith('#page-')) return parseInt(h.replace('#page-', ''));
+      return 1;
+    };
 
-    // Keyboard navigation for page jumping
     document.addEventListener('keydown', (e) => {
-      const target = e.target as HTMLElement;
-      if (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA') {
-        return;
-      }
-
-      // Get current page from hash or find first visible
-      const getCurrentPage = () => {
-        const hash = window.location.hash;
-        if (hash && hash.startsWith('#page-')) {
-          return parseInt(hash.replace('#page-', ''));
-        }
-        // Find first visible page
-        const pages = document.querySelectorAll('[id^="page-"]');
-        for (const page of pages) {
-          const rect = page.getBoundingClientRect();
-          if (rect.top >= 0 && rect.top < window.innerHeight / 2) {
-            return parseInt(page.id.replace('page-', ''));
-          }
-        }
-        return 1;
-      };
-
-      const jumpToPage = (pageNum: number) => {
-        const pageEl = document.getElementById(`page-${pageNum}`);
-        if (pageEl) {
-          pageEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      };
-
-      // Page Up/Down to navigate pages
-      if (e.key === 'PageDown') {
-        e.preventDefault();
-        const currentPage = getCurrentPage();
-        jumpToPage(Math.min(currentPage + 1, 468));
-      } else if (e.key === 'PageUp') {
-        e.preventDefault();
-        const currentPage = getCurrentPage();
-        jumpToPage(Math.max(currentPage - 1, 1));
-      }
-      // Arrow Up/Down for smaller jumps (5 pages)
-      else if (e.key === 'ArrowDown' && e.ctrlKey) {
-        e.preventDefault();
-        const currentPage = getCurrentPage();
-        jumpToPage(Math.min(currentPage + 5, 468));
-      } else if (e.key === 'ArrowUp' && e.ctrlKey) {
-        e.preventDefault();
-        const currentPage = getCurrentPage();
-        jumpToPage(Math.max(currentPage - 5, 1));
-      }
-      // Home/End for first/last page
-      else if (e.key === 'Home' && !e.ctrlKey) {
-        e.preventDefault();
-        jumpToPage(1);
-      } else if (e.key === 'End' && !e.ctrlKey) {
-        e.preventDefault();
-        jumpToPage(468);
-      }
+      const target = e.target;
+      if (target && (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA')) return;
+      if (e.key === 'PageDown') { e.preventDefault(); jumpTo(Math.min(currentPage() + 1, maxPage)); }
+      else if (e.key === 'PageUp') { e.preventDefault(); jumpTo(Math.max(currentPage() - 1, 1)); }
+      else if (e.key === 'Home' && !e.ctrlKey) { e.preventDefault(); jumpTo(1); }
+      else if (e.key === 'End' && !e.ctrlKey) { e.preventDefault(); jumpTo(maxPage); }
     });
 
-    // Enter key on page jump input
     document.getElementById('pageJump')?.addEventListener('keypress', (e) => {
-      if (e.key === 'Enter') {
-        const input = e.target as HTMLInputElement;
-        const pageNum = parseInt(input.value);
-        if (pageNum && pageNum >= 1 && pageNum <= 468) {
-          window.location.hash = 'page-' + pageNum;
-        }
-      }
+      if (e.key !== 'Enter') return;
+      const n = parseInt(e.target.value);
+      if (n >= 1 && n <= maxPage) window.location.hash = 'page-' + n;
     });
   </script>
 </BaseLayout>

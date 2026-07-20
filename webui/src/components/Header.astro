@@ -1,11 +1,10 @@
 ---
 const { currentChunk, searchData } = Astro.props;
 
-// Get commit SHA and repo URL from environment variables (set during CI/CD build)
-const commitSha = import.meta.env.PUBLIC_COMMIT_SHA;
-const repoUrl = import.meta.env.PUBLIC_REPO_URL;
-const shaShort = commitSha ? commitSha.substring(0, 7) : null;
+// Repo URL for the header backlink (set during CI; falls back to the public repo).
+const repoUrl = import.meta.env.PUBLIC_REPO_URL || 'https://github.com/vredchenko/dance-of-the-fool';
 const base = import.meta.env.BASE_URL;
+const total = 39;
 ---
 
 <header class="sticky top-0 z-50 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 shadow-sm">
@@ -21,20 +20,6 @@ const base = import.meta.env.BASE_URL;
             / The Dance of the Fool
           </span>
         </a>
-        {shaShort && repoUrl && (
-          <a
-            href={`${repoUrl}/commit/${commitSha}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex items-center gap-1 mt-1 px-2 py-0.5 text-xs font-mono bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
-            title={`Build from commit ${shaShort}`}
-          >
-            <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
-            </svg>
-            {shaShort}
-          </a>
-        )}
       </div>
 
       <!-- Search Box -->
@@ -106,6 +91,20 @@ const base = import.meta.env.BASE_URL;
           </div>
         )}
 
+        <!-- GitHub repo backlink -->
+        <a
+          href={repoUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="hidden sm:inline-flex p-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 transition-colors"
+          aria-label="View source on GitHub"
+          title="View source on GitHub"
+        >
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .268.18.58.688.482A10.02 10.02 0 0022 12.017C22 6.484 17.522 2 12 2z" />
+          </svg>
+        </a>
+
         <!-- Settings dropdown -->
         <div class="relative">
           <button
@@ -151,6 +150,45 @@ const base = import.meta.env.BASE_URL;
               <p class="text-xs text-gray-500 dark:text-gray-400 mt-2">
                 Switch between chunked navigation or continuous reading
               </p>
+            </div>
+
+            <!-- Reading Mode (English only / Parallel) -->
+            <div class="px-4 py-3 border-b border-gray-200 dark:border-gray-700">
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                Reading Mode
+              </label>
+              <div class="grid grid-cols-2 gap-2" id="readingModeGroup">
+                <button
+                  type="button"
+                  data-reading-mode="en"
+                  class="reading-mode-btn px-3 py-2 text-sm rounded-md border border-gray-300 dark:border-gray-600 transition-colors"
+                >
+                  🇬🇧 English
+                </button>
+                <button
+                  type="button"
+                  data-reading-mode="parallel"
+                  class="reading-mode-btn px-3 py-2 text-sm rounded-md border border-gray-300 dark:border-gray-600 transition-colors"
+                >
+                  🇺🇦🇬🇧 Parallel
+                </button>
+              </div>
+              <p class="text-xs text-gray-500 dark:text-gray-400 mt-2">
+                Read the English translation, or side-by-side with the Ukrainian original
+              </p>
+            </div>
+
+            <!-- Text Size -->
+            <div class="px-4 py-3 border-b border-gray-200 dark:border-gray-700">
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                Text Size
+              </label>
+              <div class="grid grid-cols-4 gap-2" id="fontScaleGroup">
+                <button type="button" data-font-scale="s" class="font-scale-btn px-2 py-2 rounded-md border border-gray-300 dark:border-gray-600 transition-colors" style="font-size:0.8rem">A</button>
+                <button type="button" data-font-scale="m" class="font-scale-btn px-2 py-2 rounded-md border border-gray-300 dark:border-gray-600 transition-colors" style="font-size:0.95rem">A</button>
+                <button type="button" data-font-scale="l" class="font-scale-btn px-2 py-2 rounded-md border border-gray-300 dark:border-gray-600 transition-colors" style="font-size:1.1rem">A</button>
+                <button type="button" data-font-scale="xl" class="font-scale-btn px-2 py-2 rounded-md border border-gray-300 dark:border-gray-600 transition-colors" style="font-size:1.3rem">A</button>
+              </div>
             </div>
 
             <!-- Font Selection -->
@@ -257,6 +295,40 @@ const base = import.meta.env.BASE_URL;
     const savedLineNumbers = localStorage.getItem('lineNumbers') === 'true';
     const savedUncertainties = localStorage.getItem('showUncertainties') !== 'false'; // default true
 
+    // Reading mode (English only / Parallel) — applied to <html data-lang-mode>
+    const readingModeBtns = document.querySelectorAll<HTMLButtonElement>('.reading-mode-btn');
+    const applyReadingMode = (mode: string) => {
+      document.documentElement.setAttribute('data-lang-mode', mode);
+      readingModeBtns.forEach((b) =>
+        b.classList.toggle('active', b.dataset.readingMode === mode)
+      );
+    };
+    applyReadingMode(localStorage.getItem('readingMode') || 'en');
+    readingModeBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const mode = btn.dataset.readingMode || 'en';
+        localStorage.setItem('readingMode', mode);
+        applyReadingMode(mode);
+      });
+    });
+
+    // Text size — applied to <html data-font-scale>
+    const fontScaleBtns = document.querySelectorAll<HTMLButtonElement>('.font-scale-btn');
+    const applyFontScale = (scale: string) => {
+      document.documentElement.setAttribute('data-font-scale', scale);
+      fontScaleBtns.forEach((b) =>
+        b.classList.toggle('active', b.dataset.fontScale === scale)
+      );
+    };
+    applyFontScale(localStorage.getItem('fontScale') || 'm');
+    fontScaleBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const scale = btn.dataset.fontScale || 'm';
+        localStorage.setItem('fontScale', scale);
+        applyFontScale(scale);
+      });
+    });
+
     // Font selection
     const fontSelect = document.getElementById('fontSelect') as HTMLSelectElement;
     if (fontSelect) {
@@ -289,22 +361,21 @@ const base = import.meta.env.BASE_URL;
       });
     }
 
-    // Uncertainties toggle
+    // Uncertainties toggle (hides both the note panels and the small count badges)
     const uncertaintiesToggle = document.getElementById('uncertaintiesToggle') as HTMLInputElement;
     if (uncertaintiesToggle) {
-      uncertaintiesToggle.checked = savedUncertainties;
-      if (!savedUncertainties) {
-        document.querySelectorAll('.uncertainty-panel').forEach(el => {
-          (el as HTMLElement).style.display = 'none';
+      const applyNotes = (enabled: boolean) => {
+        document.querySelectorAll('.uncertainty-panel, .note-only').forEach((el) => {
+          (el as HTMLElement).style.display = enabled ? '' : 'none';
         });
-      }
+      };
+      uncertaintiesToggle.checked = savedUncertainties;
+      applyNotes(savedUncertainties);
 
       uncertaintiesToggle.addEventListener('change', () => {
         const enabled = uncertaintiesToggle.checked;
         localStorage.setItem('showUncertainties', String(enabled));
-        document.querySelectorAll('.uncertainty-panel').forEach(el => {
-          (el as HTMLElement).style.display = enabled ? '' : 'none';
-        });
+        applyNotes(enabled);
       });
     }
   });

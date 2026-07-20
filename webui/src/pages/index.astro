@@ -3,17 +3,17 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import translationData from '../data/translation-data.json';
 
-const { book_title, author, total_chunks, total_pages, actual_pages_with_content, total_uncertainties, chunks } = translationData;
+const { book_title, author, total_chunks, total_pages, total_uncertainties, chunks } = translationData;
 
-// Flatten all pages for search
+// Flatten all pages for the header search index
 const allPages = chunks
-  .flatMap(chunk => chunk.pages)
+  .flatMap((chunk) => chunk.pages)
   .sort((a, b) => a.page_number - b.page_number);
 
 const base = import.meta.env.BASE_URL;
 ---
 
-<BaseLayout title={book_title}>
+<BaseLayout title={`${book_title} — The Dance of the Fool`}>
   <!-- Search data for Header component -->
   <script id="search-data" type="application/json" is:inline set:html={JSON.stringify(allPages.map(p => ({
     page_number: p.page_number,
@@ -23,170 +23,122 @@ const base = import.meta.env.BASE_URL;
 
   <Header searchData={true} />
 
-  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-    <!-- Hero Section -->
-    <div class="text-center mb-12">
-      <h1 class="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-        {book_title}
-      </h1>
-      <p class="text-xl text-gray-600 dark:text-gray-400 mb-2">
-        {author}
-      </p>
-      <p class="text-sm text-gray-500 dark:text-gray-500">
-        Translation Proofreading Interface
-      </p>
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
+    <!-- Hero -->
+    <section class="grid gap-8 md:grid-cols-[minmax(0,260px)_1fr] md:gap-12 items-center mb-6">
+      <div class="mx-auto md:mx-0 w-48 sm:w-56 md:w-full">
+        <img
+          src={`${base}book-cover.png`}
+          alt={`Cover of «${book_title}» by ${author}`}
+          class="w-full rounded-lg shadow-2xl ring-1 ring-black/10 dark:ring-white/10"
+          width="260"
+          loading="eager"
+        />
+      </div>
+
+      <div class="text-center md:text-left">
+        <p class="text-sm uppercase tracking-widest text-blue-600 dark:text-blue-400 font-semibold mb-2">
+          Unofficial English translation
+        </p>
+        <h1 class="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white leading-tight">
+          The Dance of the Fool
+        </h1>
+        <p class="text-xl text-gray-600 dark:text-gray-300 mt-2">
+          {book_title} · {author}
+        </p>
+
+        <p class="text-gray-600 dark:text-gray-400 mt-5 leading-relaxed max-w-prose mx-auto md:mx-0">
+          Space biologist Gil — a veteran of many off-world military operations — takes a
+          job on a scientific expedition to the distant, strange planet Ix-Chel, hoping it
+          will solve all his problems at once. It doesn't.
+        </p>
+
+        <!-- Resume slot (populated client-side if the reader has progress) -->
+        <div id="resumeSlot" class="hidden mt-6"></div>
+
+        <div class="mt-6 flex flex-wrap gap-3 justify-center md:justify-start">
+          <a
+            href={`${base}book`}
+            class="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-sm transition-colors"
+          >
+            📖 Start reading
+          </a>
+          <a
+            href="#contents"
+            class="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 font-medium transition-colors"
+          >
+            Browse by section
+          </a>
+        </div>
+
+        <p class="text-sm text-gray-500 dark:text-gray-400 mt-5">
+          {total_pages} pages · {total_chunks} sections · English with the Ukrainian original alongside
+        </p>
+      </div>
+    </section>
+
+    <!-- Reading tip -->
+    <div class="mb-12 text-center md:text-left text-sm text-gray-500 dark:text-gray-400 max-w-prose mx-auto md:mx-0">
+      Tip: use the settings menu (⚙) to switch between <strong>English</strong> and
+      <strong>side-by-side Ukrainian</strong>, change text size, or turn on the translator's notes.
     </div>
 
-    <!-- Stats -->
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
-      <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm border border-gray-200 dark:border-gray-700">
-        <div class="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-1">
-          {total_chunks}
-        </div>
-        <div class="text-sm text-gray-600 dark:text-gray-400">
-          Chunks
-        </div>
+    <!-- Contents / Browse by section (de-emphasized) -->
+    <section id="contents" class="scroll-mt-20">
+      <div class="flex items-baseline justify-between mb-5">
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white">Contents</h2>
+        <span class="text-sm text-gray-500 dark:text-gray-400">{total_chunks} sections</span>
       </div>
 
-      <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm border border-gray-200 dark:border-gray-700">
-        <div class="text-3xl font-bold text-green-600 dark:text-green-400 mb-1">
-          {total_pages}
-        </div>
-        <div class="text-sm text-gray-600 dark:text-gray-400">
-          Pages
-        </div>
-      </div>
-
-      <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm border border-gray-200 dark:border-gray-700">
-        <div class="text-3xl font-bold text-yellow-600 dark:text-yellow-400 mb-1">
-          {total_uncertainties}
-        </div>
-        <div class="text-sm text-gray-600 dark:text-gray-400">
-          Uncertainties
-        </div>
-      </div>
-
-      <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm border border-gray-200 dark:border-gray-700">
-        <div class="text-3xl font-bold text-purple-600 dark:text-purple-400 mb-1">
-          100%
-        </div>
-        <div class="text-sm text-gray-600 dark:text-gray-400">
-          Complete
-        </div>
-      </div>
-    </div>
-
-    <!-- Chunk Navigator -->
-    <div class="mb-8">
-      <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">
-        Browse by Chunk
-      </h2>
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
         {chunks.map((chunk) => (
           <a
             href={`${base}chunk/${String(chunk.chunk_number).padStart(2, '0')}`}
-            class="group bg-white dark:bg-gray-800 rounded-lg p-5 shadow-sm border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-400 hover:shadow-md transition-all"
+            class="group rounded-lg p-4 border border-gray-200 dark:border-gray-700 bg-white/70 dark:bg-gray-800/60 hover:border-blue-500 dark:hover:border-blue-400 hover:shadow-md transition-all"
           >
-            <div class="flex items-start justify-between mb-3">
-              <div>
-                <div class="text-sm font-medium text-gray-500 dark:text-gray-400 mb-1">
-                  Chunk {String(chunk.chunk_number).padStart(2, '0')}
-                </div>
-                <div class="text-lg font-bold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                  Pages {chunk.page_range}
-                </div>
-              </div>
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-semibold text-gray-400 dark:text-gray-500">
+                {String(chunk.chunk_number).padStart(2, '0')}
+              </span>
               {chunk.uncertainty_count > 0 && (
-                <span class="uncertainty-badge">
-                  <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
-                  </svg>
+                <span class="uncertainty-badge note-only text-[0.65rem]">
                   {chunk.uncertainty_count}
                 </span>
               )}
             </div>
-
-            <div class="flex items-center gap-4 text-xs text-gray-500 dark:text-gray-400">
-              <span>{chunk.page_count} pages</span>
-              {chunk.uncertainty_count > 0 && (
-                <span>{chunk.uncertainty_count} notes</span>
-              )}
+            <div class="mt-1 font-semibold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+              Pages {chunk.page_range}
             </div>
           </a>
         ))}
       </div>
-    </div>
 
-    <!-- View Mode Selection -->
-    <div class="mt-12 mb-8">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div class="p-6 bg-white dark:bg-gray-800 rounded-lg border-2 border-blue-500 dark:border-blue-400 shadow-sm">
-          <div class="flex items-center gap-3 mb-3">
-            <span class="text-3xl">📑</span>
-            <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-              Chunk View (Current)
-            </h3>
-          </div>
-          <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
-            Browse the translation organized into 39 manageable chunks, perfect for reviewing specific sections or tracking translation progress.
-          </p>
-          <div class="text-xs text-gray-500 dark:text-gray-500">
-            ✓ You're here • Navigate by chunks below
-          </div>
-        </div>
-
-        <a
-          href={`${base}book`}
-          class="p-6 bg-white dark:bg-gray-800 rounded-lg border-2 border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-400 shadow-sm transition-colors group"
-        >
-          <div class="flex items-center gap-3 mb-3">
-            <span class="text-3xl">📖</span>
-            <h3 class="text-lg font-semibold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-              Full Book View
-            </h3>
-          </div>
-          <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
-            Read all 468 pages continuously in original book order, ideal for immersive reading or searching across the entire text.
-          </p>
-          <div class="text-sm text-blue-600 dark:text-blue-400 font-medium">
-            Switch to full book →
-          </div>
-        </a>
-      </div>
-    </div>
-
-    <!-- Quick Info -->
-    <div class="mt-8 p-6 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
-      <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-        How to Use
-      </h3>
-      <ul class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
-        <li class="flex items-start gap-2">
-          <span class="text-blue-600 dark:text-blue-400">•</span>
-          <span>Click any chunk to view the Ukrainian and English text side-by-side</span>
-        </li>
-        <li class="flex items-start gap-2">
-          <span class="text-blue-600 dark:text-blue-400">•</span>
-          <span>Use the settings menu (⚙️) to customize fonts, line numbers, and more</span>
-        </li>
-        <li class="flex items-start gap-2">
-          <span class="text-blue-600 dark:text-blue-400">•</span>
-          <span>Yellow badges indicate translation uncertainties and questions</span>
-        </li>
-        <li class="flex items-start gap-2">
-          <span class="text-blue-600 dark:text-blue-400">•</span>
-          <span>Use ← → arrow keys or navigation buttons to move between chunks</span>
-        </li>
-        <li class="flex items-start gap-2">
-          <span class="text-blue-600 dark:text-blue-400">•</span>
-          <span>Press 'D' to toggle dark mode for comfortable reading</span>
-        </li>
-        <li class="flex items-start gap-2">
-          <span class="text-blue-600 dark:text-blue-400">•</span>
-          <span>Use the search box (Ctrl/Cmd+K) to find Ukrainian or English text across all pages</span>
-        </li>
-      </ul>
-    </div>
+      <p class="text-xs text-gray-400 dark:text-gray-500 mt-4">
+        Sections are the translation's working units ({total_uncertainties} translator's notes across the book).
+        For a continuous read, use <a href={`${base}book`} class="underline hover:text-blue-600 dark:hover:text-blue-400">Start reading</a>.
+      </p>
+    </section>
   </main>
+
+  <script>
+    // Offer "Resume reading" if the reader has progress saved.
+    (() => {
+      const slot = document.getElementById('resumeSlot');
+      if (!slot) return;
+      try {
+        const raw = localStorage.getItem('lastRead');
+        if (!raw) return;
+        const { path, page } = JSON.parse(raw);
+        if (!path || !page) return;
+        const href = `${path}#page-${page}`;
+        slot.innerHTML =
+          '<a href="' + href + '" class="inline-flex items-center gap-2 text-sm px-4 py-2 rounded-lg border border-blue-300 dark:border-blue-700 bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors">↩ Resume reading — page ' +
+          page +
+          '</a>';
+        slot.classList.remove('hidden');
+      } catch (e) {
+        /* ignore malformed storage */
+      }
+    })();
+  </script>
 </BaseLayout>

@@ -31,13 +31,13 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(250, 250, 250, 0.92);
+    background: rgba(250, 250, 250, 0.965);
     z-index: -1;
     transition: background-color 200ms;
   }
 
   .dark body::before {
-    background: rgba(26, 26, 26, 0.95);
+    background: rgba(26, 26, 26, 0.965);
   }
 }
 
@@ -46,9 +46,9 @@
   .ukrainian-text,
   .english-text {
     font-family: var(--reading-font, 'Noto Serif'), 'Georgia', 'Times New Roman', serif;
-    @apply text-base;
+    font-size: calc(1.0625rem * var(--reading-scale, 1));
     font-weight: 400;
-    line-height: 1.7;
+    line-height: 1.75;
   }
 
   .ukrainian-text {
@@ -164,5 +164,182 @@
 
   .custom-scrollbar::-webkit-scrollbar-thumb:hover {
     @apply bg-gray-400 dark:bg-gray-500;
+  }
+
+  /* ============================================================
+     Reading experience — page spreads & reading modes
+     Modes are switched at runtime via <html data-lang-mode="…">.
+       en       → English only, single centered reading column (default)
+       parallel → Ukrainian + English side by side (stacked on mobile)
+     ============================================================ */
+
+  .page-spread {
+    margin: 0 auto;
+    padding-top: 0.5rem;
+  }
+
+  .page-marker {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+    color: rgba(0, 0, 0, 0.35);
+  }
+  .dark .page-marker {
+    color: rgba(255, 255, 255, 0.35);
+  }
+  .page-marker-num {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .spread-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .lang-col {
+    min-width: 0;
+  }
+
+  .lang-label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+  }
+  .lang-chip {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: rgba(0, 0, 0, 0.5);
+  }
+  .dark .lang-chip {
+    color: rgba(255, 255, 255, 0.5);
+  }
+  .lang-meta {
+    font-size: 0.7rem;
+    color: rgba(0, 0, 0, 0.35);
+  }
+  .dark .lang-meta {
+    color: rgba(255, 255, 255, 0.3);
+  }
+
+  .ukrainian-text .empty-page {
+    @apply text-gray-400;
+  }
+
+  .page-divider {
+    height: 1px;
+    margin: 2.5rem auto 0;
+    max-width: 8rem;
+    background: linear-gradient(
+      to right,
+      transparent,
+      rgba(0, 0, 0, 0.18),
+      transparent
+    );
+  }
+  .dark .page-divider {
+    background: linear-gradient(
+      to right,
+      transparent,
+      rgba(255, 255, 255, 0.18),
+      transparent
+    );
+  }
+
+  /* ---- English-only mode (default) ---- */
+  html[data-lang-mode='en'] .lang-uk {
+    display: none;
+  }
+  html[data-lang-mode='en'] .spread-grid {
+    display: block;
+  }
+  html[data-lang-mode='en'] .lang-en .lang-label {
+    display: none; /* no need to label the single column */
+  }
+  /* Comfortable single reading measure, centered */
+  html[data-lang-mode='en'] .page-spread,
+  html[data-lang-mode='en'] .page-marker {
+    max-width: 40rem;
+  }
+
+  /* ---- Parallel mode ---- */
+  html[data-lang-mode='parallel'] .lang-col {
+    @apply rounded-lg border border-gray-200 dark:border-gray-700 shadow-sm;
+    background: #ffffff;
+    padding: 1.25rem 1.5rem;
+  }
+  html[data-lang-mode='parallel'] .lang-uk {
+    background: #ffffff;
+  }
+  html[data-lang-mode='parallel'] .lang-en {
+    background: #f8f9fa;
+  }
+  .dark html[data-lang-mode='parallel'] .lang-uk,
+  html.dark[data-lang-mode='parallel'] .lang-uk {
+    background: #2a2a2a;
+  }
+  .dark html[data-lang-mode='parallel'] .lang-en,
+  html.dark[data-lang-mode='parallel'] .lang-en {
+    background: #232323;
+  }
+  html[data-lang-mode='parallel'] .page-spread {
+    max-width: 100%;
+  }
+  /* Side-by-side once there is room; stacked (mobile fix) below 1024px */
+  @media (min-width: 1024px) {
+    html[data-lang-mode='parallel'] .spread-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  /* Mobile parallel: stack cleanly, tighten cards, keep language chips visible */
+  @media (max-width: 1023px) {
+    html[data-lang-mode='parallel'] .spread-grid {
+      gap: 1rem;
+    }
+    html[data-lang-mode='parallel'] .lang-col {
+      padding: 1rem 1.1rem;
+    }
+    html[data-lang-mode='parallel'] .lang-meta {
+      display: none; /* de-clutter on small screens */
+    }
+  }
+
+  /* Font-size steps applied via <html data-font-scale="…"> */
+  html[data-font-scale='s'] { --reading-scale: 0.9; }
+  html[data-font-scale='m'] { --reading-scale: 1; }
+  html[data-font-scale='l'] { --reading-scale: 1.15; }
+  html[data-font-scale='xl'] { --reading-scale: 1.3; }
+
+  /* Active state for segmented settings buttons */
+  .reading-mode-btn:hover,
+  .font-scale-btn:hover {
+    @apply bg-gray-100 dark:bg-gray-700;
+  }
+  .reading-mode-btn.active,
+  .font-scale-btn.active {
+    @apply bg-blue-600 text-white border-blue-600;
+  }
+
+  /* Top reading-progress bar */
+  #reading-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    width: 0%;
+    background: linear-gradient(to right, #2563eb, #7c3aed);
+    z-index: 60;
+    transition: width 120ms linear;
+    pointer-events: none;
   }
 }

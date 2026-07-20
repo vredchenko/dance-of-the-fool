@@ -1,0 +1,80 @@
+---
+// Build metadata (set during CI). Fall back to the public repo when developing locally.
+const commitSha = import.meta.env.PUBLIC_COMMIT_SHA;
+const repoUrl = import.meta.env.PUBLIC_REPO_URL || 'https://github.com/vredchenko/dance-of-the-fool';
+const shaShort = commitSha ? commitSha.substring(0, 7) : null;
+---
+
+<footer class="reader-lede mt-16 border-t border-gray-200 dark:border-gray-800 bg-white/60 dark:bg-gray-900/60 backdrop-blur-sm">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 text-sm">
+      <!-- About / disclaimer -->
+      <div>
+        <h3 class="font-semibold text-gray-900 dark:text-white mb-2">About this translation</h3>
+        <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+          An unofficial, non-commercial English fan translation of
+          <em>Танець недоумка</em> by Ілларіон Павлюк. Not affiliated with or
+          endorsed by the author or publisher. All rights to the original novel
+          belong to the author and
+          <span class="whitespace-nowrap">Видавництво Старого Лева</span>.
+        </p>
+      </div>
+
+      <!-- Support the author -->
+      <div>
+        <h3 class="font-semibold text-gray-900 dark:text-white mb-2">Support the author</h3>
+        <p class="text-gray-600 dark:text-gray-400 mb-2">If you enjoy the story, buy the original:</p>
+        <ul class="space-y-1">
+          <li>
+            <a href="https://starylev.com.ua/tanec-nedoumka" target="_blank" rel="noopener noreferrer"
+               class="text-blue-600 dark:text-blue-400 hover:underline">Старий Лев ↗</a>
+          </li>
+          <li>
+            <a href="https://www.yakaboo.ua/ua/tanec-nedoumka.html" target="_blank" rel="noopener noreferrer"
+               class="text-blue-600 dark:text-blue-400 hover:underline">Yakaboo ↗</a>
+          </li>
+          <li>
+            <a href="https://www.goodreads.com/book/show/49447405" target="_blank" rel="noopener noreferrer"
+               class="text-blue-600 dark:text-blue-400 hover:underline">Goodreads ↗</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Project / source -->
+      <div>
+        <h3 class="font-semibold text-gray-900 dark:text-white mb-2">Project</h3>
+        <ul class="space-y-2">
+          <li>
+            <a href={repoUrl} target="_blank" rel="noopener noreferrer"
+               class="inline-flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .268.18.58.688.482A10.02 10.02 0 0022 12.017C22 6.484 17.522 2 12 2z" />
+              </svg>
+              View source on GitHub ↗
+            </a>
+          </li>
+          <li>
+            <a href={`${repoUrl}/blob/main/LICENSE-CODE`} target="_blank" rel="noopener noreferrer"
+               class="text-blue-600 dark:text-blue-400 hover:underline">Code: MIT License ↗</a>
+          </li>
+          {shaShort && (
+            <li>
+              <a href={`${repoUrl}/commit/${commitSha}`} target="_blank" rel="noopener noreferrer"
+                 class="inline-flex items-center gap-1 text-xs font-mono text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400"
+                 title={`Built from commit ${shaShort}`}>
+                <span class="opacity-70">build</span> {shaShort}
+              </a>
+            </li>
+          )}
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-8 pt-6 border-t border-gray-200 dark:border-gray-800 flex items-center justify-between flex-wrap gap-3 text-xs text-gray-500 dark:text-gray-400">
+      <span>Text and translation for non-commercial, educational use.</span>
+      <a href="https://claude.ai/code" target="_blank" rel="noopener noreferrer" class="hover:text-gray-700 dark:hover:text-gray-300">
+        Built with Claude Code
+      </a>
+    </div>
+  </div>
+</footer>
