@@ -1,5 +1,7 @@
 # The Dance of the Fool — English translation
 
+[![Built with Claude Code](https://img.shields.io/badge/Built%20with-Claude%20Code-6366f1?logo=claude)](https://claude.ai/code)
+
 An unofficial, non-commercial English fan translation of the Ukrainian science-fiction
 novel **_Танець недоумка_ ("The Dance of the Fool")** by **Ілларіон Павлюк (Illarion Pavliuk)**,
 together with the open-source tooling used to produce it — a PDF/EPUB processing pipeline
@@ -9,6 +11,12 @@ and a web reader for proofreading the translation.
   <img src="webui/public/book-cover.png" alt="Cover of «Танець недоумка» (The Dance of the Fool) by Illarion Pavliuk" width="300">
   <br>
   <em>Original cover art © The Old Lion Publishing House.</em>
+</p>
+
+<p align="center">
+  <strong>📖 <a href="https://vredchenko.github.io/dance-of-the-fool/">Read it online →</a></strong>
+  <br>
+  <em>The web reader is published to GitHub Pages at <a href="https://vredchenko.github.io/dance-of-the-fool/">vredchenko.github.io/dance-of-the-fool</a>.</em>
 </p>
 
 > [!IMPORTANT]
@@ -24,6 +32,7 @@ and a web reader for proofreading the translation.
 - **Title:** _Танець недоумка_ ("The Dance of the Fool")
 - **Author:** Ілларіон Павлюк (Illarion Pavliuk)
 - **Original publisher:** Видавництво Старого Лева (The Old Lion Publishing House), 2019
+- **ISBN:** 978-617-679-720-3
 - **Genre:** Science fiction / psychological thriller (~468 pages)
 
 Space biologist Gil — a veteran of many off-world military operations — takes a job on a
@@ -48,7 +57,8 @@ The translation lives as Markdown in `book/translations/v1/` and can be rendered
 
 - **PDF** — clean, or with translator's uncertainty notes
 - **EPUB** — clean, or with translator's uncertainty notes
-- **Web** — a browsable reader (the `webui/` Astro app)
+- **Web** — a browsable reader (the `webui/` Astro app), published live at
+  **[vredchenko.github.io/dance-of-the-fool](https://vredchenko.github.io/dance-of-the-fool/)**
 
 See [Building the outputs](#building-the-outputs) to generate them locally.
 
@@ -168,6 +178,17 @@ translation is a derivative work; no rights in the underlying novel are claimed 
 **If you are the rights holder** and would like the original text, this translation, or any
 part of this repository amended or removed, please open an issue or contact the maintainer —
 requests will be honored promptly.
+
+### Source of the original text
+
+The Ukrainian source files under `book/originals/` are:
+
+- `pavlyuk_tanets_nedoumka_e27087_470337.pdf` (3.23 MB, 468 pages)
+- `pavlyuk_tanets_nedoumka_e27087_470337.epub` (1.38 MB) — a Calibre conversion of a
+  FictionBook (FB2) edition; embedded metadata records **ISBN 978-617-679-720-3**,
+  publisher **Видавництво Старого Лева**.
+
+Downloaded from: [uabook.com.ua/book/tanets-nedoumka](https://uabook.com.ua/book/tanets-nedoumka/)
 
 If you enjoy the story, please **support the author** by buying the original book:
 [Старий Лев](https://starylev.com.ua/tanec-nedoumka) ·
