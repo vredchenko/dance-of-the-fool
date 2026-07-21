@@ -1,93 +1,43 @@
 # GitHub Actions Workflows
 
-This directory contains CI/CD workflows for building translation outputs.
+CI/CD for building and publishing the translation outputs.
 
-## Available Workflows
+## Workflows
 
-All workflows are **manual dispatch only** - they must be triggered manually from the GitHub Actions tab.
+### `release.yml` — Release (primary)
 
-### 1. Build All Outputs (`build-outputs.yml`)
+**Trigger:** pushing a `vX.Y.Z` tag (or manual dispatch with a version input).
 
-**Trigger:** Manual dispatch with options
+Builds every output and publishes a **GitHub Release** with the files attached.
+It verifies the pushed tag matches the root `VERSION` file, then builds:
 
-Builds all translation outputs in parallel jobs. You can selectively enable/disable each output type.
+| Asset (stable name) | Contents |
+|---------------------|----------|
+| `dance-of-the-fool.pdf` | Translation, clean |
+| `dance-of-the-fool-annotated.pdf` | Translation + translator's notes |
+| `dance-of-the-fool.epub` | Translation, clean |
+| `dance-of-the-fool-annotated.epub` | Translation + translator's notes |
+| `dance-of-the-fool-web.zip` | Static web reader bundle |
 
-**Options:**
-- `build_webui` - Build WebUI static bundle (default: true)
-- `build_pdf` - Build PDF exports (default: true)
-- `build_epub` - Build EPUB exports (default: true)
+Because the asset names are stable, `releases/latest/download/<name>` always
+resolves to the newest build. See [`docs/VERSIONING.md`](../../docs/VERSIONING.md)
+for the version scheme and how to cut a release.
 
-**Outputs:**
-- `webui-bundle-<sha>` - Static webui bundle in `webui/dist/`
-- `pdf-exports-<sha>` - Both PDF files in `dist/`:
-  - `Illarion_Pavlyuk_Fools_Dance_translation_<sha>.pdf`
-  - `Illarion_Pavlyuk_Fools_Dance_translation_with_annotations_<sha>.pdf`
-- `epub-exports-<sha>` - Both EPUB files in `dist/`:
-  - `Illarion_Pavlyuk_Fools_Dance_translation_<sha>.epub`
-  - `Illarion_Pavlyuk_Fools_Dance_translation_with_annotations_<sha>.epub`
+### `deploy-pages.yml` — Deploy web reader to GitHub Pages
 
-### 2. Build WebUI Only (`build-webui.yml`)
+**Trigger:** push to `main` (or manual dispatch).
 
-**Trigger:** Manual dispatch
+Builds the `webui/` Astro app with the Pages base path and deploys it to
+GitHub Pages (<https://vredchenko.github.io/dance-of-the-fool/>).
 
-Builds only the static webui bundle. The generated bundle includes a commit SHA badge in the header that links back to the commit on GitHub.
+### `build-webui.yml` — Build WebUI bundle (ad-hoc)
 
-**Outputs:**
-- `webui-bundle-<sha>` - Static bundle ready for deployment
+**Trigger:** manual dispatch.
 
-### 3. Build PDF Only (`build-pdf.yml`)
+Builds only the static webui bundle and uploads it as a 90-day artifact. Handy
+for previewing a build without deploying or cutting a release.
 
-**Trigger:** Manual dispatch
-
-Builds both PDF versions (with and without translator annotations).
-
-**Outputs:**
-- `pdf-exports-<sha>` containing both PDFs with commit SHA in filename
-
-### 4. Build EPUB Only (`build-epub.yml`)
-
-**Trigger:** Manual dispatch
-
-Builds both EPUB versions (with and without translator annotations).
-
-**Outputs:**
-- `epub-exports-<sha>` containing both EPUBs with commit SHA in filename
-
-## How to Trigger Workflows
-
-1. Go to the **Actions** tab in GitHub
-2. Select the workflow you want to run from the left sidebar
-3. Click **Run workflow** button (top right)
-4. For `build-outputs.yml`, you can toggle which outputs to build
-5. Click **Run workflow** to start
-
-## Commit SHA Encoding
-
-All generated artifacts encode the commit SHA they were built from:
-
-- **PDFs & EPUBs**: Included in filename (first 7 characters)
-  - Example: `Illarion_Pavlyuk_Fools_Dance_translation_a1b2c3d.pdf`
-- **WebUI**: Badge in header linking to commit on GitHub
-  - Only visible when built via CI/CD (uses `PUBLIC_COMMIT_SHA` env var)
-
-## Artifacts
-
-All artifacts are retained for **90 days** and can be downloaded from:
-- The workflow run summary page
-- The Actions tab → Select the workflow run → Scroll to "Artifacts"
-
-## Dependencies
-
-Workflows automatically install required dependencies:
-- Python 3.11
-- ReportLab (for PDF generation)
-- ebooklib (for EPUB generation)
-- Node.js 20 (for webui build)
-- DejaVu fonts (for Ukrainian/Cyrillic support in PDFs)
-
-## Local Testing
-
-To test builds locally before pushing:
+## Local testing
 
 ```bash
 # WebUI
@@ -103,7 +53,11 @@ python3 tools/generate-epub.py --output dist/test.epub
 python3 tools/generate-epub.py --output dist/test-notes.epub --include-uncertainties
 
 # Or regenerate everything
-./regenerate-all.sh
-# or
-python3 tools/regenerate_all.py
+./regenerate-all.sh   # or: python3 tools/regenerate_all.py
 ```
+
+## Dependencies (installed automatically in CI)
+
+- Python 3.11 · ReportLab (PDF) · ebooklib (EPUB)
+- Node.js 20 (webui build)
+- DejaVu fonts (Cyrillic support in PDFs)
