@@ -1,5 +1,7 @@
 # The Dance of the Fool — English translation
 
+[![Latest release](https://img.shields.io/github/v/release/vredchenko/dance-of-the-fool?label=release)](https://github.com/vredchenko/dance-of-the-fool/releases/latest)
+[![Read online](https://img.shields.io/badge/read-online-blue)](https://vredchenko.github.io/dance-of-the-fool/)
 [![Built with Claude Code](https://img.shields.io/badge/Built%20with-Claude%20Code-6366f1?logo=claude)](https://claude.ai/code)
 
 An unofficial, non-commercial English fan translation of the Ukrainian science-fiction
@@ -59,6 +61,20 @@ The translation lives as Markdown in `book/translations/v1/` and can be rendered
 - **EPUB** — clean, or with translator's uncertainty notes
 - **Web** — a browsable reader (the `webui/` Astro app), published live at
   **[vredchenko.github.io/dance-of-the-fool](https://vredchenko.github.io/dance-of-the-fool/)**
+
+### Download the latest release
+
+Prebuilt files are attached to every [GitHub Release](https://github.com/vredchenko/dance-of-the-fool/releases/latest).
+These links always point at the newest build:
+
+- [PDF](https://github.com/vredchenko/dance-of-the-fool/releases/latest/download/dance-of-the-fool.pdf)
+  · [PDF with notes](https://github.com/vredchenko/dance-of-the-fool/releases/latest/download/dance-of-the-fool-annotated.pdf)
+- [EPUB](https://github.com/vredchenko/dance-of-the-fool/releases/latest/download/dance-of-the-fool.epub)
+  · [EPUB with notes](https://github.com/vredchenko/dance-of-the-fool/releases/latest/download/dance-of-the-fool-annotated.epub)
+- [Web reader bundle (.zip)](https://github.com/vredchenko/dance-of-the-fool/releases/latest/download/dance-of-the-fool-web.zip)
+
+Releases are versioned `X.Y.Z` (book · website · other) and published
+automatically from a `vX.Y.Z` tag — see [`docs/VERSIONING.md`](docs/VERSIONING.md).
 
 See [Building the outputs](#building-the-outputs) to generate them locally.
 

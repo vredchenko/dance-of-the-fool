@@ -7,7 +7,7 @@ const shaShort = commitSha ? commitSha.substring(0, 7) : null;
 
 <footer class="reader-lede mt-16 border-t border-gray-200 dark:border-gray-800 bg-white/60 dark:bg-gray-900/60 backdrop-blur-sm">
   <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-    <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 text-sm">
+    <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4 text-sm">
       <!-- About / disclaimer -->
       <div>
         <h3 class="font-semibold text-gray-900 dark:text-white mb-2">About this translation</h3>
@@ -36,6 +36,32 @@ const shaShort = commitSha ? commitSha.substring(0, 7) : null;
           <li>
             <a href="https://www.goodreads.com/book/show/49447405" target="_blank" rel="noopener noreferrer"
                class="text-blue-600 dark:text-blue-400 hover:underline">Goodreads ↗</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Read offline / downloads -->
+      <div>
+        <h3 class="font-semibold text-gray-900 dark:text-white mb-2">Read offline</h3>
+        <p class="text-gray-600 dark:text-gray-400 mb-2">Download the latest release:</p>
+        <ul class="space-y-1">
+          <li>
+            <a href={`${repoUrl}/releases/latest/download/dance-of-the-fool.pdf`}
+               class="text-blue-600 dark:text-blue-400 hover:underline">PDF ↓</a>
+            <span class="text-gray-400 dark:text-gray-500">·</span>
+            <a href={`${repoUrl}/releases/latest/download/dance-of-the-fool-annotated.pdf`}
+               class="text-blue-600 dark:text-blue-400 hover:underline">with notes</a>
+          </li>
+          <li>
+            <a href={`${repoUrl}/releases/latest/download/dance-of-the-fool.epub`}
+               class="text-blue-600 dark:text-blue-400 hover:underline">EPUB ↓</a>
+            <span class="text-gray-400 dark:text-gray-500">·</span>
+            <a href={`${repoUrl}/releases/latest/download/dance-of-the-fool-annotated.epub`}
+               class="text-blue-600 dark:text-blue-400 hover:underline">with notes</a>
+          </li>
+          <li>
+            <a href={`${repoUrl}/releases/latest`}
+               class="text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400">All releases ↗</a>
           </li>
         </ul>
       </div>
