@@ -1,16 +1,22 @@
 ---
 import '../styles/global.css';
+import Footer from '../components/Footer.astro';
 
 interface Props {
   title: string;
   description?: string;
 }
 
-const { title, description = 'Translation proofreading interface for Танець недоумка (The Dance of the Fool)' } = Astro.props;
+const {
+  title,
+  description = 'An unofficial English fan translation of «Танець недоумка» (The Dance of the Fool) by Illarion Pavliuk — read online, English or side-by-side with the Ukrainian original.',
+} = Astro.props;
 
 // Base URL for assets/links. Respects the configured `base`, so the site works
 // at the domain root locally and under /dance-of-the-fool/ on GitHub Pages.
 const base = import.meta.env.BASE_URL;
+const site = import.meta.env.SITE || 'https://vredchenko.github.io';
+const coverUrl = `${site.replace(/\/$/, '')}${base}book-cover.png`;
 ---
 
 <!DOCTYPE html>
@@ -21,6 +27,16 @@ const base = import.meta.env.BASE_URL;
     <meta name="description" content={description} />
     <title>{title}</title>
     <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
+
+    <!-- Social / Open Graph -->
+    <meta property="og:type" content="book" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={coverUrl} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={coverUrl} />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -35,15 +51,21 @@ const base = import.meta.env.BASE_URL;
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
 
     <script is:inline>
-      // Dark mode initialization (before page renders)
-      const theme = localStorage.getItem('theme') || 'light';
-      if (theme === 'dark') {
-        document.documentElement.classList.add('dark');
+      // Apply saved preferences before first paint (no flash of wrong mode)
+      const root = document.documentElement;
+      if ((localStorage.getItem('theme') || 'light') === 'dark') {
+        root.classList.add('dark');
       }
+      root.setAttribute('data-lang-mode', localStorage.getItem('readingMode') || 'en');
+      root.setAttribute('data-font-scale', localStorage.getItem('fontScale') || 'm');
+      const savedFont = localStorage.getItem('readingFont');
+      if (savedFont) root.style.setProperty('--reading-font', savedFont);
     </script>
   </head>
   <body>
+    <div id="reading-progress"></div>
     <slot />
+    <Footer />
 
     <script>
       // Dark mode toggle functionality
@@ -62,6 +84,56 @@ const base = import.meta.env.BASE_URL;
 
       // Attach to window for global access
       (window as any).toggleDarkMode = toggleDarkMode;
+
+      // ---- Reading progress bar + resume tracking (reading pages only) ----
+      (() => {
+        const spreads = document.querySelectorAll('.page-spread');
+        if (spreads.length === 0) return; // not a reading page
+
+        const bar = document.getElementById('reading-progress');
+        const updateBar = () => {
+          if (!bar) return;
+          const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+          const pct = scrollable > 0 ? (window.scrollY / scrollable) * 100 : 0;
+          bar.style.width = Math.min(100, Math.max(0, pct)) + '%';
+        };
+
+        // Remember the last page in view so the landing page can offer "Resume".
+        const path = window.location.pathname;
+        let ticking = false;
+        const saveProgress = () => {
+          // Find the spread nearest the top of the viewport
+          let current = spreads[0] as HTMLElement;
+          for (const el of spreads) {
+            const rect = (el as HTMLElement).getBoundingClientRect();
+            if (rect.top <= window.innerHeight * 0.4) current = el as HTMLElement;
+            else break;
+          }
+          const page = current?.getAttribute('data-page');
+          if (page) {
+            localStorage.setItem(
+              'lastRead',
+              JSON.stringify({ path, page: Number(page), at: Date.now() })
+            );
+          }
+        };
+
+        window.addEventListener(
+          'scroll',
+          () => {
+            if (ticking) return;
+            ticking = true;
+            requestAnimationFrame(() => {
+              updateBar();
+              saveProgress();
+              ticking = false;
+            });
+          },
+          { passive: true }
+        );
+        window.addEventListener('resize', updateBar, { passive: true });
+        updateBar();
+      })();
 
       // Keyboard shortcuts
       document.addEventListener('keydown', (e) => {

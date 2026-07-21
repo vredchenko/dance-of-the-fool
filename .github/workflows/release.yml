@@ -1,0 +1,130 @@
+name: Release
+
+# Publishes a GitHub Release with the built PDF / EPUB / Web outputs whenever a
+# vX.Y.Z tag is pushed. See docs/VERSIONING.md for the version scheme and the
+# steps to cut a release.
+
+on:
+  push:
+    tags:
+      - 'v[0-9]+.[0-9]+.[0-9]+'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to release (X.Y.Z, no leading v). Must match the VERSION file.'
+        required: true
+
+# Needed to create the release and (for manual runs) the tag.
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Build outputs and publish release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Resolve version
+        id: ver
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            VERSION="${{ github.event.inputs.version }}"
+            TAG="v${VERSION}"
+          else
+            TAG="${GITHUB_REF_NAME}"
+            VERSION="${TAG#v}"
+          fi
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "tag=$TAG" >> "$GITHUB_OUTPUT"
+          echo "Releasing $VERSION (tag $TAG)"
+
+      - name: Verify VERSION file matches the tag
+        run: |
+          FILE_VERSION="$(tr -d '[:space:]' < VERSION)"
+          if [ "$FILE_VERSION" != "${{ steps.ver.outputs.version }}" ]; then
+            echo "::error::VERSION file ($FILE_VERSION) does not match release version (${{ steps.ver.outputs.version }}). Bump VERSION before tagging — see docs/VERSIONING.md."
+            exit 1
+          fi
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.11'
+
+      - name: Install build dependencies
+        run: |
+          python3 -m pip install --upgrade pip
+          pip install reportlab ebooklib
+          sudo apt-get update
+          sudo apt-get install -y fonts-dejavu fonts-dejavu-core
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: '20'
+          cache: npm
+          cache-dependency-path: webui/package-lock.json
+
+      - name: Build PDF exports
+        run: |
+          mkdir -p release
+          python3 tools/generate-pdf.py --output "release/dance-of-the-fool.pdf"
+          python3 tools/generate-pdf.py --output "release/dance-of-the-fool-annotated.pdf" --include-uncertainties
+
+      - name: Build EPUB exports
+        run: |
+          python3 tools/generate-epub.py --output "release/dance-of-the-fool.epub"
+          python3 tools/generate-epub.py --output "release/dance-of-the-fool-annotated.epub" --include-uncertainties
+
+      - name: Build web bundle
+        working-directory: webui
+        env:
+          PUBLIC_COMMIT_SHA: ${{ github.sha }}
+          PUBLIC_REPO_URL: ${{ github.server_url }}/${{ github.repository }}
+        run: |
+          npm ci
+          # Root base path so the bundle is portable when served from a static host.
+          npm run build
+
+      - name: Package web bundle
+        run: |
+          cd webui/dist
+          zip -r "$GITHUB_WORKSPACE/release/dance-of-the-fool-web.zip" .
+
+      - name: List built assets
+        run: ls -la release/
+
+      - name: Publish GitHub Release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          VERSION="${{ steps.ver.outputs.version }}"
+          cat > release-notes.md <<EOF
+          ## The Dance of the Fool — v${VERSION}
+
+          Unofficial, non-commercial English fan translation of *«Танець недоумка»* by Illarion Pavliuk.
+
+          **Read online:** https://vredchenko.github.io/dance-of-the-fool/
+
+          ### Downloads
+          - **PDF** — \`dance-of-the-fool.pdf\`
+          - **PDF, with translator's notes** — \`dance-of-the-fool-annotated.pdf\`
+          - **EPUB** — \`dance-of-the-fool.epub\`
+          - **EPUB, with translator's notes** — \`dance-of-the-fool-annotated.epub\`
+          - **Web reader** (static bundle, serve from a static host) — \`dance-of-the-fool-web.zip\`
+
+          See [docs/VERSIONING.md](https://github.com/${{ github.repository }}/blob/main/docs/VERSIONING.md) for what the version number means.
+          EOF
+
+          gh release create "${{ steps.ver.outputs.tag }}" \
+            release/dance-of-the-fool.pdf \
+            release/dance-of-the-fool-annotated.pdf \
+            release/dance-of-the-fool.epub \
+            release/dance-of-the-fool-annotated.epub \
+            release/dance-of-the-fool-web.zip \
+            --title "v${VERSION}" \
+            --notes-file release-notes.md \
+            --latest \
+            --target "${GITHUB_SHA}"

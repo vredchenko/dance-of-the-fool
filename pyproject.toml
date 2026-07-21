@@ -1,6 +1,6 @@
 [project]
 name = "dance-of-the-fool"
-version = "0.1.0"
+version = "1.0.0"
 description = "Tooling and pipeline for an English fan translation of the novel 'The Dance of the Fool' (PDF/EPUB processing, output generation, web reader)"
 readme = "README.md"
 authors = [
